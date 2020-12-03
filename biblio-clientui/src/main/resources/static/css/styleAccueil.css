@@ -1,0 +1,21 @@
+body{
+    background-image: url("../../photoSite/accueil_abonne.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    margin: 0;
+    height: 100%;
+}
+
+h1 {
+    font-size: 7em;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    color: white;
+}
+
+p{
+    font-size: 3em;
+    color: white;
+}
