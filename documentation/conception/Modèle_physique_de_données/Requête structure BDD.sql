@@ -1,15 +1,4 @@
 
-CREATE SEQUENCE public.couverture_livre_id_couverture_livre_seq_1;
-
-CREATE TABLE public.couverture_livre (
-                id_couverture_livre NUMERIC NOT NULL DEFAULT nextval('public.couverture_livre_id_couverture_livre_seq_1'),
-                photo VARCHAR NOT NULL,
-                CONSTRAINT couverture_livre_pk PRIMARY KEY (id_couverture_livre)
-);
-
-
-ALTER SEQUENCE public.couverture_livre_id_couverture_livre_seq_1 OWNED BY public.couverture_livre.id_couverture_livre;
-
 CREATE SEQUENCE public.editeur_id_seq;
 
 CREATE TABLE public.Editeur (
@@ -31,8 +20,9 @@ CREATE TABLE public.Livre (
                 num_ISBN13 VARCHAR NOT NULL,
                 langue VARCHAR NOT NULL,
                 id_editeur VARCHAR NOT NULL,
-                id_couverture_livre NUMERIC NOT NULL,
                 nombre_de_pages NUMERIC NOT NULL,
+                petite_photo_couverture VARCHAR NOT NULL,
+                grande_photo_couverture VARCHAR NOT NULL,
                 CONSTRAINT livre_pk PRIMARY KEY (id_livre)
 );
 
@@ -56,7 +46,7 @@ CREATE SEQUENCE public.pret_id_pret_seq;
 CREATE TABLE public.Pret (
                 id_pret NUMERIC NOT NULL DEFAULT nextval('public.pret_id_pret_seq'),
                 date_emprunt DATE NOT NULL,
-                date_restitution DATE NOT NULL,
+                date_restitution DATE,
                 prolongation BOOLEAN NOT NULL,
                 id_ouvrage NUMERIC NOT NULL,
                 CONSTRAINT pret_pk PRIMARY KEY (id_pret)
@@ -157,7 +147,7 @@ CREATE TABLE public.Employe (
                 prenom VARCHAR NOT NULL,
                 matricule VARCHAR NOT NULL,
                 date_embauche DATE NOT NULL,
-                date_depart DATE NOT NULL,
+                date_depart DATE,
                 email VARCHAR NOT NULL,
                 mot_de_passe VARCHAR NOT NULL,
                 bibliotheque VARCHAR NOT NULL,
@@ -200,13 +190,6 @@ CREATE TABLE public.pret_abonne (
 
 
 ALTER SEQUENCE public.pret_abonne_id_pret_abonne_seq OWNED BY public.pret_abonne.id_pret_abonne;
-
-ALTER TABLE public.Livre ADD CONSTRAINT couverture_livre_livre_fk
-FOREIGN KEY (id_couverture_livre)
-REFERENCES public.couverture_livre (id_couverture_livre)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
 
 ALTER TABLE public.Livre ADD CONSTRAINT editeur_livre_fk
 FOREIGN KEY (id_editeur)
