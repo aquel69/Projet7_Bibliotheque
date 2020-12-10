@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.lardon</groupId>
-	<artifactId>biblio-clientui</artifactId>
+	<artifactId>biblio-catalogue</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>biblio-abonne-interface</name>
-	<description>microservices interface abonné</description>
+	<name>biblio-catalogue</name>
+	<description>microservices gestion des ouvrages</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -45,6 +45,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 			<version>1.4.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.24.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.12</version>
 		</dependency>
 	</dependencies>
 
