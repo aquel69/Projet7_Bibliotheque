@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Projet7_Bibliotheque.iml" filepath="$PROJECT_DIR$/.idea/Projet7_Bibliotheque.iml" />
-      <module fileurl="file://$PROJECT_DIR$/biblio-clientui/biblio-abonne-interface.iml" filepath="$PROJECT_DIR$/biblio-clientui/biblio-abonne-interface.iml" />
-      <module fileurl="file://$PROJECT_DIR$/biblio-catalogue/biblio-catalogue.iml" filepath="$PROJECT_DIR$/biblio-catalogue/biblio-catalogue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/biblio-catalogue-livres/biblio-catalogue-livres.iml" filepath="$PROJECT_DIR$/biblio-catalogue-livres/biblio-catalogue-livres.iml" />
+      <module fileurl="file://$PROJECT_DIR$/biblio-interface-abonne/biblio-interface-abonne.iml" filepath="$PROJECT_DIR$/biblio-interface-abonne/biblio-interface-abonne.iml" />
     </modules>
   </component>
 </project>

@@ -3,9 +3,10 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/biblio-clientui/pom.xml" />
         <option value="$PROJECT_DIR$/biblio-ouvrage/pom.xml" />
-        <option value="$PROJECT_DIR$/biblio-catalogue/pom.xml" />
+        <option value="$PROJECT_DIR$/biblio-catalogue-livres-bis/pom.xml" />
+        <option value="$PROJECT_DIR$/biblio-interface-abonne/pom.xml" />
+        <option value="$PROJECT_DIR$/biblio-catalogue-livres/pom.xml" />
       </list>
     </option>
   </component>
