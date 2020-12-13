@@ -17,24 +17,19 @@ public class AbonneController {
     @Autowired
     private MicroserviceLivresProxy livresProxy;
 
-    @RequestMapping(value = "/livre/{id}")
-    public String accueil(@PathVariable int id, Model model){
-
-        System.out.println("je suis dans le proxy");
-
-        LivreBean livre = livresProxy.recupererUnProduit(id);
-
-        model.addAttribute("livre", livre);
-
-        return "Accueil";
-    }
 
     @RequestMapping(value = "/")
     public String accueil(Model model){
+        System.out.println("je suis dans le proxy");
+
         //essai
         Test test = new Test();
         String message = test.getMessage();
         model.addAttribute("message", message);
+
+        /*LivreBean livre = livresProxy.recupererUnProduit(1);
+
+        model.addAttribute("livre", livre);*/
 
         return "Accueil";
     }

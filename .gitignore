@@ -43,6 +43,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+.mvn
 .idea
 *.iws
 *.iml
