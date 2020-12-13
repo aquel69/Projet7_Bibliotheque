@@ -7,20 +7,6 @@ import java.sql.SQLException;
 public class TestJdbc {
     public static void main(String[] args) {
 
-        /*String jdbcUrl = "jdbc:postgresql://localhost:5432/hibernate";
-
-        try {
-            System.out.println("connecte database" + jdbcUrl);
-
-            Connection myConn = DriverManager.getConnection(jdbcUrl, "postgres", "postgres");
-
-            System.out.println("connection successfull!!");
-
-        }
-        catch (Exception exc){
-
-        }*/
-
         System.out.println("-------- PostgreSQL "
                 + "JDBC Connection Testing ------------");
 

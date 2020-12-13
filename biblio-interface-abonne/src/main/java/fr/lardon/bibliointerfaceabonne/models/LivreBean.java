@@ -1,35 +1,27 @@
-package fr.lardon.bibliocataloguelivres.model;
+package fr.lardon.bibliointerfaceabonne.models;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @RequiredArgsConstructor
-@Entity
-@Table(name=("livre"))
-public class Livre {
+public class LivreBean {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_livre")
     private int idLivre;
 
     /**
      * Titre du livre
      */
     @NonNull
-    @Column(name="titre")
     private String titre;
 
     /**
      * Résumé du livre.
      */
     @NonNull
-    @Column(name="resume")
     private String resume;
 
     /**
@@ -37,40 +29,30 @@ public class Livre {
      */
     @ToString.Exclude
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "livre_auteur",
-            joinColumns = @JoinColumn(name = "id_livre"),
-            inverseJoinColumns = @JoinColumn(name = "id_auteur"))
-    private List<Auteur> auteurs;
+    private List<AuteurBean> auteurs;
 
     /**
      * Editeur du livre.
      */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_editeur")
-    private Editeur editeur;
+    @NonNull
+    private EditeurBean editeur;
 
     /**
      * Date d'édition du livre.
      */
     @NonNull
-    @Column(name="date_edition")
-    @Temporal(TemporalType.DATE)
     private Date dateEdition;
 
     /**
      * Numéro ISBN de l'ouvrage
      */
     @NonNull
-    @Column(name="num_isbn13")
     private String numISBN13;
 
     /**
      * Langue de cet ouvrage.
      */
     @NonNull
-    @Column(name="langue")
     private String langue;
 
     /**
@@ -78,39 +60,32 @@ public class Livre {
      */
     @ToString.Exclude
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "liste_genre",
-            joinColumns = @JoinColumn(name = "id_livre"),
-            inverseJoinColumns = @JoinColumn(name = "id_genre"))
-    private List<Genre> genres;
+
+    private List<GenreBean> genres;
 
     /**
      * nombre de pages
      */
     @NonNull
-    @Column(name="nombre_de_pages")
     private int nombreDePages;
 
     /**
      * photo de la couverture liste
      */
     @NonNull
-    @Column(name="petite_photo_couverture")
     private String petitePhotoCouverture;
 
     /**
      * photo de la couverture détail
      */
     @NonNull
-    @Column(name = "grande_photo_couverture")
     private String grandePhotoCouverture;
 
-    public Livre(){
+    public LivreBean(){
 
     }
 
-    public void ajouterUnGenre(Genre tempGenre){
+    public void ajouterUnGenre(GenreBean tempGenre){
         if(genres == null){
             genres = new ArrayList<>();
         }
@@ -119,7 +94,7 @@ public class Livre {
 
     }
 
-    public void ajouterUnAteur(Auteur tempAuteur){
+    public void ajouterUnAteur(AuteurBean tempAuteur){
         if(auteurs == null){
             auteurs = new ArrayList<>();
         }
