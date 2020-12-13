@@ -119,7 +119,7 @@ public class Livre {
 
     }
 
-    public void ajouterUnAteur(Auteur tempAuteur){
+    public void ajouterUnAuteur(Auteur tempAuteur){
         if(auteurs == null){
             auteurs = new ArrayList<>();
         }

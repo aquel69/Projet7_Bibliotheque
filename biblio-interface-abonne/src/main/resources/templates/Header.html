@@ -12,19 +12,25 @@
 
     </head>
     <body >
+        <header th:fragment="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="offset-11"></div>
+                    <div class="col-1">
 
-        <li class="nav-item dropdown" th:fragment="header">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-               aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#navbar-example2-one">one</a>
-                <a class="dropdown-item" href="#navbar-example2-two">two</a>
-                <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#navbar-example2-three">three</a>
+                        <li class="nav-item dropdown mt-3" >
+                            <a class="nav-link dropdown-toggle btn-light text-right" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Se connecter</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Catalogue</a>
+                                <a class="dropdown-item" href="#">Se déconnecter</a>
+                            </div>
+                        </li>
+                    </div>
+                </div>
             </div>
-            <p>super</p>
-        </li>
-
+        </header>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

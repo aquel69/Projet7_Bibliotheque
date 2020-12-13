@@ -1,7 +1,7 @@
 package fr.lardon.bibliointerfaceabonne.controller;
 
-
 import fr.lardon.bibliointerfaceabonne.models.LivreBean;
+import fr.lardon.bibliointerfaceabonne.models.Test;
 import fr.lardon.bibliointerfaceabonne.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,12 +29,19 @@ public class AbonneController {
         return "Accueil";
     }
 
+    @RequestMapping(value = "/")
+    public String accueil(Model model){
+        //essai
+        Test test = new Test();
+        String message = test.getMessage();
+        model.addAttribute("message", message);
+
+        return "Accueil";
+    }
+
 }
 
-//essai
-        /*Test test = new Test();
-        String message = test.getMessage();
-        model.addAttribute("message", message);*/
+
 
 
         /*List<LivreBean> livres = livresProxy.listeLivre();

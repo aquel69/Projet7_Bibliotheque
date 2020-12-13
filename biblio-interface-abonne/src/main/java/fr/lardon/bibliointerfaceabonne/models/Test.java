@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class Test {
 
-    private String message = "hello world";
+    private String message = "hello world et hello tout le monde";
 
 }
