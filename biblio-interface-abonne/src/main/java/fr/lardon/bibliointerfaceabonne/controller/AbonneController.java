@@ -27,9 +27,12 @@ public class AbonneController {
         String message = test.getMessage();
         model.addAttribute("message", message);
 
-        /*LivreBean livre = livresProxy.recupererUnProduit(1);
+        List<LivreBean> livres = livresProxy.listeLivre();
+        model.addAttribute("livres", livres);
 
-        model.addAttribute("livre", livre);*/
+        LivreBean livre = livresProxy.recupererUnProduit(2);
+
+        model.addAttribute("livre", livre);
 
         return "Accueil";
     }

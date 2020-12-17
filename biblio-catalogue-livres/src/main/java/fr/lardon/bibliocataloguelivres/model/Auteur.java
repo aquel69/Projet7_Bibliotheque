@@ -1,5 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Setter;
 import lombok.ToString;
@@ -51,9 +53,10 @@ public class Auteur {
     @Setter
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "livre_auteur",
+    @JoinTable(name = "livre_auteurs",
             joinColumns = @JoinColumn(name = "id_auteur"),
             inverseJoinColumns = @JoinColumn(name = "id_livre"))
-    private List<Livre> livre;
+    @JsonIgnore
+    private List<Livre> livres;
 
 }

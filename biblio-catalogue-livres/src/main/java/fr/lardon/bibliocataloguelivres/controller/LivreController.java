@@ -30,7 +30,8 @@ public class LivreController {
     @GetMapping( value = "/Livres/{id}")
     public Livre recupererUnProduit(@PathVariable int id) {
 
-        Livre livre = daoLivre.getOne(id);
+        /*Livre livre = daoLivre.getOne(id);*/
+        Livre livre = daoLivre.findById(id).get();
 
         return livre;
     }

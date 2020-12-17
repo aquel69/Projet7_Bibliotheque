@@ -1,5 +1,6 @@
 package fr.lardon.bibliocataloguelivres.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,10 +40,24 @@ public class Livre {
     @Setter
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "livre_auteur",
+    @JoinTable(name = "livre_auteurs",
             joinColumns = @JoinColumn(name = "id_livre"),
             inverseJoinColumns = @JoinColumn(name = "id_auteur"))
+
     private List<Auteur> auteurs;
+
+    /**
+     * Genre associé à cet ouvrage.
+     */
+    @ToString.Exclude
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "liste_genre",
+            joinColumns = @JoinColumn(name = "id_livre"),
+            inverseJoinColumns = @JoinColumn(name = "id_genre"))
+
+    private List<Genre> genres;
 
     /**
      * Editeur du livre.
@@ -72,18 +87,6 @@ public class Livre {
     @NonNull
     @Column(name="langue")
     private String langue;
-
-    /**
-     * Genre associé à cet ouvrage.
-     */
-    @ToString.Exclude
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "liste_genre",
-            joinColumns = @JoinColumn(name = "id_livre"),
-            inverseJoinColumns = @JoinColumn(name = "id_genre"))
-    private List<Genre> genres;
 
     /**
      * nombre de pages

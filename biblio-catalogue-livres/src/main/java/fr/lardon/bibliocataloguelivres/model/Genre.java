@@ -1,5 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Setter;
 import lombok.ToString;
@@ -36,5 +38,6 @@ public class Genre {
     @JoinTable(name = "liste_genre",
             joinColumns = @JoinColumn(name = "id_genre"),
             inverseJoinColumns = @JoinColumn(name = "id_livre"))
+    @JsonIgnore
     private List<Livre> livres;
 }

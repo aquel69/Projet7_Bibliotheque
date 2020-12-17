@@ -10,12 +10,20 @@ body{
 }
 
 h1 {
-    font-size: 7em;
+
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+
+}
+
+.jumbotron{
+    background-color: #54a79d;
+}
+
+#titre_top_10{
     color: white;
 }
 
-p{
-    font-size: 3em;
-    color: white;
+.table > tbody > tr:first-child > td {
+    border: none;
 }
+
