@@ -1,0 +1,20 @@
+body{
+    background-image: url("../photoSite/page_detail_du_livre.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    margin: 0;
+    height: 100%;
+}
+
+#couverture_livre{
+    margin-top: 10em;
+}
+
+.jumbotron{
+    height: 47em;
+    min-height: 47em;
+    max-height: 47em;
+}

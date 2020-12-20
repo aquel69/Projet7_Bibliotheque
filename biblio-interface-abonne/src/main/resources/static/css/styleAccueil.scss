@@ -1,0 +1,30 @@
+body {
+  font-family: Arial;
+}
+
+.split-character span {
+  display: inline-block;
+}
+
+.title {
+  display: inline-block;
+  overflow: hidden; // Pour un plus bel effet d'apparition, on masque les span tant qu'ils ne sont pas dans le block
+
+  // Par défaut les lettres sont masquées. L'animation est jouée une fois seulement, sur une durée de 0.5s.
+  span > span {
+    opacity: 0;
+    animation: titleAnimation 0.5s cubic-bezier(0.95, 0.05, 0.795, 0.035) 1 forwards;
+  }
+}
+
+// Les lettres sont initialement décalées vers le bas et masquées. Puis elles remontent à leur position initiale tout en fadant.
+@keyframes titleAnimation {
+  from {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}

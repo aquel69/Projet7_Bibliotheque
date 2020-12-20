@@ -60,7 +60,6 @@ public class LivreBean {
      */
     @ToString.Exclude
     @Setter
-
     private List<GenreBean> genres;
 
     /**
@@ -94,7 +93,7 @@ public class LivreBean {
 
     }
 
-    public void ajouterUnAteur(AuteurBean tempAuteur){
+    public void ajouterUnAuteur(AuteurBean tempAuteur){
         if(auteurs == null){
             auteurs = new ArrayList<>();
         }
