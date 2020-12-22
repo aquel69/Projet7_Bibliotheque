@@ -18,13 +18,13 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/styleAccueil.css}">
     </head>
     <body>
-        <li th:insert="Header.html :: header"> </li>
+        <header th:insert="Header :: header"></header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3 px-3 ml-5">
-                    <h1 id="titre_top_10" class="text-center mb-4">Top Emprunts</h1>
+                <div class="col-md-12 order-lg-1 order-md-2 order-sm-2 col-lg-3 px-3 ml-5">
+                    <h1 id="titre_top_10" class="text-center mb-2">Top Emprunts</h1>
                     <div class="row">
-                        <div class="col-12 jumbotron hoverable p-4 ">
+                        <div id="jumbotron_top" class="col-12 jumbotron hoverable p-4 ">
                             <div class="row">
                                 <div class="col-12">
                                     <table class="table align-items-center">
@@ -33,7 +33,7 @@
                                                 <tr>
                                                   <td class="align-middle " width="15%"><h1 th:text="${inter.index + 1}"></h1></td>
                                                   <td class="align-middle " width="15%"><img th:src="@{/photoOuvrage/{image}(image=${livre.getPetitePhotoCouverture()})}" /></td>
-                                                  <td class="align-middle " width="70%"><h5><a th:text= "${livre.getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${livre.getIdLivre()})}"></a></h5></td>
+                                                  <td class="align-middle " width="70%"><h5><a class="lien_livre" th:text= "${livre.getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${livre.getIdLivre()})}"></a></h5></td>
                                                 </tr>
                                             </tbody>
                                         </div>
@@ -43,40 +43,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-7 ml-5">
+                <div class="col-md-12 order-lg-2 order-md-1 order-sm-1 order-first col-lg-7 ml-5">
                     <div class="row">
                         <div class="col-12">
                             <h1 id="titre_bibliotheque">Bibliothèque</h1>
-                            <h1 id="titre_nom_bibliotheque">Molière</h1>
+                            <h1 id="titre_nom_bibliotheque">Gotham</h1>
                             <h1 id="titre_bienvenue" class="ml3">Bienvenue</h1>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-11">
+                        <div id="jumbotron_nouveaute" class="col-md-12 col-lg-11">
                             <h1 id="titre_nouveaute" class="text-center mb-4">Nouveautés</h1>
-                            <div class="col-12 jumbotron hoverable p-3">
+                            <div  class="col-12 jumbotron hoverable p-3">
                                 <div class="row">
-                                    <div class="table-responsive col-6 border-right">
+                                    <div id="tableau_nouveaute_1" class="table-responsive col-lg-6 col-12 border-right">
                                         <table class="table align-items-center">
                                             <div th:each="ouvrage, inter : ${ouvragesPartieUne}" >
                                                 <tbody class="col-12 py-2">
                                                     <tr>
                                                         <td class="align-middle " width="15%"><h1 th:text="${inter.index + 1}"></h1></td>
                                                         <td class="align-middle " width="15%"><img th:src="@{/photoOuvrage/{image}(image=${ouvrage.getLivre().getPetitePhotoCouverture()})}" /></td>
-                                                        <td class="align-middle " width="70%"><h5><a th:text= "${ouvrage.getLivre().getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${ouvrage.getLivre().getIdLivre()})}"></a></h5></td>
+                                                        <td class="align-middle " width="70%"><h5><a class="lien_livre" th:text= "${ouvrage.getLivre().getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${ouvrage.getLivre().getIdLivre()})}"></a></h5></td>
                                                     </tr>
                                                 </tbody>
                                             </div>
                                         </table>
                                     </div>
-                                    <div class="table-responsive col-6">
+                                    <div class="table-responsive col-lg-6 col-12">
                                         <table class="table align-items-center">
                                             <div th:each="ouvrage, inter : ${ouvragesPartieDeux}" >
                                                 <tbody class="col-12 py-2">
                                                     <tr>
                                                         <td class="align-middle " width="15%"><h1 th:text="${inter.index + 4}"></h1></td>
                                                         <td class="align-middle " width="15%"><img th:src="@{/photoOuvrage/{image}(image=${ouvrage.getLivre().getPetitePhotoCouverture()})}" /></td>
-                                                        <td class="align-middle " width="70%"><h5><a th:text= "${ouvrage.getLivre().getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${ouvrage.getLivre().getIdLivre()})}"></a></h5></td>
+                                                        <td class="align-middle " width="70%"><h5><a class="lien_livre" th:text= "${ouvrage.getLivre().getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${ouvrage.getLivre().getIdLivre()})}"></a></h5></td>
                                                     </tr>
                                                 </tbody>
                                             </div>

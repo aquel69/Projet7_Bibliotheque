@@ -9,46 +9,40 @@ body{
     height: 100%;
 }
 
-a{
+/*menu*/
+
+/*LIVRE*/
+/*Lien*/
+.lien_livre{
     text-decoration:none;
     color: black;
 }
 
-a:hover {
+.lien_livre:hover {
     background-color: #99a5a2;
-
 }
-a:focus {
+.lien_livre:focus {
     background-color:#555;
-
 }
 
+/*corps*/
 .jumbotron{
     background-color: #5fbfb6;
     opacity: 93%;
 }
-
-#titre_top_10{
-    font-family: 'Roboto', sans-serif;
-    color: white;
-}
-
-#titre_nouveaute{
-    font-family: 'Roboto', sans-serif;
-    color: white;
-}
-
 .table > tbody > tr:first-child > td {
     border: none;
 }
 
-.ml3 {
-    font-weight: 900;
-    font-size: 10em;
-    color: #f5f5dc;
-    margin-bottom: 0.36em;
+/*titre et sous-titre*/
+#titre_top_10{
+    font-family: 'Roboto', sans-serif;
+    color: white;
 }
-
+#titre_nouveaute{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
 #titre_bibliotheque{
     color: white;
     font-size: 5em;
@@ -65,8 +59,57 @@ a:focus {
     border-bottom: solid;
     border-top: solid;
     padding-top: 0.23em;
-    margin-bottom: 1.13em;
+    margin-bottom: 0.70em;
+}
+/*titre bienvenue avec effet */
+.ml3 {
+    font-weight: 900;
+    font-size: 10em;
+    color: #f5f5dc;
+    margin-bottom: 0.36em;
 }
 
 
+@media screen and (max-width:1464px){
+    .ml3{
+        font-size: 6em;
+    }
 
+    .texteJumb{
+        font-size: 1.2em;
+    }
+    #jumbotron_nouveaute{
+        margin-top: 7em;
+    }
+}
+
+@media screen and (max-width: 992px){
+    #tableau_nouveaute_1 > tbody > tr:first-child > td {
+        border-bottom: blue;
+    }
+
+    #jumbotron_nouveaute{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 767px){
+    #bouton_menu{
+        margin-right: 2em;
+    }
+}
+
+@media screen and (max-width: 525px){
+    .ml3{
+        font-size: 4em;
+    }
+    #titre_bibliotheque{
+        font-size: 4em;
+
+    }
+
+    #titre_nom_bibliotheque{
+        font-size: 5em;
+
+    }
+}
