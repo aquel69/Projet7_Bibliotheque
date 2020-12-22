@@ -12,7 +12,7 @@
 	<artifactId>biblio-interface-abonne</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>biblio-interface-abonne</name>
-	<description>catalogues des livres</description>
+	<description>interface abonnés</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
