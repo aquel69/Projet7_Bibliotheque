@@ -65,5 +65,20 @@ public class AbonneController {
         return "DetailLivre";
     }
 
+    @RequestMapping(value = "/Catalogue")
+    public String listeLivre(Model model){
+
+
+        List<LivreBean> listeLivres = livresProxy.listeLivre();
+
+
+
+
+        model.addAttribute("listeLivres", listeLivres);
+
+
+        return "Catalogue";
+    }
+
 
 }

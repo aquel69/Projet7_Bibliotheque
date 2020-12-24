@@ -80,6 +80,12 @@ public class LivreBean {
     @NonNull
     private String grandePhotoCouverture;
 
+    /**
+     * photo de la couverture catalogue
+     */
+    @NonNull
+    private String moyennePhotoCouverture;
+
     public LivreBean(){
 
     }

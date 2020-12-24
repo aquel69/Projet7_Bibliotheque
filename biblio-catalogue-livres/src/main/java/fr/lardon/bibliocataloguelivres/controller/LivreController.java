@@ -5,7 +5,7 @@ import fr.lardon.bibliocataloguelivres.dao.DaoOuvrage;
 import fr.lardon.bibliocataloguelivres.model.Livre;
 import fr.lardon.bibliocataloguelivres.model.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

@@ -109,6 +109,13 @@ public class Livre {
     @Column(name = "grande_photo_couverture")
     private String grandePhotoCouverture;
 
+    /**
+     * photo de la couverture détail
+     */
+    @NonNull
+    @Column(name = "moyenne_photo_couverture")
+    private String moyennePhotoCouverture;
+
     public Livre(){
 
     }

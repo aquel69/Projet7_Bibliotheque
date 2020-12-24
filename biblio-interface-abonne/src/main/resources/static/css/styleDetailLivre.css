@@ -9,6 +9,10 @@ body{
     height: 100%;
 }
 
+.jumbotron{
+    opacity: 93%;
+}
+
 #couverture_livre{
     margin-top: 10em;
     margin-left: 9em;

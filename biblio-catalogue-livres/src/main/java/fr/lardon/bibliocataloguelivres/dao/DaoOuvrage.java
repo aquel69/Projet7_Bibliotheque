@@ -13,4 +13,6 @@ public interface DaoOuvrage extends JpaRepository<Ouvrage, Integer> {
     @Query("SELECT o FROM Ouvrage o ORDER BY date_ajout DESC")
     List<Ouvrage> trouverDerniereOuvrage();
 
+
+
 }
