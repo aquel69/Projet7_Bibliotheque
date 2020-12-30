@@ -7,6 +7,7 @@ import fr.lardon.bibliointerfaceabonne.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -65,16 +66,24 @@ public class AbonneController {
         return "DetailLivre";
     }
 
-    @RequestMapping(value = "/Catalogue")
-    public String listeLivre(Model model){
+    @GetMapping(value="/Catalogue/{noPage}/{nbLivresParPage}")
+    public String ListeLivrePagination(@PathVariable int noPage, @PathVariable int nbLivresParPage, Model model){
+        double nbTotalPages =0;
+
+        List<LivreBean> listeLivresPagination = livresProxy.catalogueListeLivrePagination(noPage, nbLivresParPage);
+        List<LivreBean> totalDesLivres = livresProxy.listeLivre();
+        nbTotalPages = totalDesLivres.size() / nbLivresParPage;
+        nbTotalPages = Math.floor(nbTotalPages);
+
+        System.out.println("taille livre pagination " + totalDesLivres.size());
+        System.out.println("nb livre par page " + nbLivresParPage);
+        System.out.println("nb de page " + nbTotalPages);
 
 
-        List<LivreBean> listeLivres = livresProxy.listeLivre();
-
-
-
-
-        model.addAttribute("listeLivres", listeLivres);
+        model.addAttribute("listeLivresPagination", listeLivresPagination);
+        model.addAttribute("noPage", noPage);
+        model.addAttribute("nbTotalPages", nbTotalPages);
+        model.addAttribute("nbLivresParPage", nbLivresParPage);
 
 
         return "Catalogue";

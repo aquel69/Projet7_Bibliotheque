@@ -6,9 +6,12 @@ import fr.lardon.bibliocataloguelivres.model.Livre;
 import fr.lardon.bibliocataloguelivres.model.Ouvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -28,6 +31,14 @@ public class LivreController {
         List<Livre> livres = daoLivre.findAll();
 
         return livres;
+    }
+
+    @GetMapping(value="/Catalogue/{noPage}/{nbLivresParPage}")
+    public List<Livre> catalogueListeLivrePagination(@PathVariable int noPage, @PathVariable int nbLivresParPage){
+        Pageable pageable = PageRequest.of(noPage, nbLivresParPage);
+        List<Livre> listeLivrePagination = daoLivre.listeLivrePagination(pageable);
+
+        return listeLivrePagination;
     }
 
     @GetMapping( value = "/Livres/{id}")

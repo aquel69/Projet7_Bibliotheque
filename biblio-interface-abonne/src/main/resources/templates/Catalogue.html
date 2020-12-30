@@ -22,7 +22,7 @@
     </div>
     <div class="row px-3">
         <div class="col-lg-6 col-md-12">
-            <div th:each="livre, inter : ${listeLivres}" >
+            <div th:each="livre, inter : ${listeLivresPagination}" >
                 <div class="container" th:if="${inter.count < 5}"><a href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${livre.getIdLivre()})}"></a>
                     <div class="row">
                         <div id="jumbotron_catalogue_1" class="col-12 jumbotron hoverable p-4 ">
@@ -31,7 +31,7 @@
                                     <img th:src="@{/photoOuvrage/{image}(image=${livre.getMoyennePhotoCouverture()})}">
                                 </div>
                                 <div class="col-10">
-                                    <div class="border-bottom mb-3">
+                                    <div class="border-bottom border-secondary mb-3">
                                         <h4 class="titre_livre text-center"><a class="lien_livre" th:text="${livre.getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${livre.getIdLivre()})}"></a></h4>
                                     </div>
                                     <div>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-12">
-            <div th:each="livre, inter : ${listeLivres}" >
+            <div th:each="livre, inter : ${listeLivresPagination}" >
                 <div class="container" th:if="${inter.count > 4} and ${inter.count < 9}">
                     <div class="row">
                         <div id="jumbotron_catalogue_2" class="col-12 jumbotron hoverable p-4 ">
@@ -68,7 +68,7 @@
                                     <img th:src="@{/photoOuvrage/{image}(image=${livre.getMoyennePhotoCouverture()})}">
                                 </div>
                                 <div class="col-10">
-                                    <div class="border-bottom mb-3">
+                                    <div class="border-bottom border-secondary mb-3">
                                         <h4 class="titre_livre text-center"><a class="lien_livre" th:text="${livre.getTitre()}" href="Livre/Detail.html" th:href="@{/Detail/{id}(id=${livre.getIdLivre()})}"></a></h4>
                                     </div>
                                     <div>
@@ -100,14 +100,14 @@
         <div class="col-lg-12">
             <nav aria-label="Page navigation example">
                 <ul class="pagination pg-blue justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" tabindex="-1">Previous</a>
+                    <li class="page-item" th:classappend="${noPage == 0} ? disabled">
+                        <a class="page-link" th:href="@{|/Catalogue/${noPage - 1}/${nbLivresParPage}|}">Précédente</a>
                     </li>
-                    <li class="page-item"><a class="page-link">1</a></li>
-                    <li class="page-item"><a class="page-link">2</a></li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link">Next</a>
+                    <li class="page-item" th:classappend="${noPage == 0} ? disabled"><a class="page-link " th:classappend="${noPage == 0} ? text-danger" th:href="@{|/Catalogue/0/8|}">1</a></li>
+                    <li class="page-item" th:classappend="${noPage == 1} ? disabled"><a class="page-link" th:classappend="${noPage == 1} ? text-danger" th:href="@{|/Catalogue/1/8|}">2</a></li>
+                    <li class="page-item" th:classappend="${noPage == 2} ? disabled"><a class="page-link" th:classappend="${noPage == 2} ? text-danger" th:href="@{|/Catalogue/2/8|}">3</a></li>
+                    <li class="page-item" th:classappend="${noPage == nbTotalPages} ? disabled">
+                        <a class="page-link" th:href="@{|/Catalogue/${noPage + 1}/${nbLivresParPage}|}">Suivante</a>
                     </li>
                 </ul>
             </nav>
