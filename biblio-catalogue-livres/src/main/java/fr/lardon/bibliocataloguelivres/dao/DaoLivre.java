@@ -14,4 +14,7 @@ public interface DaoLivre extends JpaRepository<Livre, Integer> {
 
     @Query("SELECT o FROM Livre o ORDER BY id_livre")
     List<Livre> listeLivrePagination(Pageable pageable);
+
+    @Query("SELECT o FROM Livre o LIMIT 10")
+    List<Livre> listeLivreTop();
 }

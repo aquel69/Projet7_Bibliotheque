@@ -24,7 +24,15 @@ public class LivreController {
     @Autowired
     private DaoOuvrage daoOuvrage;
 
-    @GetMapping(value = "/Livres")
+    @GetMapping(value = "/Top")
+    public List<Livre> topLivre(){
+
+        List<Livre> livres = daoLivre.listeLivreTop();
+
+        return livres;
+    }
+
+    @GetMapping(value = "/Liste")
     public List<Livre> listeLivre(){
         System.out.println("démarrage de la fonction listeLivre");
 
