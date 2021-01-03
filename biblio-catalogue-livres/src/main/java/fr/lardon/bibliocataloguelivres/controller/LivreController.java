@@ -32,7 +32,7 @@ public class LivreController {
         return livres;
     }
 
-    @GetMapping(value = "/Liste")
+    @GetMapping(value = "/Livres")
     public List<Livre> listeLivre(){
         System.out.println("démarrage de la fonction listeLivre");
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class AbonneController {
@@ -23,19 +24,20 @@ public class AbonneController {
 
     @RequestMapping(value = "/")
     public String accueil(Model model){
-        System.out.println("je suis dans le proxy");
-
-        //récupération de tous les livres
-        List<LivreBean> livres = livresProxy.listeLivre();
-        model.addAttribute("livres", livres);
-
-        //récupération des nouveautés
         int index = 0;
+        List<LivreBean> livres;
 
-        List<OuvrageBean> ouvragesNouveaute = livresProxy.listeOuvrageNouveaute();
-
+        List<OuvrageBean> ouvragesNouveaute;
         List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
         List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
+
+        //récupération du top 10
+        livres = livresProxy.topLivre();
+
+        ArrayList<LivreBean> livreTop = new ArrayList<>(livres.subList(0, 10));
+
+        //récupération des nouveautés
+        ouvragesNouveaute = livresProxy.listeOuvrageNouveaute();
 
         for(OuvrageBean ouvrage : ouvragesNouveaute){
             if(index < 3)
@@ -46,6 +48,7 @@ public class AbonneController {
             index++;
         }
 
+        model.addAttribute("livres", livreTop);
         model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
         model.addAttribute("ouvragesPartieDeux", ouvragesSecondePartie);
 

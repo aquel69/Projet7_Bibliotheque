@@ -27,12 +27,29 @@ body{
     background-color:#555;
 }
 
+.ensemblePagination{
+    position: fixed;
+    top : 92%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
 @media screen and (max-width:1280px){
 
     .descriptif{
         padding-left: 1.5em;
     }
 
+}
+
+@media screen and (max-width:990px){
+    .ensemblePagination{
+        position: absolute;
+        padding-bottom: 20px;
+
+    }
 }
 
 @media screen and (max-width:766px){

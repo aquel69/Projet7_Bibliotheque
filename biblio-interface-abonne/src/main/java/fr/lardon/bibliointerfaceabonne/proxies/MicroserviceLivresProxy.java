@@ -23,5 +23,8 @@ public interface MicroserviceLivresProxy {
     @GetMapping(value = "/Livres/Nouveau")
     List<OuvrageBean> listeOuvrageNouveaute();
 
+    @GetMapping(value = "/Top")
+    List<LivreBean> topLivre();
+
 
 }
