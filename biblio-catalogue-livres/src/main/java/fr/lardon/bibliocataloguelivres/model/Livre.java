@@ -1,10 +1,8 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -110,31 +108,13 @@ public class Livre {
     private String grandePhotoCouverture;
 
     /**
-     * photo de la couverture détail
+     * photo de la couverture catalogue
      */
     @NonNull
     @Column(name = "moyenne_photo_couverture")
     private String moyennePhotoCouverture;
 
     public Livre(){
-
-    }
-
-    public void ajouterUnGenre(Genre tempGenre){
-        if(genres == null){
-            genres = new ArrayList<>();
-        }
-
-        genres.add(tempGenre);
-
-    }
-
-    public void ajouterUnAuteur(Auteur tempAuteur){
-        if(auteurs == null){
-            auteurs = new ArrayList<>();
-        }
-
-        auteurs.add(tempAuteur);
 
     }
 

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.lardon</groupId>
-	<artifactId>biblio-catalogue-livres</artifactId>
+	<artifactId>biblio-gestion-utilisateur</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>biblio-catalogue-livres</name>
-	<description>catalogues des livres</description>
+	<name>biblio-gestion-utilisateur</name>
+	<description>gestion des utilisateurs</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,7 +58,7 @@
 		</dependency>
 
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -68,7 +68,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

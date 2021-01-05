@@ -1,0 +1,68 @@
+body{
+    background-image: url("../photoSite/page_authentification_creation_abonne.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    margin: 0;
+    height: 100%;
+}
+
+.jumbotron{
+    opacity: 93%;
+    background-color: #83ece4;
+}
+
+/*Lien*/
+.lien_livre{
+    text-decoration:none;
+    color: black;
+}
+
+.lien_livre:hover {
+    background-color: #99a5a2;
+}
+.lien_livre:focus {
+    background-color:#555;
+}
+
+.ensemblePagination{
+    position: fixed;
+    top : 92%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+@media screen and (max-width:1280px){
+
+    .descriptif{
+        padding-left: 1.5em;
+    }
+
+}
+
+@media screen and (max-width:990px){
+    .ensemblePagination{
+        position: absolute;
+        padding-bottom: 20px;
+
+    }
+}
+
+@media screen and (max-width:766px){
+
+    .descriptif{
+        padding-left: 2.5em;
+    }
+
+    .titre_livre{
+        font-size: 1.15em;
+    }
+
+    #bouton_menu{
+        margin-right: 2em;
+    }
+}
