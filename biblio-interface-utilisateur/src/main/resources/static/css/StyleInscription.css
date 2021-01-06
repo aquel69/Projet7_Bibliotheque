@@ -14,27 +14,7 @@ body{
     background-color: #83ece4;
 }
 
-/*Lien*/
-.lien_livre{
-    text-decoration:none;
-    color: black;
-}
-
-.lien_livre:hover {
-    background-color: #99a5a2;
-}
-.lien_livre:focus {
-    background-color:#555;
-}
-
-.ensemblePagination{
-    position: fixed;
-    top : 92%;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-
-}
+.
 
 @media screen and (max-width:1280px){
 

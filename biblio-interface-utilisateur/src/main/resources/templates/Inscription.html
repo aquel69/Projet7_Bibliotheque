@@ -19,13 +19,77 @@
                 <div class="col-12 mb-5">
                     <h1 id="titre_catalogue" class="text-center text-light mt-5 mt-md-0">Inscription Abonné</h1>
                 </div>
-            </div>
 
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="jumbotron p-5">
+                        <form action="#" th:action="@{/}" th:object="${abonneBean}" th:object="${adresseBean}" method="post">
+                            <h3 class="text-center mb-3">Identité</h3>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="text" th:field="*{nom}" class="form-control" id="nom">
+                                    <label for="nom">Nom</label>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" th:field="*{prenom}" class="form-control" id="prenom">
+                                    <label for="prenom">Prénom</label>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" th:field="*{pseudo}" class="form-control" id="pseudo">
+                                    <label for="pseudo">Pseudo</label>
+                                </div>
+                            </div>
+                            <h3 class="text-center mb-3">Coordonnées</h3>
+                            <div class="form-row ">
+                                <div class="form-group col-md-3 mb-0">
+                                    <input type="text" class="form-control" id="numero">
+                                    <label for="numero">Numéro</label>
+                                </div>
+                                <div class="form-group col-md-9 mb-0">
+                                    <input type="text" class="form-control" id="rue">
+                                    <label for="rue">Rue</label>
+                                </div>
+                            </div>
+                            <div class="form-outline p-0">
+                                <input type="text" id="complement" class="form-control" />
+                                <label class="form-label" for="complement">Complement</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <input type="text" class="form-control" id="codePostal">
+                                    <label for="codePostal">Code Postal</label>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <input type="text" class="form-control" id="ville">
+                                    <label for="ville">Ville</label>
+                                </div>
+                            </div>
+
+                            <h3 class="text-center mb-3">Identification</h3>
+                            <div class="form-outline">
+                                <input type="email" id="email" class="form-control" />
+                                <label class="form-label" for="email">Email</label>
+                            </div>
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="password" class="form-control" />
+                                <label class="form-label" for="password">Mot de passe</label>
+                            </div>
+                            <!-- Submit button -->
+                            <div class="row justify-content-center">
+                                <div class="col-3 ">
+                                    <button type="submit" class="btn btn-primary btn-block mb-4 text-center">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../static/js/accueilJS.js" th:src="@{/js/accueilJS.js}"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
