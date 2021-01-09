@@ -1,16 +1,19 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name=("adresse"))
+@Table(name="adresse", schema = "public")
 public class Adresse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@GeneratedValue(strategy = GenerationType.SEQUENCE)*/
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
+    @SequenceGenerator(name="project_generator", sequenceName="adresse_id_seq", initialValue = 5, allocationSize = 1)
     @Column(name="id_adresse")
     private int idAdresse;
 

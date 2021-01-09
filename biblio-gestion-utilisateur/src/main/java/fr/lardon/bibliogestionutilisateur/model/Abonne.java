@@ -1,5 +1,6 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,8 @@ import java.util.Date;
 public class Abonne {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
+    @SequenceGenerator(name="project_generator", sequenceName="abonne_id_abonne_seq", initialValue = 1, allocationSize = 1)
     @Column(name="id_abonne")
     private int idAbonne;
 
@@ -69,22 +71,25 @@ public class Abonne {
     /**
      * Adresse de l'abonné
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_adresse")
+
     private Adresse adresse;
 
     /**
      * Role de l'abonné
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role")
+
     private Role role;
 
     /**
      * Bibliothèque dont l'abonné dépend
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "bibliotheque")
+
     private Bibliotheque bibliotheque;
 
     public Abonne() {

@@ -25,6 +25,7 @@ public class AbonneController {
     public String accueil(Model model){
         int index = 0;
         List<LivreBean> livres;
+        String message = null;
 
         List<OuvrageBean> ouvragesNouveaute;
         ArrayList<LivreBean> livreTop;
@@ -47,10 +48,11 @@ public class AbonneController {
             index++;
         }
 
+        /*model.addAttribute("message", message);*/
+        model.addAttribute("message", message);
         model.addAttribute("livres", livreTop);
         model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
         model.addAttribute("ouvragesPartieDeux", ouvragesSecondePartie);
-
 
         return "Accueil";
     }

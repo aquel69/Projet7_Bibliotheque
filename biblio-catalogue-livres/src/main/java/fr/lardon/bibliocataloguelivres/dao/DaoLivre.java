@@ -17,4 +17,7 @@ public interface DaoLivre extends JpaRepository<Livre, Integer> {
 
     @Query("SELECT o FROM Livre o")
     List<Livre> listeLivreTop();
+
+    /*@Query("SELECT t FROM Thing t WHERE t.fooIn = ?1 AND t.bar = ?2")
+    ThingEntity findByFooInAndBar(String fooIn, String bar);*/
 }
