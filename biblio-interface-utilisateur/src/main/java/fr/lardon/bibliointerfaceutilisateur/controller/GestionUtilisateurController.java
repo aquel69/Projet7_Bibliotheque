@@ -9,11 +9,13 @@ import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -24,7 +26,11 @@ import java.util.List;
 @Controller
 public class GestionUtilisateurController {
 
+    private static final int STRENGTH = 12;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     private AbonneBean abonneBean = null;
+    private AbonneBean abonneSecurisation = null;
     private AdresseBean adresseBean = null;
     private BibliothequeBean bibliothequeBean = null;
     private RoleBean roleBean = null;
@@ -52,18 +58,24 @@ public class GestionUtilisateurController {
     public String validationInscription(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost, @ModelAttribute("adresseBean") AdresseBean adresseBeanPost){
 
         abonneBean = new AbonneBean();
+        abonneSecurisation = new AbonneBean();
         adresseBean = new AdresseBean();
         bibliothequeBean = new BibliothequeBean();
         roleBean = new RoleBean();
+        bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
         String numeroAbonne = null;
+        String motDePasse = null;
 
         //attribution du role aux abonnés
         roleBean = gestionUtilisateur.recupererRole(1);
+
         //attribution de la bibliothèque aux abonnés
         bibliothequeBean = gestionUtilisateur.recupererBibliotheque("18004625200177");
+
         //attribution de la date pour l'ouverture du compte de l'abonnée
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
+
         //attribution du numéro d'abonné
         abonneBean = gestionUtilisateur.recupererDernierAbonne();
         numeroAbonne = abonneBean.getNumeroAbonne();
@@ -72,6 +84,9 @@ public class GestionUtilisateurController {
         //ajout de l'adresse dans la base de données et récupération de l'id
         gestionUtilisateur.ajouterAdresse(adresseBeanPost);
         adresseBean = gestionUtilisateur.recupererDernierAdresse();
+
+        //sécurisation du mot de passe
+        abonneBeanPost.setMotDePasse(bCryptPasswordEncoder.encode(abonneBeanPost.getMotDePasse()));
 
         //alimentation de l'objet abonné
         abonneBeanPost.setDateDeCreationDuCompte(date);
@@ -82,9 +97,6 @@ public class GestionUtilisateurController {
 
         //ajout de l'abonné dans la base de données
         gestionUtilisateur.ajouterAbonne(abonneBeanPost);
-
-        System.out.println("adresse " + adresseBeanPost.toString());
-        System.out.println(" abonné " + abonneBeanPost.toString());
 
         String message = abonneBeanPost.getPseudo() + "!! Vous avez créé votre compte !!";
 

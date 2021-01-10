@@ -1,4 +1,4 @@
-package fr.lardon.bibliogestionutilisateur.model;
+package fr.lardon.biblioauthentificationutilisateur.model;
 
 import lombok.Data;
 import lombok.NonNull;
@@ -68,31 +68,12 @@ public class Abonne {
     @Temporal(TemporalType.DATE)
     private Date dateDeCreationDuCompte;
 
-    /**
-     * Adresse de l'abonné
-     */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_adresse")
 
-    private Adresse adresse;
 
-    /**
-     * Role de l'abonné
-     */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role")
-
-    private Role role;
-
-    /**
-     * Bibliothèque dont l'abonné dépend
-     */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bibliotheque")
-
-    private Bibliotheque bibliotheque;
 
     public Abonne() {
 
     }
+
+
 }
