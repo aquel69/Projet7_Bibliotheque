@@ -4,23 +4,19 @@ import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AdresseBean;
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.BibliothequeBean;
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.LivreBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @Controller
@@ -40,6 +36,9 @@ public class GestionUtilisateurController {
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
+
+    @Autowired
+    private CatalogueController catalogueController;
 
     @RequestMapping(value = "/Inscription", method = RequestMethod.GET)
     public String inscription(Model model){
@@ -98,40 +97,15 @@ public class GestionUtilisateurController {
         //ajout de l'abonné dans la base de données
         gestionUtilisateur.ajouterAbonne(abonneBeanPost);
 
+        //affichage du message
         String message = abonneBeanPost.getPseudo() + "!! Vous avez créé votre compte !!";
-
         model.addAttribute("message", message);
 
-        int index = 0;
-        List<LivreBean> livres;
-
-        List<OuvrageBean> ouvragesNouveaute;
-        ArrayList<LivreBean> livreTop;
-        List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
-        List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
-
-        //récupération du top 10
-        livres = livresProxy.topLivre();
-        livreTop = new ArrayList<>(livres.subList(0, 10));
-
-        //récupération des nouveautés
-        ouvragesNouveaute = livresProxy.listeOuvrageNouveaute();
-
-        for(OuvrageBean ouvrage : ouvragesNouveaute){
-            if(index < 3)
-                ouvragesPremierePartie.add(ouvrage);
-            else if(index < 6)
-                ouvragesSecondePartie.add(ouvrage);
-
-            index++;
-        }
-
-        /*model.addAttribute("message", message);*/
-        model.addAttribute("livres", livreTop);
-        model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
-        model.addAttribute("ouvragesPartieDeux", ouvragesSecondePartie);
+        //récupération des livres à afficher dans la page accueil
+        catalogueController.accueil(model);
 
         return "Accueil";
+
     }
 
 }

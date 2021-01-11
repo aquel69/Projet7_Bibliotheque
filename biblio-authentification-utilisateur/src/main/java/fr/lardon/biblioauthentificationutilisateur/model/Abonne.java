@@ -68,7 +68,13 @@ public class Abonne {
     @Temporal(TemporalType.DATE)
     private Date dateDeCreationDuCompte;
 
+    /**
+     * Role de l'abonné
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role")
 
+    private Role role;
 
 
     public Abonne() {

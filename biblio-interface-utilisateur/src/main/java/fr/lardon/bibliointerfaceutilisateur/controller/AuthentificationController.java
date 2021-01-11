@@ -13,7 +13,11 @@ public class AuthentificationController {
     @Autowired
     MicroserviceAuthentificationUtilisateur authentificationUtilisateurProxy;
 
-    AbonneBean abonneRetourner = new AbonneBean();
+    @Autowired
+    CatalogueController catalogueController;
+
+
+    AbonneBean abonneAuthentifier = null;
 
     @RequestMapping(value = "/Authentification", method = RequestMethod.GET)
     public String Authentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanGet){
@@ -24,10 +28,17 @@ public class AuthentificationController {
     @RequestMapping(value = "/Authentification",method = RequestMethod.POST )
     public String ValidationAuthentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost){
 
-        abonneRetourner = authentificationUtilisateurProxy.login(abonneBeanPost.getMotDePasse(), abonneBeanPost.getEmail());
-        System.out.println("abonne Role " + abonneRetourner.getRole().getCode() + "abonne Pseudo " + abonneRetourner.getPseudo());
+        abonneAuthentifier = authentificationUtilisateurProxy.login(abonneBeanPost.getMotDePasse(), abonneBeanPost.getEmail());
 
-        return "Accueil";
+        if(abonneAuthentifier.getRole().getCode() != 0){
+            catalogueController.accueil(model);
+
+            return "Accueil";
+        }else{
+            return "Authentification";
+        }
+
+
     }
 
 }

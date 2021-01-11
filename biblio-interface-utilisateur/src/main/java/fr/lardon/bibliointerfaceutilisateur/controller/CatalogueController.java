@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class AbonneController {
+public class CatalogueController {
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
@@ -25,7 +25,7 @@ public class AbonneController {
     public String accueil(Model model){
         int index = 0;
         List<LivreBean> livres;
-        String message = null;
+        String message = (String) model.getAttribute("message");
 
         List<OuvrageBean> ouvragesNouveaute;
         ArrayList<LivreBean> livreTop;
