@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="modification du compte abonné">
+    <meta name="author" content="alardon">
+    <title>Inscription Abonné</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styleModificationCompte.css}">
+</head>
+<body>
+<span th:insert="Header :: header(codeRole = ${codeRole}, utilisateurAuthentifie = ${utilisateurAuthentifie})"></span>
+<div id="containeur_detail" class="container-fluid">
+    <div class="row">
+        <div class="col-12 mb-5">
+            <h1 id="titre_catalogue" class="text-center text-light mt-5 mt-md-0">Modification du Compte</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-7">
+            <div class="jumbotron p-5">
+                <form th:action="@{/ModificationCompte}" th:object="${utilisateurAuthentifie}" method="post">
+                    <h3 class="text-center mb-3">Identité</h3>
+                    <div class="form-row" >
+                        <div class="form-group col-md-4">
+                            <input type="text" th:field="*{nom}" class="form-control" id="nom">
+                            <label for="nom">Nom</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" th:field="*{prenom}" class="form-control" id="prenom">
+                            <label for="prenom">Prénom</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" th:field="*{pseudo}" class="form-control" id="pseudo">
+                            <label for="pseudo">Pseudo</label>
+                        </div>
+                    </div>
+                    <h3 class="text-center mb-3">Coordonnées</h3>
+                    <div th:object="${adresseBean}">
+                        <div class="form-row " >
+                            <div class="form-group col-md-3 mb-0">
+                                <input type="text" th:field="*{numero}" class="form-control" id="numero">
+                                <label for="numero">Numéro</label>
+                            </div>
+                            <div class="form-group col-md-9 mb-0">
+                                <input type="text" th:field="*{rue}" class="form-control" id="rue">
+                                <label for="rue">Rue</label>
+                            </div>
+                        </div>
+                        <div class="form-outline p-0">
+                            <input type="text" th:field="*{complement}" id="complement" class="form-control" />
+                            <label class="form-label" for="complement">Complement</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <input type="text" th:field="*{codePostal}" class="form-control" id="codePostal">
+                                <label for="codePostal">Code Postal</label>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <input type="text" th:field="*{ville}" class="form-control" id="ville">
+                                <label for="ville">Ville</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-center mb-3">Identification</h3>
+                    <div class="form-outline">
+                        <input type="email" th:field="*{email}" id="email" class="form-control" />
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" th:field="*{motDePasse}" id="password" class="form-control" />
+                        <label class="form-label" for="password">Mot de passe</label>
+                    </div>
+                    <!-- Submit button -->
+                    <div class="row justify-content-center">
+                        <div class="col-3 ">
+                            <button type="submit" id="btn_inscription" th:onclick="|window.location.href='/ModificationInscription'|" class="btn btn-primary btn-block mb-4 text-center">Envoyer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

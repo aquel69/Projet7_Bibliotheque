@@ -25,7 +25,9 @@
                 <strong>Félicitation </strong> <span th:text="${message}"></span>
             </div>
         </div>
-        <header th:insert="Header :: header"></header>
+        <header>
+            <div th:insert="Header :: header(codeRole = ${codeRole}, utilisateurAuthentifie = ${utilisateurAuthentifie})"></div>
+        </header>
         <div class="container-fluid">
             <div class="row">
 

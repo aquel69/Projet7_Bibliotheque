@@ -6,6 +6,7 @@ import fr.lardon.biblioauthentificationutilisateur.model.Abonne;
 import fr.lardon.biblioauthentificationutilisateur.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,11 +21,17 @@ public class AuthentificationController {
     @Autowired
     private DaoRole daoRole;
 
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-    Abonne abonneARetourner = null;
-    Role role = null;
-    Abonne abonne;
-    String emailDecoder;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private Abonne abonneARetourner = null;
+    private Role role = null;
+    private Abonne abonne;
+    private String emailDecoder;
+
+    public AuthentificationController(DaoAbonne daoAbonne, BCryptPasswordEncoder bCryptPasswordEncoder){
+        this.daoAbonne = daoAbonne;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @PostMapping(value="/Login/{motDePasse}/{email}/")
     public Abonne login(@PathVariable(value ="motDePasse") String motDePasse, @PathVariable(value = "email") String email ){
@@ -46,6 +53,11 @@ public class AuthentificationController {
         }
 
         return abonneARetourner;
+    }
+
+    @GetMapping(value="/Logout/")
+    public int logout(){
+        return 0;
     }
 
 }

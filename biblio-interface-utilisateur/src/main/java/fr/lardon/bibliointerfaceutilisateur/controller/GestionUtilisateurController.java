@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
@@ -27,9 +28,12 @@ public class GestionUtilisateurController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private AbonneBean abonneBean = null;
     private AbonneBean abonneSecurisation = null;
-    private AdresseBean adresseBean = null;
+    private AdresseBean adresseBean = new AdresseBean();
     private BibliothequeBean bibliothequeBean = null;
     private RoleBean roleBean = null;
+    private AbonneBean utilisateurAuthentifie= new AbonneBean();
+    private int codeRole = 0;
+
 
     @Autowired
     private MicroserviceGestionUtilisateur gestionUtilisateur;
@@ -46,7 +50,7 @@ public class GestionUtilisateurController {
         abonneBean = new AbonneBean();
         adresseBean = new AdresseBean();
 
-
+        //ajout dans le model
         model.addAttribute("abonneBean", abonneBean);
         model.addAttribute("adresseBean", adresseBean);
 
@@ -107,5 +111,30 @@ public class GestionUtilisateurController {
         return "Accueil";
 
     }
+
+    @RequestMapping(value = "/ModificationCompte", method = RequestMethod.GET)
+    public String modificationCompte(Model model){
+
+
+        //récupération du code role
+        if(model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
+        //récupération du code role
+        if(model.getAttribute("utilisateurAuthentifie") != null) utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+
+
+        //ajout dans le model
+        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        model.addAttribute("codeRole", codeRole);
+        model.addAttribute("adresseBean", adresseBean);
+
+        return "ModificationCompte";
+
+    }
+
+    /*@RequestMapping(value = "/ModificationCompte", method = RequestMethod.PUT)
+    public String validationModificationCompte(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost, @ModelAttribute("adresseBean") AdresseBean adresseBeanPost){
+
+        return "ModificationCompte";
+    }*/
 
 }

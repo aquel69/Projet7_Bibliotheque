@@ -3,7 +3,9 @@
     height: 100px;
 }
 
-
+#bienvenue_pseudo{
+    font-size: 2em;
+}
 
 a{
     color: blueviolet;
