@@ -35,6 +35,10 @@ public class GestionAbonneController {
         return listeAbonne;
     }
 
+    //modifier un abonné
+    @PutMapping(value="/ModifierAbonne")
+    public void modifierAbonne(@RequestBody Abonne abonne) {daoAbonne.save(abonne);}
+
     //ajouter un abonné
     @PostMapping(value = "/AjouterAdresse")
     public void ajouterAdresse(@RequestBody Adresse adresse) {

@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
         <div class="col-7">
             <div class="jumbotron p-5">
-                <form th:action="@{/ModificationCompte}" th:object="${utilisateurAuthentifie}" method="post">
+                <form th:action="@{/ModificationCompte}" th:object="${abonneAModifier}" th:method="post">
                     <h3 class="text-center mb-3">Identité</h3>
                     <div class="form-row" >
                         <div class="form-group col-md-4">
@@ -40,32 +40,31 @@
                         </div>
                     </div>
                     <h3 class="text-center mb-3">Coordonnées</h3>
-                    <div th:object="${adresseBean}">
-                        <div class="form-row " >
-                            <div class="form-group col-md-3 mb-0">
-                                <input type="text" th:field="*{numero}" class="form-control" id="numero">
-                                <label for="numero">Numéro</label>
-                            </div>
-                            <div class="form-group col-md-9 mb-0">
-                                <input type="text" th:field="*{rue}" class="form-control" id="rue">
-                                <label for="rue">Rue</label>
-                            </div>
+                     <div class="form-row " >
+                        <div class="form-group col-md-3 mb-0">
+                            <input type="text" th:field="*{adresse.numero}" class="form-control" id="numero">
+                            <label for="numero">Numéro</label>
                         </div>
-                        <div class="form-outline p-0">
-                            <input type="text" th:field="*{complement}" id="complement" class="form-control" />
-                            <label class="form-label" for="complement">Complement</label>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <input type="text" th:field="*{codePostal}" class="form-control" id="codePostal">
-                                <label for="codePostal">Code Postal</label>
-                            </div>
-                            <div class="form-group col-md-9">
-                                <input type="text" th:field="*{ville}" class="form-control" id="ville">
-                                <label for="ville">Ville</label>
-                            </div>
+                        <div class="form-group col-md-9 mb-0">
+                            <input type="text" th:field="*{adresse.rue}" class="form-control" id="rue">
+                            <label for="rue">Rue</label>
                         </div>
                     </div>
+                    <div class="form-outline p-0">
+                        <input type="text" th:field="*{adresse.complement}" id="complement" class="form-control" />
+                        <label class="form-label" for="complement">Complement</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <input type="text" th:field="*{adresse.codePostal}" class="form-control" id="codePostal">
+                            <label for="codePostal">Code Postal</label>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <input type="text" th:field="*{adresse.ville}" class="form-control" id="ville">
+                            <label for="ville">Ville</label>
+                        </div>
+                    </div>
+
                     <h3 class="text-center mb-3">Identification</h3>
                     <div class="form-outline">
                         <input type="email" th:field="*{email}" id="email" class="form-control" />

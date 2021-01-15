@@ -21,17 +21,12 @@ public class AuthentificationController {
     @Autowired
     private DaoRole daoRole;
 
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private Abonne abonneARetourner = null;
     private Role role = null;
     private Abonne abonne;
     private String emailDecoder;
 
-    public AuthentificationController(DaoAbonne daoAbonne, BCryptPasswordEncoder bCryptPasswordEncoder){
-        this.daoAbonne = daoAbonne;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     @PostMapping(value="/Login/{motDePasse}/{email}/")
     public Abonne login(@PathVariable(value ="motDePasse") String motDePasse, @PathVariable(value = "email") String email ){

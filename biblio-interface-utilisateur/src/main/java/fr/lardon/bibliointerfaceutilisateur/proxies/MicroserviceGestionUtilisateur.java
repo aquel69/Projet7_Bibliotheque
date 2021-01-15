@@ -5,10 +5,7 @@ import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AdresseBea
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.BibliothequeBean;
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +14,13 @@ public interface MicroserviceGestionUtilisateur {
 
     @GetMapping(value="/Abonnes")
     List<AbonneBean> listeAbonnes();
+
+    //récuperer abonné en fonction de son id
+    @GetMapping(value = "/Abonne/{id}")
+    public AbonneBean recupererAbonne(@PathVariable int id);
+
+    @PutMapping(value="/ModifierAbonne")
+    public void modifierAbonne(@RequestBody AbonneBean abonne);
 
     //ajouter une adresse
     @PostMapping(value = "/AjouterAdresse")

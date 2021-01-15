@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
@@ -32,6 +29,7 @@ public class GestionUtilisateurController {
     private BibliothequeBean bibliothequeBean = null;
     private RoleBean roleBean = null;
     private AbonneBean utilisateurAuthentifie= new AbonneBean();
+    AbonneBean abonneAModifier = null;
     private int codeRole = 0;
 
 
@@ -115,14 +113,18 @@ public class GestionUtilisateurController {
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.GET)
     public String modificationCompte(Model model){
 
+        abonneAModifier = new AbonneBean();
 
         //récupération du code role
         if(model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
         //récupération du code role
         if(model.getAttribute("utilisateurAuthentifie") != null) utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
 
+        abonneAModifier = gestionUtilisateur.recupererAbonne(utilisateurAuthentifie.getIdAbonne());
+
 
         //ajout dans le model
+        model.addAttribute("abonneAModifier", abonneAModifier);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("adresseBean", adresseBean);
@@ -131,10 +133,27 @@ public class GestionUtilisateurController {
 
     }
 
-    /*@RequestMapping(value = "/ModificationCompte", method = RequestMethod.PUT)
-    public String validationModificationCompte(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost, @ModelAttribute("adresseBean") AdresseBean adresseBeanPost){
+    @RequestMapping(value = "/ModificationCompte", method = RequestMethod.POST)
+    public String validationModificationCompte(Model model, @ModelAttribute("abonneAModifier") AbonneBean abonneBeanModifier){
+
+        //modifier utilisateur
+        abonneAModifier.setNom(abonneBeanModifier.getNom());
+        abonneAModifier.setPrenom(abonneBeanModifier.getPrenom());
+        abonneAModifier.setPseudo(abonneBeanModifier.getPseudo());
+        abonneAModifier.setEmail(abonneBeanModifier.getEmail());
+        abonneAModifier.getAdresse().setNumero(abonneBeanModifier.getAdresse().getNumero());
+        abonneAModifier.getAdresse().setComplement(abonneBeanModifier.getAdresse().getComplement());
+        abonneAModifier.getAdresse().setRue(abonneBeanModifier.getAdresse().getRue());
+        abonneAModifier.getAdresse().setCodePostal(abonneBeanModifier.getAdresse().getCodePostal());
+        abonneAModifier.getAdresse().setVille(abonneBeanModifier.getAdresse().getVille());
+
+        gestionUtilisateur.modifierAbonne(abonneAModifier);
+
+        model.addAttribute("abonneAModifier", abonneAModifier);
+        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        model.addAttribute("codeRole", codeRole);
 
         return "ModificationCompte";
-    }*/
+    }
 
 }

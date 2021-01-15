@@ -18,15 +18,15 @@ import java.util.List;
 
 @Controller
 public class CatalogueController {
-    List<OuvrageBean> ouvragesNouveaute;
-    ArrayList<LivreBean> livreTop;
-    List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
-    List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
-    List<LivreBean> livres;
-    RoleBean role = new RoleBean();
-    AbonneBean utilisateurAuthentifie = new AbonneBean();
-    int index = 0;
-    int codeRole = 0;
+    private List<OuvrageBean> ouvragesNouveaute;
+    private ArrayList<LivreBean> livreTop;
+    private List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
+    private List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
+    private List<LivreBean> livres;
+    private RoleBean role = new RoleBean();
+    private AbonneBean utilisateurAuthentifie = new AbonneBean();
+    private int index = 0;
+    private int codeRole = 0;
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
@@ -39,9 +39,14 @@ public class CatalogueController {
         String message = (String) model.getAttribute("message");
 
         //récupération du code role
-        if(model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
+        if(model.getAttribute("codeRole") != null) {
+            codeRole = (int) model.getAttribute("codeRole");
+            System.out.println("code Role " + codeRole);
+        }
         //récupération du code role
-        if(model.getAttribute("utilisateurAuthentifie") != null) utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+        if(model.getAttribute("utilisateurAuthentifie") != null){
+            utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+        }
 
         //récupération du top 10
         livres = livresProxy.topLivre();

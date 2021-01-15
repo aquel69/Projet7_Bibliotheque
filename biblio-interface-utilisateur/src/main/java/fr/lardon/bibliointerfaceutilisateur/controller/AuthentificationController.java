@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AuthentificationController {
@@ -20,10 +21,8 @@ public class AuthentificationController {
     @Autowired
     private GestionUtilisateurController gestionUtilisateurController;
 
-
-
-    int codeRole = 0;
-    AbonneBean utilisateurAuthentifie = null;
+    private int codeRole = 0;
+    private AbonneBean utilisateurAuthentifie = null;
 
     @RequestMapping(value = "/Authentification", method = RequestMethod.GET)
     public String authentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanGet){
@@ -55,6 +54,8 @@ public class AuthentificationController {
             role.setCode(utilisateurAuthentifie.getRole().getCode());
             codeRole = role.getCode();
 
+            /*re.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);*/
+
             //ajout dans le model
             model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
             model.addAttribute("codeRole", codeRole);
@@ -69,6 +70,7 @@ public class AuthentificationController {
 
             //ajout dans le model
             model.addAttribute("messageErreur", message);
+            model.addAttribute("codeRole", codeRole);
 
             return "Authentification";
         }
