@@ -9,6 +9,11 @@ body{
     height: 100%;
 }
 
+/*menu*/
+#bienvenue_pseudo{
+    color: #ffffff;
+}
+
 .jumbotron{
     opacity: 93%;
     background-color: #83ece4;

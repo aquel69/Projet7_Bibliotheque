@@ -48,13 +48,12 @@ public class AuthentificationController {
         utilisateurAuthentifie = authentificationUtilisateurProxy.login(abonneBeanPost.getMotDePasse(), abonneBeanPost.getEmail());
 
         if(utilisateurAuthentifie.getRole().getCode() != 0){
+
             RoleBean role = new RoleBean();
 
             //récupération du role de l'utilisateur
             role.setCode(utilisateurAuthentifie.getRole().getCode());
             codeRole = role.getCode();
-
-            /*re.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);*/
 
             //ajout dans le model
             model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);

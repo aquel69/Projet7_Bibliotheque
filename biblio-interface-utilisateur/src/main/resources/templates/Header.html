@@ -13,43 +13,46 @@
     </head>
     <body >
         <div th:fragment="header(codeRole, utilisateurAuthentifie)" class="container-fluid mt-4 pr-5" >
-
             <div class="row ">
                 <div class="col-12">
                     <div class="row justify-content-end">
                         <div class="col-2 text-right">
                             <div th:if="${codeRole != 0}">
-                                <p id="bienvenue_pseudo" class="text-light" th:text="${utilisateurAuthentifie.getPseudo()} + ', vous êtes connecté'"></p>
+                                <p style="font-size: 1.2em" id="bienvenue_pseudo" th:text="${utilisateurAuthentifie.getPseudo()} + ', vous êtes connecté'"></p>
                             </div>
                         </div>
                         <div class="col-1">
-
                             <div class="d-inline dropdown">
                                 <button id="bouton_menu" class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <span style="color: #99a5a2" class="pl-4">Bibliothèque</span>
                                     <a class="dropdown-item" th:href="@{|/|}">Accueil</a>
                                     <a class="dropdown-item" th:href="@{|/Catalogue/0/8|}">Catalogue</a>
-                                    <div class="dropdown-divider"></div>
-                                    <span class="pl-4">Compte</span>
-                                    <div th:if="${codeRole == 0}">
-                                        <a class="dropdown-item" th:href="@{|/Authentification|}">Se connecter</a>
+                                    <div th:if="${codeRole == 5}">
+                                        <div class="dropdown-divider"></div>
+                                        <span style="color: #99a5a2" class="pl-4">Employé</span>
+                                        <a class="dropdown-item" th:href="@{|/Employe|}">Gestion Emprunt</a>
                                     </div>
                                     <div th:if="${codeRole == 1}">
+                                        <div class="dropdown-divider"></div>
+                                        <span style="color: #99a5a2" class="pl-4">Compte</span>
                                         <a class="dropdown-item" th:href="@{|/ModificationCompte|}">Modification</a>
                                     </div>
+                                    <div th:if="${codeRole == 0}">
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{|/Authentification|}">Se connecter</a>
+                                    </div>
                                     <div th:if="${codeRole != 0}">
+                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" th:href="@{/Deconnection}">Se déconnecter</a>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

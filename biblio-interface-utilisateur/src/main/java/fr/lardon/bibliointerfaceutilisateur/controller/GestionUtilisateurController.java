@@ -29,7 +29,7 @@ public class GestionUtilisateurController {
     private BibliothequeBean bibliothequeBean = null;
     private RoleBean roleBean = null;
     private AbonneBean utilisateurAuthentifie= new AbonneBean();
-    AbonneBean abonneAModifier = null;
+    private AbonneBean abonneAModifier = null;
     private int codeRole = 0;
 
 
@@ -49,6 +49,7 @@ public class GestionUtilisateurController {
         adresseBean = new AdresseBean();
 
         //ajout dans le model
+        model.addAttribute("codeRole", codeRole);
         model.addAttribute("abonneBean", abonneBean);
         model.addAttribute("adresseBean", adresseBean);
 

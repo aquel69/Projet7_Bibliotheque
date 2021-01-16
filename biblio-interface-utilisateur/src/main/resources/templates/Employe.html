@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="page accueil">
+        <meta name="description" content="page employe">
         <meta name="author" content="alardon">
         <title>Accueil</title>
 
@@ -12,32 +12,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Tangerine:wght@700&display=swap" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/styleAuthentification.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styleEmploye.css}">
     </head>
     <body>
         <header th:insert="Header :: header(codeRole = ${codeRole}, utilisateurAuthentifie = ${utilisateurAuthentifie})"></header>
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-8 col-lg-4">
+                <div class="col-sm-12 col-md-8 col-lg-5">
                     <div class="jumbotron p-3 p-md-5 text-white rounded">
                         <div class="col-12">
-                            <h1 class="h3 mb-5 text-dark text-center">Authentification</h1>
-                            <form th:action="@{/Authentification}" th:object="${abonneBean}" method="post">
-                                <label for="Email" class="sr-only">Adresse Email</label>
-                                <input type="email" id="Email" th:field="*{email}" name="email" class="form-control mb-2" placeholder="Adresse Email" required="" autofocus="">
-                                <label for="inputPassword" class="sr-only">Mot de Passe</label>
-                                <input type="password" id="inputPassword" th:field="*{motDePasse}" name="password" class="form-control" placeholder="Mot de Passe" required="">
-                                <div th:if="${messageErreur != null}">
-                                    <div class="alert alert-warning alert-dismissible my-3" role="alert" >
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                        <span th:text="${messageErreur}"></span>
-                                    </div>
-                                </div>
-                                <p class="text-center mt-2 mb-4" ><a th:href="@{|/Inscription|}">Vous n'avez pas de compte?</a></p>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Valider</button>
-                            </form>
-
+                            <h1>Emprunt</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8 col-lg-5">
+                    <div class="jumbotron p-3 p-md-5 text-white rounded">
+                        <div class="col-12">
+                            <h1>Rendu</h1>
                         </div>
                     </div>
                 </div>
