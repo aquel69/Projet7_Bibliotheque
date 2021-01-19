@@ -40,6 +40,8 @@ public class Ouvrage {
     @JoinColumn(name = "id_livre")
     private Livre livre;
 
+
+
     public Ouvrage(){
 
     }

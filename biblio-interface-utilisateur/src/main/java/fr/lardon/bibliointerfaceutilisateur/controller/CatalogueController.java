@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,7 @@ public class CatalogueController {
     @Autowired
     private MicroserviceLivresProxy livresProxy;
 
-
-
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
         //récupération du message
         String message = (String) model.getAttribute("message");
@@ -76,7 +75,7 @@ public class CatalogueController {
         return "Accueil";
     }
 
-    @RequestMapping(value = "/Detail/{id}")
+    @RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
     public String detailLivre(@PathVariable int id, Model model){
 
         //récuperation du livre en fonction de son id
@@ -93,7 +92,7 @@ public class CatalogueController {
         return "DetailLivre";
     }
 
-    @GetMapping(value="/Catalogue/{noPage}/{nbLivresParPage}")
+    @RequestMapping(value="/Catalogue/{noPage}/{nbLivresParPage}", method = RequestMethod.GET)
     public String listeLivrePagination(@PathVariable int noPage, @PathVariable int nbLivresParPage, Model model){
         double nbTotalPages =0;
 
@@ -114,6 +113,5 @@ public class CatalogueController {
 
         return "Catalogue";
     }
-
 
 }

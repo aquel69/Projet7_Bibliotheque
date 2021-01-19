@@ -1,0 +1,111 @@
+package fr.lardon.bibliocataloguelivres.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+@Data
+@RequiredArgsConstructor
+@Entity
+@Table(name=("abonne"))
+public class AbonnePret {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
+    @SequenceGenerator(name="project_generator", sequenceName="abonne_id_abonne_seq", initialValue = 1, allocationSize = 1)
+    @Column(name="id_abonne")
+    private int idAbonne;
+
+    /**
+     * nom de l'abonné
+     */
+    @NonNull
+    @Column(name="nom")
+    private String nom;
+
+    /**
+     * prénom de l'abonné
+     */
+    @NonNull
+    @Column(name="prenom")
+    private String prenom;
+
+    /**
+     * pseudo de l'abonné
+     */
+    @NonNull
+    @Column(name="pseudo")
+    private String pseudo;
+
+    /**
+     * email de l'abonné
+     */
+    @NonNull
+    @Column(name="email")
+    private String email;
+
+    /**
+     * mot de passe de l'abonné
+     */
+    @NonNull
+    @Column(name="mot_de_passe")
+    private String motDePasse;
+
+    /**
+     * numero adhérent de l'abonné
+     */
+    @NonNull
+    @Column(name="numero_abonne")
+    private String numeroAbonne;
+
+    /**
+     * date de création du compte
+     */
+    @Column(name="date_creation_du_compte")
+    @Temporal(TemporalType.DATE)
+    private Date dateDeCreationDuCompte;
+
+    /**
+     * abonnés correspondant au prêt
+     */
+    @ToString.Exclude
+    @Setter
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "pret_abonne",
+            joinColumns = @JoinColumn(name = "id_abonne"),
+            inverseJoinColumns = @JoinColumn(name = "id_pret"))
+    @JsonIgnore
+    private List<Pret> prets;
+
+    /**
+     * Adresse de l'abonné
+     */
+    /*@OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_adresse")
+
+    private Adresse adresse;
+
+    *//**
+     * Role de l'abonné
+     *//*
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role")
+
+    private Role role;
+
+    *//**
+     * Bibliothèque dont l'abonné dépend
+     *//*
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "bibliotheque")
+
+    private Bibliotheque bibliotheque;*/
+
+    public AbonnePret() {
+
+    }
+}
