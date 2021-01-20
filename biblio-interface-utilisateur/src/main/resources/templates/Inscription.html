@@ -27,54 +27,112 @@
                             <h3 class="text-center mb-3">Identité</h3>
                             <div class="form-row" >
                                 <div class="form-group col-md-4">
-                                    <input type="text" th:field="*{nom}" class="form-control" id="nom">
-                                    <label for="nom">Nom</label>
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control"  th:field="*{nom}" />
+                                    <div th:if="${#fields.hasErrors('nom')}" class="alert alert-warning alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <span th:errors="*{nom}"></span>
+                                    </div>
                                 </div>
+
                                 <div class="form-group col-md-4">
-                                    <input type="text" th:field="*{prenom}" class="form-control" id="prenom">
-                                    <label for="prenom">Prénom</label>
+                                    <label>Prénom</label>
+                                    <input type="text" class="form-control"  th:field="*{prenom}" />
+                                    <div th:if="${#fields.hasErrors('prenom')}" class="alert alert-warning alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <span th:errors="*{prenom}"></span>
+                                    </div>
                                 </div>
+
                                 <div class="form-group col-md-4">
-                                    <input type="text" th:field="*{pseudo}" class="form-control" id="pseudo">
-                                    <label for="pseudo">Pseudo</label>
+                                    <label>Prénom</label>
+                                    <input type="text" class="form-control"  th:field="*{pseudo}" />
+                                    <div th:if="${#fields.hasErrors('pseudo')}" class="alert alert-warning alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <span th:errors="*{pseudo}"></span>
+                                    </div>
                                 </div>
                             </div>
                             <h3 class="text-center mb-3">Coordonnées</h3>
                             <div th:object="${adresseBean}">
                                 <div class="form-row " >
                                     <div class="form-group col-md-3 mb-0">
-                                        <input type="text" th:field="*{numero}" class="form-control" id="numero">
                                         <label for="numero">Numéro</label>
+                                        <input id="numero" type="text" class="form-control"  th:field="*{numero}" />
+                                        <div th:if="${#fields.hasErrors('numero')}" class="alert alert-warning alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <span th:errors="*{numero}"></span>
+                                        </div>
                                     </div>
                                     <div class="form-group col-md-9 mb-0">
-                                        <input type="text" th:field="*{rue}" class="form-control" id="rue">
                                         <label for="rue">Rue</label>
+                                        <input id="rue" type="text" class="form-control"  th:field="*{rue}" />
+                                        <div th:if="${#fields.hasErrors('rue')}" class="alert alert-warning alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <span th:errors="*{rue}"></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-outline p-0">
-                                    <input type="text" th:field="*{complement}" id="complement" class="form-control" />
-                                    <label class="form-label" for="complement">Complement</label>
+                                    <label for="complement">Complément</label>
+                                    <input id="complement" type="text" class="form-control"  th:field="*{complement}" />
+                                    <div th:if="${#fields.hasErrors('complement')}" class="alert alert-warning alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <span th:errors="*{complement}"></span>
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <input type="text" th:field="*{codePostal}" class="form-control" id="codePostal">
                                         <label for="codePostal">Code Postal</label>
+                                        <input id="codePostal" type="text" class="form-control"  th:field="*{codePostal}" />
+                                        <div th:if="${#fields.hasErrors('codePostal')}" class="alert alert-warning alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <span th:errors="*{codePostal}"></span>
+                                        </div>
                                     </div>
                                     <div class="form-group col-md-9">
-                                        <input type="text" th:field="*{ville}" class="form-control" id="ville">
                                         <label for="ville">Ville</label>
+                                        <input id="ville" type="text" class="form-control"  th:field="*{ville}" />
+                                        <div th:if="${#fields.hasErrors('ville')}" class="alert alert-warning alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <span th:errors="*{ville}"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <h3 class="text-center mb-3">Identification</h3>
                             <div class="form-outline">
-                                <input type="email" th:field="*{email}" id="email" class="form-control" />
                                 <label class="form-label" for="email">Email</label>
+                                <input id="email" type="email" th:field="*{email}" class="form-control" />
+                                <div th:if="${#fields.hasErrors('email')}" class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <span th:errors="*{email}"></span>
+                                </div>
+                                <div th:if="${messageErreur != null}" class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <span th:text="${messageErreur}"></span>
+                                </div>
                             </div>
+
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" th:field="*{motDePasse}" id="password" class="form-control" />
                                 <label class="form-label" for="password">Mot de passe</label>
+                                <input id="password" type="password" th:field="*{motDePasse}" class="form-control" />
+                                <div th:if="${#fields.hasErrors('motDePasse')}" class="alert alert-warning alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <span th:errors="*{motDePasse}"></span>
+                                </div>
                             </div>
                             <!-- Submit button -->
                             <div class="row justify-content-center">

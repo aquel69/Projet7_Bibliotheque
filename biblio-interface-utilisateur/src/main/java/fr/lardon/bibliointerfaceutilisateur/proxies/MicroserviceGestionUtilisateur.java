@@ -50,4 +50,8 @@ public interface MicroserviceGestionUtilisateur {
     @GetMapping(value = "/DerniereAbonne")
     AbonneBean recupererDernierAbonne();
 
+    //vérification si l'email n'existe pas
+    @GetMapping(value = "/DoublonEmail")
+    Boolean verificationSiEmailDoublon(AbonneBean abonne);
+
 }

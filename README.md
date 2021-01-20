@@ -30,11 +30,11 @@ J'ai ajouté dans mon fichier pom.xml, les dépendances à bootstrap en version 
 
 Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de données :
 
-
-
 - Pour commencer, j'ai ajouté la dépendance de postgresql dans mon fichier pom.xml
 
 ### 3 - Modification des chemins
+
+---
 
 - Modifier le chemin du certificat https dans le fichier 'application.properties' du module 'interface abonné' : 
 

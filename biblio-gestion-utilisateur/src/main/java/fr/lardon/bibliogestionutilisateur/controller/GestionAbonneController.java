@@ -11,6 +11,7 @@ import fr.lardon.bibliogestionutilisateur.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -99,6 +100,22 @@ public class GestionAbonneController {
         Abonne abonne = recupererAbonne(dernierIdAbonne);
 
         return abonne;
+    }
+
+    @GetMapping(value = "/DoublonEmail")
+    public Boolean verificationSiEmailDoublon(Abonne abonne){
+        boolean resultat = false;
+        List<Abonne> abonnes = new ArrayList<>();
+
+        abonnes = daoAbonne.findAll();
+
+        for (Abonne abonne1 : abonnes){
+            if(abonne1.getEmail().equals(abonne.getEmail())){
+                resultat = true;
+            }
+        }
+
+        return resultat;
     }
 
 

@@ -10,11 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -37,9 +42,6 @@ public class GestionUtilisateurController {
     private MicroserviceGestionUtilisateur gestionUtilisateur;
 
     @Autowired
-    private MicroserviceLivresProxy livresProxy;
-
-    @Autowired
     private CatalogueController catalogueController;
 
     @RequestMapping(value = "/Inscription", method = RequestMethod.GET)
@@ -47,6 +49,7 @@ public class GestionUtilisateurController {
 
         abonneBean = new AbonneBean();
         adresseBean = new AdresseBean();
+
 
         //ajout dans le model
         model.addAttribute("codeRole", codeRole);
@@ -57,7 +60,7 @@ public class GestionUtilisateurController {
     }
 
     @RequestMapping(value = "/Inscription", method = RequestMethod.POST)
-    public String validationInscription(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost, @ModelAttribute("adresseBean") AdresseBean adresseBeanPost){
+    public String validationInscription(Model model, @ModelAttribute("abonneBean")  @Valid AbonneBean abonneBeanPost, BindingResult bindingResult, @ModelAttribute("adresseBean") @Valid AdresseBean adresseBeanPost, BindingResult bindingResult1){
 
         abonneBean = new AbonneBean();
         abonneSecurisation = new AbonneBean();
@@ -67,6 +70,35 @@ public class GestionUtilisateurController {
         bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
         String numeroAbonne = null;
         String motDePasse = null;
+        String messageErreur = null;
+
+        boolean resultat = false;
+        List<AbonneBean> abonnes = new ArrayList<>();
+
+        abonnes = gestionUtilisateur.listeAbonnes();
+
+        for (AbonneBean abonne1 : abonnes){
+            if(abonne1.getEmail().equals(abonneBeanPost.getEmail())){
+                resultat = true;
+            }
+        }
+
+
+        if (bindingResult.hasErrors() || bindingResult1.hasErrors() || resultat == true)  {
+            System.out.println(bindingResult.getErrorCount() + bindingResult1.getErrorCount());
+            if(resultat == true){
+                messageErreur = "L'email existe déjà";
+                model.addAttribute("messageErreur", messageErreur);
+            }
+
+            //ajout dans le model
+            model.addAttribute("codeRole", codeRole);
+            model.addAttribute("abonneBean", abonneBeanPost);
+            model.addAttribute("adresseBean", adresseBeanPost);
+
+            return "Inscription";
+        }
+
 
         //attribution du role aux abonnés
         roleBean = gestionUtilisateur.recupererRole(1);
