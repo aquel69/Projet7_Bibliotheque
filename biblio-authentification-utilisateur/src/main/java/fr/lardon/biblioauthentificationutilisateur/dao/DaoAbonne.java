@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface DaoAbonne extends JpaRepository<Abonne, Integer> {
 
     Abonne findByEmail(String email);
 
-    @Query("SELECT o FROM Abonne o WHERE o.email = ?1")
-    Abonne abonneParEmail(String email);
+    @Query("SELECT o FROM Livre o")
+    List<Abonne> listeDesAbonnes();
 
 }

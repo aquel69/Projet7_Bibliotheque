@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 public class AuthentificationController {
@@ -40,6 +42,10 @@ public class AuthentificationController {
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
         utilisateurARetourner = new Abonne();
         role = new Role();
+
+        //comparaison des emails pour vérifier qu'il est dans la base de données
+        List<Abonne> listeDesAbonnes = daoAbonne.listeDesAbonnes();
+        if()
 
         abonne = daoAbonne.findByEmail(email);
         role = daoRole.findByCode(1);

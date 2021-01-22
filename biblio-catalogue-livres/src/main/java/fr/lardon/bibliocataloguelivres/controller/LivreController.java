@@ -49,6 +49,22 @@ public class LivreController {
         return listeLivrePagination;
     }
 
+    @GetMapping(value="/Recherche/{noPage}/{nbLivresParPage}/{recherche}")
+    public List<Livre> catalogueListeLivrePaginationRecherche(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable String recherche){
+        Pageable pageable = PageRequest.of(noPage, nbLivresParPage);
+        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche, pageable);
+
+        return listeLivrePagination;
+    }
+
+    @GetMapping(value="/Recherche/{recherche}")
+    public List<Livre> catalogueListeLivrePaginationRecherche( @PathVariable String recherche){
+
+        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche);
+
+        return listeLivrePagination;
+    }
+
     @GetMapping( value = "/Livres/{id}")
     public Livre recupererUnLivre(@PathVariable int id) {
 

@@ -38,8 +38,12 @@ body{
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-
 }
+
+#barre-recherche{
+    width: 200px;
+}
+
 
 @media screen and (max-width:1280px){
 
@@ -53,6 +57,11 @@ body{
     .ensemblePagination{
         position: absolute;
         padding-bottom: 20px;
+
+    }
+
+    #titre_catalogue{
+        text-align: center;
 
     }
 }

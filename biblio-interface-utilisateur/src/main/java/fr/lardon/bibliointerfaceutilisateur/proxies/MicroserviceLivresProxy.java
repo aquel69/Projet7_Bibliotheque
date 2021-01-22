@@ -26,5 +26,11 @@ public interface MicroserviceLivresProxy {
     @GetMapping(value = "/Top")
     List<LivreBean> topLivre();
 
+    @GetMapping(value="/Recherche/{noPage}/{nbLivresParPage}/{recherche}")
+    List<LivreBean> catalogueListeLivrePaginationRecherche(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable String recherche);
+
+    @GetMapping(value="/Recherche/{recherche}")
+    List<LivreBean> catalogueListeLivrePaginationRecherche( @PathVariable String recherche);
+
 
 }
