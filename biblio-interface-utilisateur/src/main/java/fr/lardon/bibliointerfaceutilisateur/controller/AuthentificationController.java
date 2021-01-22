@@ -45,10 +45,10 @@ public class AuthentificationController {
     @RequestMapping(value = "/Authentification",method = RequestMethod.POST )
     public String validationAuthentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost){
 
+        //verification du log / récupération du code role et de l'id et du pseudo de l'abonné / si codeRole = 0 envoi message du message d'erreur
         utilisateurAuthentifie = authentificationUtilisateurProxy.login(abonneBeanPost.getMotDePasse(), abonneBeanPost.getEmail());
 
         if(utilisateurAuthentifie.getRole().getCode() != 0){
-
             RoleBean role = new RoleBean();
 
             //récupération du role de l'utilisateur

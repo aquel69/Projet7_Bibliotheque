@@ -42,29 +42,44 @@ public class AuthentificationController {
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
         utilisateurARetourner = new Abonne();
         role = new Role();
+        boolean emailCorrespondance = false;
 
         //comparaison des emails pour vérifier qu'il est dans la base de données
         List<Abonne> listeDesAbonnes = daoAbonne.listeDesAbonnes();
-        if()
 
-        abonne = daoAbonne.findByEmail(email);
-        role = daoRole.findByCode(1);
+        for(Abonne abonneBoucle : listeDesAbonnes) {
+            System.out.println(abonneBoucle);
+        }
 
-        if(email.equals("dupont.regis@yahoo.fr") && motDePasse.equals("123")){
+
+        for(Abonne abonneBoucle : listeDesAbonnes){
+            if(abonneBoucle.getEmail().equals(email)) {
+                abonne = daoAbonne.findByEmail(email);
+                emailCorrespondance = true;
+            }
+        }
+
+        if (email.equals("dupont.regis@yahoo.fr") && motDePasse.equals("123")) {
             role.setCode(5);
 
             utilisateurARetourner.setIdAbonne(1);
             utilisateurARetourner.setPseudo("Régis");
             utilisateurARetourner.setRole(role);
-        }else {
+        } else if(emailCorrespondance) {
             if (bCryptPasswordEncoder.matches(motDePasse, abonne.getMotDePasse())) {
                 utilisateurARetourner.setIdAbonne(abonne.getIdAbonne());
                 utilisateurARetourner.setPseudo(abonne.getPseudo());
+                role = daoRole.findByCode(1);
                 utilisateurARetourner.setRole(role);
             } else {
                 role.setCode(0);
                 utilisateurARetourner.setRole(role);
             }
+        }else{
+            role.setCode(0);
+            utilisateurARetourner.setRole(role);
+
+            return utilisateurARetourner;
         }
 
         return utilisateurARetourner;
