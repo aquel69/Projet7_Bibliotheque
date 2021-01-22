@@ -17,10 +17,10 @@ public interface MicroserviceGestionUtilisateur {
 
     //récuperer abonné en fonction de son id
     @GetMapping(value = "/Abonne/{id}")
-    public AbonneBean recupererAbonne(@PathVariable int id);
+    AbonneBean recupererAbonne(@PathVariable int id);
 
     @PutMapping(value="/ModifierAbonne")
-    public void modifierAbonne(@RequestBody AbonneBean abonne);
+    void modifierAbonne(@RequestBody AbonneBean abonne);
 
     //ajouter une adresse
     @PostMapping(value = "/AjouterAdresse")

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface MicroserviceAuthentificationUtilisateur {
 
     @PostMapping(value="/Login/{motDePasse}/{email}/")
-    public AbonneBean login(@PathVariable(value ="motDePasse") String motDePasse, @PathVariable(value = "email") String email );
+    AbonneBean login(@PathVariable(value ="motDePasse") String motDePasse, @PathVariable(value = "email") String email );
 
 
 }
