@@ -25,17 +25,17 @@ public class AuthentificationController {
     @Autowired
     private DaoRole daoRole;
 
-    @Autowired
-    private DaoEmploye daoEmploye;
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private Abonne utilisateurARetourner = null;
     private Role role = null;
     private Abonne abonne = null;
-    private String emailDecoder;
-    private Employe employe = null;
 
-
+    /**
+     * renvoi l'id, le pseudo et le role de l'abonné si l'authentification a réussi sinon renvoi juste le role à 0
+     * @param motDePasse
+     * @param email
+     * @return
+     */
     @PostMapping(value="/Login/{motDePasse}/{email}/")
     public Abonne login(@PathVariable(value ="motDePasse") String motDePasse, @PathVariable(value = "email") String email ){
 
@@ -83,11 +83,6 @@ public class AuthentificationController {
         }
 
         return utilisateurARetourner;
-    }
-
-    @GetMapping(value="/Logout/")
-    public int logout(){
-        return 0;
     }
 
 }

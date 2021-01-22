@@ -44,6 +44,11 @@ public class GestionUtilisateurController {
     @Autowired
     private CatalogueController catalogueController;
 
+    /**
+     * permet de renvoyer à la page inscription
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/Inscription", method = RequestMethod.GET)
     public String inscription(Model model){
 
@@ -59,6 +64,15 @@ public class GestionUtilisateurController {
         return "Inscription";
     }
 
+    /**
+     * permet de récupérer toutes les données saisies par l'utilisateur et de créer son compte
+     * @param model
+     * @param abonneBeanPost
+     * @param bindingResult
+     * @param adresseBeanPost
+     * @param bindingResult1
+     * @return
+     */
     @RequestMapping(value = "/Inscription", method = RequestMethod.POST)
     public String validationInscription(Model model, @ModelAttribute("abonneBean")  @Valid AbonneBean abonneBeanPost, BindingResult bindingResult, @ModelAttribute("adresseBean") @Valid AdresseBean adresseBeanPost, BindingResult bindingResult1){
 
@@ -68,12 +82,11 @@ public class GestionUtilisateurController {
         bibliothequeBean = new BibliothequeBean();
         roleBean = new RoleBean();
         bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
-        String numeroAbonne = null;
-        String motDePasse = null;
-        String messageErreur = null;
+        String numeroAbonne;
+        String messageErreur;
 
         boolean resultat = false;
-        List<AbonneBean> abonnes = new ArrayList<>();
+        List<AbonneBean> abonnes;
 
         abonnes = gestionUtilisateur.listeAbonnes();
 
@@ -83,9 +96,7 @@ public class GestionUtilisateurController {
             }
         }
 
-
         if (bindingResult.hasErrors() || bindingResult1.hasErrors() || resultat == true)  {
-            System.out.println(bindingResult.getErrorCount() + bindingResult1.getErrorCount());
             if(resultat == true){
                 messageErreur = "L'email existe déjà";
                 model.addAttribute("messageErreur", messageErreur);
@@ -98,7 +109,6 @@ public class GestionUtilisateurController {
 
             return "Inscription";
         }
-
 
         //attribution du role aux abonnés
         roleBean = gestionUtilisateur.recupererRole(1);
@@ -143,6 +153,11 @@ public class GestionUtilisateurController {
 
     }
 
+    /**
+     * permet de renvoyer à la page modification du compte
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.GET)
     public String modificationCompte(Model model){
 
@@ -166,6 +181,12 @@ public class GestionUtilisateurController {
 
     }
 
+    /**
+     * permet de récupérer les données modifiés de l'abonné et de les sauvegarder
+     * @param model
+     * @param abonneBeanModifier
+     * @return
+     */
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.POST)
     public String validationModificationCompte(Model model, @ModelAttribute("abonneAModifier") AbonneBean abonneBeanModifier){
 

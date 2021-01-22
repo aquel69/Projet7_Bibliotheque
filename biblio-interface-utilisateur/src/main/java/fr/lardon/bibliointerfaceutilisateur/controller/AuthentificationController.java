@@ -25,6 +25,12 @@ public class AuthentificationController {
     private int codeRole = 0;
     private AbonneBean utilisateurAuthentifie = null;
 
+    /**
+     * permet d'afficher la page d'authentification
+     * @param model
+     * @param abonneBeanGet
+     * @return
+     */
     @RequestMapping(value = "/Authentification", method = RequestMethod.GET)
     public String authentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanGet){
         RoleBean role = new RoleBean();
@@ -43,6 +49,13 @@ public class AuthentificationController {
         return "Authentification";
     }
 
+    /**
+     * permet de récupérer les donnéees saisies par l'utilisateur et de vérifier si l'authentification est valide
+     * si elle l'est l'utilisateur est renvoyé sur la page d'accueil sinon il reste sur la page authentification
+     * @param model
+     * @param abonneBeanPost
+     * @return
+     */
     @RequestMapping(value = "/Authentification",method = RequestMethod.POST )
     public String validationAuthentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost){
 
@@ -76,6 +89,11 @@ public class AuthentificationController {
         }
     }
 
+    /**
+     * permet de déconnecter l'utilisateur et de renvoyer sur la page d'accueil
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/Deconnection", method = RequestMethod.GET)
     public String deconnection(Model model){
         //déconnection de l'utilisateur
@@ -85,7 +103,6 @@ public class AuthentificationController {
         //récuperation du catalogue pour l'affichage dans la page accueil
         catalogueController.accueil(model);
 
-
         //ajout dans le model
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
@@ -93,7 +110,6 @@ public class AuthentificationController {
         //récuperation du catalogue pour l'affichage dans la page accueil
         catalogueController.accueil(model);
         gestionUtilisateurController.modificationCompte(model);
-
 
         return "Accueil";
     }

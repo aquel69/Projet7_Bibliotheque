@@ -31,10 +31,16 @@ public class CatalogueController {
     private boolean isRecherche = false;
     private List<LivreBean> listeLivresPagination = null;
     private String recherche = null;
+    private double nbTotalPages = 0;
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
 
+    /**
+     * permet de renvoyer sur la page accueil et de récupérer les différentes listes de livres
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
         //récupération du message
@@ -78,6 +84,12 @@ public class CatalogueController {
         return "Accueil";
     }
 
+    /**
+     * permet de renvoyer sur la page détail livre et de récupérer l'id correspondant au livre
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
     public String detailLivre(@PathVariable int id, Model model){
 
@@ -95,44 +107,32 @@ public class CatalogueController {
         return "DetailLivre";
     }
 
+    /**
+     * permet de renvoyer sur la page du catalogue et de récupérer la liste des livres
+     * @param noPage
+     * @param nbLivresParPage
+     * @param accesCatalogue
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/Catalogue/{noPage}/{nbLivresParPage}/{accesCatalogue}", method = RequestMethod.GET)
     public String listeLivrePagination(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable boolean accesCatalogue, Model model){
-        double nbTotalPages =0;
-
-
         if(isRecherche == false || accesCatalogue == true) {
-            /*if(listeLivresPagination.size() != 0) listeLivresPagination.clear();*/
-            System.out.println("je suis dans la fonction");
             listeLivresPagination = new ArrayList<>();
             List<LivreBean> listeTotaleDesLivres = livresProxy.listeLivre();
 
+            //calcule du nombre de total de pages
             nbTotalPages = (double) listeTotaleDesLivres.size() / nbLivresParPage;
-            System.out.println(nbTotalPages);
-            System.out.println(listeTotaleDesLivres.size());
             nbTotalPages = Math.ceil(nbTotalPages);
 
-
-
-            //récuperation des livres en fonction du numéro de la page
+            //récupération des livres en fonction du numéro de la page
             listeLivresPagination = livresProxy.catalogueListeLivrePagination(noPage, nbLivresParPage);
             isRecherche = false;
         }else{
-            if(this.recherche != null) {
-                listeLivresPagination = livresProxy.catalogueListeLivrePaginationRecherche(noPage, nbLivresParPage, this.recherche);
-
-                List<LivreBean> listeLivresRecherche = livresProxy.catalogueListeLivrePaginationRecherche(this.recherche);
-
-                nbTotalPages = (double)listeLivresRecherche.size() / nbLivresParPage;
-
-                nbTotalPages = Math.ceil(nbTotalPages);
-            }
+            if(this.recherche != null) recuperationDesLivresRecherche(noPage, nbLivresParPage);
         }
 
-        System.out.println("liste nb livre " + listeLivresPagination.size());
-        System.out.println("nombre total de page catalogue " + nbTotalPages);
-
         //ajout dans le model
-
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("listeLivresPagination", listeLivresPagination);
@@ -143,31 +143,27 @@ public class CatalogueController {
         return "Catalogue";
     }
 
+    /**
+     * permet de renvoyer sur la page du catalogue et de récupérer la liste des livres correspondant à la recherche
+     * @param model
+     * @param noPage
+     * @param nbLivresParPage
+     * @param recherche
+     * @return
+     */
     @RequestMapping(value = "/Catalogue/{noPage}/{nbLivresParPage}", method = RequestMethod.POST)
-    public String emprunt(Model model, @PathVariable int noPage, @PathVariable int nbLivresParPage, @RequestParam String recherche){
-        double nbTotalPages =0;
+    public String recherche(Model model, @PathVariable int noPage, @PathVariable int nbLivresParPage, @RequestParam String recherche){
 
+        //savoir que nous sommes en recherche et récupérons la recherche dans une variable de classe
         isRecherche = true;
         this.recherche = recherche;
 
+        //nous effaçons la liste de livre du catalogue afin de la remplacer par celle de la recherche
         listeLivresPagination.clear();
 
-        //récuperation des livres en fonction du numéro de la page
-        listeLivresPagination = livresProxy.catalogueListeLivrePaginationRecherche(noPage, nbLivresParPage,recherche);
-
-        //récuperation de la liste des livres correspondant à la recherche
-        List<LivreBean> listeLivresRecherche = livresProxy.catalogueListeLivrePaginationRecherche(recherche);
-
-        nbTotalPages = (double) listeLivresRecherche.size() / nbLivresParPage;
-        nbTotalPages = Math.ceil(nbTotalPages);
-
-
-
-        System.out.println("nb livre" + listeLivresPagination.size());
-        System.out.println("nombre total de page recherche " + nbTotalPages);
+        recuperationDesLivresRecherche(noPage, nbLivresParPage);
 
         //ajout dans le model
-
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("listeLivresPagination", listeLivresPagination);
@@ -176,6 +172,18 @@ public class CatalogueController {
         model.addAttribute("nbLivresParPage", nbLivresParPage);
 
         return "Catalogue";
+    }
+
+    public void recuperationDesLivresRecherche(int noPage, int nbLivresParPage){
+        //récuperation des livres en fonction du numéro de la page
+        listeLivresPagination = livresProxy.catalogueListeLivrePaginationRecherche(noPage, nbLivresParPage,recherche);
+
+        //récuperation de la liste des livres correspondant à la recherche
+        List<LivreBean> listeLivresRecherche = livresProxy.catalogueListeLivrePaginationRecherche(recherche);
+
+        //calcule du nombre de total de pages
+        nbTotalPages = (double) listeLivresRecherche.size() / nbLivresParPage;
+        nbTotalPages = Math.ceil(nbTotalPages);
     }
 
 }

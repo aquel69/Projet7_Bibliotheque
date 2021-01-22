@@ -10,8 +10,6 @@ import fr.lardon.bibliogestionutilisateur.model.Bibliotheque;
 import fr.lardon.bibliogestionutilisateur.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,20 +34,38 @@ public class GestionAbonneController {
         return listeAbonne;
     }
 
-    //modifier un abonné
+    /**
+     * modifier un abonné dans la base de données
+     * @param abonne
+     */
     @PutMapping(value="/ModifierAbonne")
     public void modifierAbonne(@RequestBody Abonne abonne) {daoAbonne.save(abonne);}
 
-    //ajouter un abonné
-    @PostMapping(value = "/AjouterAdresse")
-    public void ajouterAdresse(@RequestBody Adresse adresse) {
-        daoAdresse.save(adresse);
-    }
-
-    //ajouter un abonné
+    /**
+     * ajouter un abonné dans la base de données
+     * @param abonne
+     */
     @PostMapping(value = "/AjouterAbonne")
     public void ajouterAbonne(@RequestBody Abonne abonne) {daoAbonne.save(abonne);}
 
+    /**
+     * récupérer un abonné dans la base de données
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/Abonne/{id}")
+    public Abonne recupererAbonne(@PathVariable int id) {
+
+        Abonne abonne = daoAbonne.findById(id).get();
+
+        return abonne;
+    }
+
+    /**
+     * récupérer un role à partir de son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/Role/{id}")
     public Role recupererRole(@PathVariable int id) {
 
@@ -58,15 +74,33 @@ public class GestionAbonneController {
         return role;
     }
 
+    /**
+     * récupérer une bibliothèque à partir de son numéro de siret
+     * @param siret
+     * @return
+     */
     @GetMapping(value = "/Bibliotheque/{siret}")
     public Bibliotheque recupererBibliotheque(@PathVariable String siret) {
 
-        /*Livre livre = daoLivre.getOne(id);*/
         Bibliotheque bibliotheque = daoBibliotheque.findByNumeroSiret(siret);
 
         return bibliotheque;
     }
 
+    /**
+     * ajouter une adresse dans la base de données
+     * @param adresse
+     */
+    @PostMapping(value = "/AjouterAdresse")
+    public void ajouterAdresse(@RequestBody Adresse adresse) {
+        daoAdresse.save(adresse);
+    }
+
+    /**
+     * récupérer une adresse dans la base de données
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/Adresse/{id}")
     public Adresse recupererAdresse(@PathVariable int id) {
 
@@ -76,14 +110,10 @@ public class GestionAbonneController {
         return adresse;
     }
 
-    @GetMapping(value = "/Abonne/{id}")
-    public Abonne recupererAbonne(@PathVariable int id) {
-
-        Abonne abonne = daoAbonne.findById(id).get();
-
-        return abonne;
-    }
-
+    /**
+     * récupérer la dernière adresse enregistrée dans la base de données
+     * @return
+     */
     @GetMapping(value = "/DerniereAdresse")
     public Adresse recupererDernierAdresse() {
         int dernierIdAdresse = daoAdresse.recupererDernierAdresse();
@@ -93,6 +123,10 @@ public class GestionAbonneController {
         return adresse;
     }
 
+    /**
+     * récupérer le dernier abonné enregistrée dans la base de données
+     * @return
+     */
     @GetMapping(value = "/DerniereAbonne")
     public Abonne recupererDernierAbonne() {
         int dernierIdAbonne = daoAbonne.recupererDernierAbonne();
@@ -102,10 +136,15 @@ public class GestionAbonneController {
         return abonne;
     }
 
+    /**
+     * vérifier si l'email à la création du compte n'est pas identique avec un autre existant das la base de données
+     * @param abonne
+     * @return
+     */
     @GetMapping(value = "/DoublonEmail")
     public Boolean verificationSiEmailDoublon(Abonne abonne){
         boolean resultat = false;
-        List<Abonne> abonnes = new ArrayList<>();
+        List<Abonne> abonnes;
 
         abonnes = daoAbonne.findAll();
 

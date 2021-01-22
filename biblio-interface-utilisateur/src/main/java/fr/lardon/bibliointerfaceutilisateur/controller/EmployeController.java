@@ -18,6 +18,11 @@ public class EmployeController {
     private OuvrageBean ouvrage = null;
     private int codeRole = 5;
 
+    /**
+     * permet de renvoyer sur la page d'emprunt des employés
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.GET)
     public String employe(Model model){
         //problème thymeleaf
@@ -35,6 +40,13 @@ public class EmployeController {
         return "Employe";
     }
 
+    /**
+     * permet de récupérer l'ouvrage et l'abonné et d'ajouter son prêt dans sa liste
+     * @param model
+     * @param ouvrage
+     * @param abonne
+     * @return
+     */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
     public String emprunt(Model model, @ModelAttribute("ouvrage") OuvrageBean ouvrage, @ModelAttribute("abonne") AbonneBean abonne){
 
