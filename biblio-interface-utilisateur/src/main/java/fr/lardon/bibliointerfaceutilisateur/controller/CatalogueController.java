@@ -49,7 +49,6 @@ public class CatalogueController {
         //récupération du code role
         if(model.getAttribute("codeRole") != null) {
             codeRole = (int) model.getAttribute("codeRole");
-            System.out.println("code Role " + codeRole);
         }
         //récupération du code role
         if(model.getAttribute("utilisateurAuthentifie") != null){

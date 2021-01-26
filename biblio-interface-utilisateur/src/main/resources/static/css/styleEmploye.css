@@ -24,10 +24,12 @@ body{
 
 .bordure-titre-gauche{
     border-bottom: 1px solid #eae9e9;
+    color: white;
 }
 
 .bordure-titre-droite{
     border-bottom: 1px solid #a9a9a9;
+    color : #646464;
 }
 
 .centrage{
@@ -37,5 +39,17 @@ body{
 
 .champ-droite{
     margin-top: 72px;
+}
+
+#titre_emprunt{
+
+}
+
+#titre_rendu{
+
+}
+
+#code_ouvrage{
+    color : #646464;
 }
 

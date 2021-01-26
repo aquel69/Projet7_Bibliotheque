@@ -44,6 +44,19 @@ body{
     width: 200px;
 }
 
+#titre_catalogue{
+    font-family: 'Signika', sans-serif;
+}
+
+.titre_livre{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.descriptif{
+
+    color: #111e1d;
+}
+
 
 @media screen and (max-width:1280px){
 

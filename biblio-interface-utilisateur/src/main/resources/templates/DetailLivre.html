@@ -8,7 +8,9 @@
         <title>Accueil</title>
 
         <!-- Bootstrap CSS -->
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Signika:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" th:href="@{/css/styleDetailLivre.css}">
     </head>
@@ -28,7 +30,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
-                                <div class="col-12">
+                                <div id="titre_livre" class="col-12">
                                     <h2 class="text-center" th:text="${detailLivre.getTitre()}"></h2>
                                 </div>
                             </div>

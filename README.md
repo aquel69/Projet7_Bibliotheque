@@ -17,7 +17,7 @@ Pour commencer, je me suis rendu sur le site : https://start.spring.io/, et j'ai
 
  - Spring-web qui réunit plusieurs starters, permettant de faire fonctionner comme nous le souhaitons notre microservice.
  - Thymeleaf nous permet d'accéder aux objets dans les pages HTML.
- - Lombok nous permet la gestion des beans.  
+ - Lombok nous permet de nous faciliter la gestion des beans.  
 
 Une fois générer, j'ai ajouté le dossier à mon projet puis mis le dossier en tant que module.
 
@@ -31,6 +31,9 @@ J'ai ajouté dans mon fichier pom.xml, les dépendances à bootstrap en version 
 Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de données :
 
 - Pour commencer, j'ai ajouté la dépendance de postgresql dans mon fichier pom.xml
+
+- Puis j'ai récupérer à partir du logiciel power architect la requête de création de la structure de ma base de données :  
+
 
 ### 3 - Modification des chemins
 

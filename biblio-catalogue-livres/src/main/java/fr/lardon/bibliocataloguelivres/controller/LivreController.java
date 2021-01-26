@@ -72,7 +72,7 @@ public class LivreController {
     @GetMapping(value="/Recherche/{noPage}/{nbLivresParPage}/{recherche}")
     public List<Livre> catalogueListeLivrePaginationRecherche(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable String recherche){
         Pageable pageable = PageRequest.of(noPage, nbLivresParPage);
-        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche, pageable);
+        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche, recherche,  pageable);
 
         return listeLivrePagination;
     }
@@ -83,9 +83,9 @@ public class LivreController {
      * @return
      */
     @GetMapping(value="/Recherche/{recherche}")
-    public List<Livre> catalogueListeLivrePaginationRecherche( @PathVariable String recherche){
+    public List<Livre> catalogueListeLivrePaginationRecherche(@PathVariable String recherche){
 
-        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche);
+        List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche, recherche);
 
         return listeLivrePagination;
     }
