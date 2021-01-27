@@ -1,14 +1,11 @@
 package fr.lardon.biblioauthentificationutilisateur.controller;
 
 import fr.lardon.biblioauthentificationutilisateur.dao.DaoAbonne;
-import fr.lardon.biblioauthentificationutilisateur.dao.DaoEmploye;
 import fr.lardon.biblioauthentificationutilisateur.dao.DaoRole;
 import fr.lardon.biblioauthentificationutilisateur.model.Abonne;
-import fr.lardon.biblioauthentificationutilisateur.model.Employe;
 import fr.lardon.biblioauthentificationutilisateur.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
