@@ -32,10 +32,4 @@ public class PretBean {
      */
     private OuvrageBean ouvrage;
 
-    /**
-     * abonnés correspondant au prêt
-     */
-    /*private List<AbonnePretBean> abonnePrets;
-*/
-
 }

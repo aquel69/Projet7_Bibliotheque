@@ -17,7 +17,7 @@ public class Pret {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
-    @SequenceGenerator(name="project_generator", sequenceName="pret_id_pret_seq", initialValue = 2, allocationSize = 1)
+    @SequenceGenerator(name="project_generator", sequenceName="pret_id_pret_seq", initialValue = 3, allocationSize = 1)
     @Column(name="id_pret")
     private int idPret;
 
@@ -47,11 +47,11 @@ public class Pret {
     /**
      * ouvrage du prêt
      */
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvrage;
-
 
     public Pret(){
 

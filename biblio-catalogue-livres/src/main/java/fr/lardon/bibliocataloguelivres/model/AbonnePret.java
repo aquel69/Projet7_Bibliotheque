@@ -71,7 +71,9 @@ public class AbonnePret {
     /**
      * abonnés correspondant au prêt
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = ListePretAbonne.class, mappedBy = "idAbonne")
+    @Setter
+    @OneToMany(mappedBy = "abonne", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JsonIgnore
     private List<ListePretAbonne> listePretAbonnes;
 

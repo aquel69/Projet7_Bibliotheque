@@ -1,6 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -15,13 +16,19 @@ public class ListePretAbonne {
     @Column(name="id_pret_abonne")
     private int idListePretAbonne;
 
-    /*@ManyToOne(cascade = CascadeType.ALL)*/
-    @JoinColumn(name = "id_abonne")
-    private int idAbonne;
+    @ToString.Exclude
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="id_abonne")
+    private AbonnePret abonne;
 
     /*@OneToOne(cascade = CascadeType.ALL)*/
+    /*@Column(name = "id_pret")
+    private int idPret;*/
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_pret")
-    private int idPret;
+    private Pret pret;
 
     public ListePretAbonne(){
 

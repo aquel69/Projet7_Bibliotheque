@@ -50,30 +50,6 @@ public class AbonnePretBean {
      */
     private List<ListePretAbonneBean> listePretAbonnes;
 
-    /**
-     * Adresse de l'abonné
-     */
-    /*@OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_adresse")
-
-    private Adresse adresse;
-
-    *//**
-     * Role de l'abonné
-     *//*
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role")
-
-    private Role role;
-
-    *//**
-     * Bibliothèque dont l'abonné dépend
-     *//*
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bibliotheque")
-
-    private Bibliotheque bibliotheque;*/
-
     public AbonnePretBean() {
 
     }

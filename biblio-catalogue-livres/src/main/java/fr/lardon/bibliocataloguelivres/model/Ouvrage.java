@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -46,9 +47,12 @@ public class Ouvrage {
     /**
      * liste des prêts
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Pret.class, mappedBy = "ouvrage")
+    @Setter
+    @OneToMany(mappedBy = "ouvrage", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JsonIgnore
     private List<Pret> listePretAbonnes;
+
 
     public Ouvrage(){
 
