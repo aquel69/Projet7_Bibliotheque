@@ -44,3 +44,11 @@ Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de donné
 - Modifier le chemin du certificat https dans le fichier 'application.properties' du module 'interface abonné' : 
 
 ![photo 1 fichier properties abonné](documentation/screenshots/installation_du_projet_2.png "fichier properties abonné")
+
+
+### 4 - Connection employé  
+
+---
+
+- Pour se connecter en tant qu'employé, il faut entrer l'adresse suivante : dupont.regis@yahoo.fr  
+et le mot de passe : 123
