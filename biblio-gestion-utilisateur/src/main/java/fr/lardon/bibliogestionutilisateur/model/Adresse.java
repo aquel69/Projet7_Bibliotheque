@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class Adresse {
 
     @Id
-    /*@GeneratedValue(strategy = GenerationType.SEQUENCE)*/
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
     @SequenceGenerator(name="project_generator", sequenceName="adresse_id_seq", initialValue = 5, allocationSize = 1)
     @Column(name="id_adresse")

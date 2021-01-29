@@ -1,6 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("pret"))
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pret {
 
     @Id
@@ -25,7 +27,7 @@ public class Pret {
     @NonNull
     @Column(name="date_emprunt")
     @Temporal(TemporalType.DATE)
-    private Date dateDEmbauche;
+    private Date dateDEmprunt;
 
     /**
      * date de restitution
@@ -33,21 +35,21 @@ public class Pret {
     @NonNull
     @Column(name="date_restitution")
     @Temporal(TemporalType.DATE)
-    private Date dateDepart;
+    private Date dateDeRestitution;
 
     /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois
      */
     @NonNull
     @Column(name="prolongation")
-    private String prolongation;
+    private boolean prolongation;
 
     /**
      * ouvrage du prêt
      */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_ouvrage")
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_ouvrage")
     private Ouvrage ouvrage;
 
     /**
@@ -62,6 +64,10 @@ public class Pret {
             inverseJoinColumns = @JoinColumn(name = "id_abonne"))
     @JsonIgnore
     private List<AbonnePret> abonnePrets;
+
+    public Pret(){
+
+    }
 
 
 }

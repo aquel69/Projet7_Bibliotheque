@@ -16,6 +16,7 @@ public class Ouvrage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_ouvrage")
+
     private int idOuvrage;
 
     /**

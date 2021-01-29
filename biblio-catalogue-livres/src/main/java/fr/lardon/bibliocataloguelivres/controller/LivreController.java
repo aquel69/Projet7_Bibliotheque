@@ -1,16 +1,12 @@
 package fr.lardon.bibliocataloguelivres.controller;
 
-import fr.lardon.bibliocataloguelivres.dao.DaoLivre;
-import fr.lardon.bibliocataloguelivres.dao.DaoOuvrage;
-import fr.lardon.bibliocataloguelivres.model.Livre;
-import fr.lardon.bibliocataloguelivres.model.Ouvrage;
+import fr.lardon.bibliocataloguelivres.dao.*;
+import fr.lardon.bibliocataloguelivres.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -23,6 +19,15 @@ public class LivreController {
 
     @Autowired
     private DaoOuvrage daoOuvrage;
+
+    @Autowired
+    private DaoPret daoPret;
+
+    @Autowired
+    private DaoListePretAbonne daoListePretAbonne;
+
+    @Autowired
+    private DaoAbonnePret daoAbonnePret;
 
     /**
      * renvoi la liste des livres en fonction de leurs nombre de fois qu'ils ont été empruntés
@@ -114,5 +119,66 @@ public class LivreController {
 
         return ouvrages;
     }
+
+    /**
+     * ajouter un prêt dans la base de données
+     * @param pret
+     */
+    @PostMapping(value = "/AjouterPret")
+    public void ajouterPret(@RequestBody Pret pret) {
+        daoPret.save(pret);
+    }
+
+    /**
+     * renvoi l'ouvrage selon son code bibliothèque
+     * @param codeBibliotheque
+     * @return
+     */
+    @GetMapping(value = "/Ouvrage/{codeBibliotheque}")
+    public Ouvrage ouvrageSelonCodeBibliotheque(@PathVariable String codeBibliotheque){
+
+        Ouvrage ouvrage = daoOuvrage.findByCodeBibliotheque(codeBibliotheque);
+
+        return ouvrage;
+    }
+
+    /**
+     * ajouter un prêt pour l'abonné dans la base de données
+     * @param pret
+     */
+    @PostMapping(value = "/SauvegarderPret")
+    public void sauvegarderPret(@RequestBody Pret pret) {daoPret.save(pret);}
+
+    /**
+     * ajouter un prêt pour l'abonné dans la base de données
+     * @param abonnePret
+     */
+    @PostMapping(value = "/SauvegarderAbonne")
+    public void sauvegarderAbonnePret(@RequestBody AbonnePret abonnePret) {daoAbonnePret.save(abonnePret);}
+
+    /**
+     * récupérer un abonné dans la base de données selon son numéro d'abonné
+     * @param numeroAbonne
+     * @return
+     */
+    @GetMapping(value = "/AbonnePret/{numeroAbonne}")
+    public AbonnePret recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
+
+        AbonnePret abonnePret = daoAbonnePret.findByNumeroAbonne(numeroAbonne);
+
+        return abonnePret;
+    }
+
+    @GetMapping(value = "/Pret/{id}")
+    public ListePretAbonne recupererTousLesPret(@PathVariable int id) {
+
+        ListePretAbonne pret = daoListePretAbonne.findById(id).get();;
+
+        return pret;
+    }
+
+
+
+
 
 }

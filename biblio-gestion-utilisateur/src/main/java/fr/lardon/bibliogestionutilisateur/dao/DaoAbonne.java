@@ -10,4 +10,6 @@ public interface DaoAbonne extends JpaRepository<Abonne, Integer> {
 
     @Query(value = "SELECT MAX(idAbonne) FROM Abonne")
     Integer recupererDernierAbonne();
+
+    Abonne findByNumeroAbonne(String numeroAbonne);
 }

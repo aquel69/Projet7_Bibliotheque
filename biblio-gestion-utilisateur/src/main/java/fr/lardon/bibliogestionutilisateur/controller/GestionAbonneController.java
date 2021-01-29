@@ -49,7 +49,7 @@ public class GestionAbonneController {
     public void ajouterAbonne(@RequestBody Abonne abonne) {daoAbonne.save(abonne);}
 
     /**
-     * récupérer un abonné dans la base de données
+     * récupérer un abonné dans la base de données selon son id
      * @param id
      * @return
      */
@@ -57,6 +57,19 @@ public class GestionAbonneController {
     public Abonne recupererAbonne(@PathVariable int id) {
 
         Abonne abonne = daoAbonne.findById(id).get();
+
+        return abonne;
+    }
+
+    /**
+     * récupérer un abonné dans la base de données selon son numéro d'abonné
+     * @param numeroAbonne
+     * @return
+     */
+    @GetMapping(value = "/AbonnePret/{numeroAbonne}")
+    public Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
+
+        Abonne abonne = daoAbonne.findByNumeroAbonne(numeroAbonne);
 
         return abonne;
     }

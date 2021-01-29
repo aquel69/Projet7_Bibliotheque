@@ -32,7 +32,9 @@ Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de donné
 
 - Pour commencer, j'ai ajouté la dépendance de postgresql dans mon fichier pom.xml
 
-- Puis j'ai récupérer à partir du logiciel power architect la requête de création de la structure de ma base de données :  
+- Puis j'ai récupérer à partir du logiciel power architect la requête de création de la structure de ma base de données et mis au propre grace à pgModeler :  
+
+![photo 1 modèle physique de données](documentation/screenshots/installation_du_projet_3.png "modèle physique de données")
 
 
 ### 3 - Modification des chemins

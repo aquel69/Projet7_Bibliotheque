@@ -71,39 +71,9 @@ public class AbonnePret {
     /**
      * abonnés correspondant au prêt
      */
-    @ToString.Exclude
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "pret_abonne",
-            joinColumns = @JoinColumn(name = "id_abonne"),
-            inverseJoinColumns = @JoinColumn(name = "id_pret"))
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "abonnePrets")
     @JsonIgnore
     private List<Pret> prets;
-
-    /**
-     * Adresse de l'abonné
-     */
-    /*@OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_adresse")
-
-    private Adresse adresse;
-
-    *//**
-     * Role de l'abonné
-     *//*
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role")
-
-    private Role role;
-
-    *//**
-     * Bibliothèque dont l'abonné dépend
-     *//*
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bibliotheque")
-
-    private Bibliotheque bibliotheque;*/
 
     public AbonnePret() {
 
