@@ -15,12 +15,16 @@ public class ListePretAbonne {
     @Column(name="id_pret_abonne")
     private int idListePretAbonne;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@ManyToOne(cascade = CascadeType.ALL)*/
     @JoinColumn(name = "id_abonne")
-    private AbonnePret abonne;
+    private int idAbonne;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)*/
     @JoinColumn(name = "id_pret")
-    private Pret pret;
+    private int idPret;
+
+    public ListePretAbonne(){
+
+    }
 
 }

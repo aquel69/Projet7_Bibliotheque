@@ -1,11 +1,13 @@
 package fr.lardon.bibliocataloguelivres.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -41,7 +43,12 @@ public class Ouvrage {
     @JoinColumn(name = "id_livre")
     private Livre livre;
 
-
+    /**
+     * liste des prêts
+     */
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Pret.class, mappedBy = "ouvrage")
+    @JsonIgnore
+    private List<Pret> listePretAbonnes;
 
     public Ouvrage(){
 

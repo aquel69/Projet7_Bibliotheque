@@ -17,7 +17,7 @@ public class Pret {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
-    @SequenceGenerator(name="project_generator", sequenceName="pret_id_pret_seq", initialValue = 1, allocationSize = 1)
+    @SequenceGenerator(name="project_generator", sequenceName="pret_id_pret_seq", initialValue = 2, allocationSize = 1)
     @Column(name="id_pret")
     private int idPret;
 
@@ -48,22 +48,10 @@ public class Pret {
      * ouvrage du prêt
      */
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_ouvrage")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvrage;
 
-    /**
-     * abonnés correspondant au prêt
-     */
-    @ToString.Exclude
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "pret_abonne",
-            joinColumns = @JoinColumn(name = "id_pret"),
-            inverseJoinColumns = @JoinColumn(name = "id_abonne"))
-    @JsonIgnore
-    private List<AbonnePret> abonnePrets;
 
     public Pret(){
 

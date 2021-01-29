@@ -3,6 +3,7 @@ package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OuvrageBean {
@@ -23,5 +24,10 @@ public class OuvrageBean {
      * Livre
      */
     private LivreBean livre;
+
+    /**
+     * liste des prêts
+     */
+    private List<PretBean> listePretAbonnes;
 
 }

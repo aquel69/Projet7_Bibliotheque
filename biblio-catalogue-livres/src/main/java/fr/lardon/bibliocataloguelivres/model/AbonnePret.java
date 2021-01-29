@@ -71,9 +71,9 @@ public class AbonnePret {
     /**
      * abonnés correspondant au prêt
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "abonnePrets")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ListePretAbonne.class, mappedBy = "idAbonne")
     @JsonIgnore
-    private List<Pret> prets;
+    private List<ListePretAbonne> listePretAbonnes;
 
     public AbonnePret() {
 

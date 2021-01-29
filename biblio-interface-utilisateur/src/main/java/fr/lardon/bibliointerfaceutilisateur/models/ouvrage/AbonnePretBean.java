@@ -48,7 +48,7 @@ public class AbonnePretBean {
     /**
      * abonnés correspondant au prêt
      */
-    private List<PretBean> prets;
+    private List<ListePretAbonneBean> listePretAbonnes;
 
     /**
      * Adresse de l'abonné

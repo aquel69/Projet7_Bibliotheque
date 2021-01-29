@@ -7,8 +7,8 @@ public class ListePretAbonneBean {
 
     private int idListePretAbonne;
 
-    private AbonnePretBean abonnePret;
+    private int idAbonne;;
 
-    private PretBean pret;
+    private int idPret;
 
 }

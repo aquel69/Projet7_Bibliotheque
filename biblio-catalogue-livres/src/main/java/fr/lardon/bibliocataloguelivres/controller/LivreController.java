@@ -177,7 +177,8 @@ public class LivreController {
         return pret;
     }
 
-
+    @PostMapping(value = "/SauvegarderListePretAbonne")
+    public void sauvegarderListePretAbonne(@RequestBody ListePretAbonne listePretAbonne){daoListePretAbonne.save(listePretAbonne);}
 
 
 

@@ -69,7 +69,7 @@ public class EmployeController {
      */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
     public String emprunt(Model model, @ModelAttribute("ouvrage") OuvrageBean ouvrage, @ModelAttribute("abonne") AbonnePretBean abonne){
-
+        ListePretAbonneBean listePretAbonneBean = new ListePretAbonneBean();
 
         //attibution de la date d'emprunt
         Date date = new Date();
@@ -88,12 +88,11 @@ public class EmployeController {
         pret.setOuvrage(ouvrage);
 
         livresProxy.sauvegarderPret(pret);
-        livresProxy.sauvegarderAbonnePret(abonne);
-        
-        /*listePretAbonneBean.setAbonnePret(abonne);
-        listePretAbonneBean.setPret(pret);
 
-        livresProxy.ajouterPretAbonne(listePretAbonneBean);*/
+        /*listePretAbonneBean.setIdAbonne(abonne.getIdAbonne());
+        listePretAbonneBean.setIdPret(pret.getIdPret());
+
+        livresProxy.sauvegarderListePretAbonne(listePretAbonneBean);*/
 
         //ajout dans le model
         model.addAttribute("ouvrage", ouvrage);
