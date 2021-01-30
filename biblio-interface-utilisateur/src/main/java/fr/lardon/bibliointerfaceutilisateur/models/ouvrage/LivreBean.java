@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class LivreBean {
 
@@ -85,9 +86,5 @@ public class LivreBean {
      */
     @NonNull
     private String moyennePhotoCouverture;
-
-    public LivreBean(){
-
-    }
 
 }

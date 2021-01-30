@@ -1,6 +1,7 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("employe"))
@@ -88,7 +90,4 @@ public class Employe {
     @JoinColumn(name = "role")
     private Role role;
 
-    public Employe() {
-
-    }
 }

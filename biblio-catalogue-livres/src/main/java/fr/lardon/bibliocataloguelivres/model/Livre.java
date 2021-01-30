@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("livre"))
@@ -41,7 +42,6 @@ public class Livre {
     @JoinTable(name = "livre_auteurs",
             joinColumns = @JoinColumn(name = "id_livre"),
             inverseJoinColumns = @JoinColumn(name = "id_auteur"))
-
     private List<Auteur> auteurs;
 
     /**
@@ -54,7 +54,6 @@ public class Livre {
     @JoinTable(name = "liste_genre",
             joinColumns = @JoinColumn(name = "id_livre"),
             inverseJoinColumns = @JoinColumn(name = "id_genre"))
-
     private List<Genre> genres;
 
     /**
@@ -114,8 +113,5 @@ public class Livre {
     @Column(name = "moyenne_photo_couverture")
     private String moyennePhotoCouverture;
 
-    public Livre(){
-
-    }
 
 }

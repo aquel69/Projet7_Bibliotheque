@@ -1,13 +1,17 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("abonne"))
@@ -71,13 +75,8 @@ public class AbonnePret {
     /**
      * abonnés correspondant au prêt
      */
-    @Setter
-    @OneToMany(mappedBy = "abonne", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JsonIgnore
+    @JsonManagedReference
+    @OneToMany(mappedBy = "abonne", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ListePretAbonne> listePretAbonnes;
 
-    public AbonnePret() {
-
-    }
 }

@@ -1,18 +1,18 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(exclude = {"ouvrage"})
 @Entity
 @Table(name=("pret"))
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pret {
 
     @Id
@@ -47,15 +47,9 @@ public class Pret {
     /**
      * ouvrage du prêt
      */
-    @ToString.Exclude
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvrage;
-
-    public Pret(){
-
-    }
-
 
 }

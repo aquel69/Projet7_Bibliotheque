@@ -1,16 +1,18 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("ouvrage"))
@@ -19,7 +21,6 @@ public class Ouvrage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_ouvrage")
-
     private int idOuvrage;
 
     /**
@@ -47,15 +48,8 @@ public class Ouvrage {
     /**
      * liste des prêts
      */
-    @Setter
-    @OneToMany(mappedBy = "ouvrage", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JsonIgnore
-    private List<Pret> listePretAbonnes;
-
-
-    public Ouvrage(){
-
-    }
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ouvrage", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Pret> listePretAbonnes;
 
 }

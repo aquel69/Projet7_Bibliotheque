@@ -1,10 +1,12 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name=("enumrole"))
 public class Role {

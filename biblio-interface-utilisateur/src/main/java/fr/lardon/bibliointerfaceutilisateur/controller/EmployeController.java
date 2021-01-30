@@ -89,10 +89,10 @@ public class EmployeController {
 
         livresProxy.sauvegarderPret(pret);
 
-        /*listePretAbonneBean.setIdAbonne(abonne.getIdAbonne());
-        listePretAbonneBean.setIdPret(pret.getIdPret());
+        listePretAbonneBean.setAbonne(abonne);
+        listePretAbonneBean.setPret(pret);
 
-        livresProxy.sauvegarderListePretAbonne(listePretAbonneBean);*/
+        livresProxy.sauvegarderListePretAbonne(listePretAbonneBean);
 
         //ajout dans le model
         model.addAttribute("ouvrage", ouvrage);

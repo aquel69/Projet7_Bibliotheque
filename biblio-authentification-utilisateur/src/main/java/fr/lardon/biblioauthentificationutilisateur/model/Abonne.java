@@ -1,6 +1,7 @@
 package fr.lardon.biblioauthentificationutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("abonne"))
@@ -75,11 +77,5 @@ public class Abonne {
     @JoinColumn(name = "role")
 
     private Role role;
-
-
-    public Abonne() {
-
-    }
-
 
 }

@@ -1,6 +1,7 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("abonne"))
@@ -73,7 +75,6 @@ public class Abonne {
      */
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_adresse")
-
     private Adresse adresse;
 
     /**
@@ -81,7 +82,6 @@ public class Abonne {
      */
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role")
-
     private Role role;
 
     /**
@@ -89,10 +89,6 @@ public class Abonne {
      */
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "bibliotheque")
-
     private Bibliotheque bibliotheque;
 
-    public Abonne() {
-
-    }
 }

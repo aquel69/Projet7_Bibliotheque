@@ -1,10 +1,12 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class AuteurBean {
 
 

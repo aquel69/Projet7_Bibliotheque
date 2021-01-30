@@ -2,14 +2,14 @@ package fr.lardon.bibliocataloguelivres.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name=("genre"))
 public class Genre {
@@ -20,11 +20,13 @@ public class Genre {
     /**
      * Nom du genre littéraire.
      */
+    @NonNull
     @Column(name="nom")
     private String nom;
     /**
      * Description du genre littéraire.
      */
+    @NonNull
     @Column(name="description")
     private String description;
 

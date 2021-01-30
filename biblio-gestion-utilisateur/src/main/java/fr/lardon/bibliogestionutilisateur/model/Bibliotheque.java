@@ -1,12 +1,14 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("bibliotheque"))
@@ -37,7 +39,4 @@ public class Bibliotheque {
     @JoinColumn(name = "id_adresse")
     private Adresse adresse;
 
-    public Bibliotheque() {
-
-    }
 }

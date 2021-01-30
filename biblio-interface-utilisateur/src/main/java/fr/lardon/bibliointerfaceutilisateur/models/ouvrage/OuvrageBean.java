@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class OuvrageBean {
 
@@ -36,9 +37,5 @@ public class OuvrageBean {
     @ToString.Exclude
     @Setter
     private List<PretBean> listePretAbonnes;
-
-    public OuvrageBean(){
-
-    }
 
 }

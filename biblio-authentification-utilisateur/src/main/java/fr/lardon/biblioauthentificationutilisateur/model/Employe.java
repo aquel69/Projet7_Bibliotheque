@@ -1,6 +1,7 @@
 package fr.lardon.biblioauthentificationutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name=("employe"))
@@ -73,11 +75,6 @@ public class Employe {
      */
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role")
-
     private Role role;
 
-
-    public Employe() {
-
-    }
 }

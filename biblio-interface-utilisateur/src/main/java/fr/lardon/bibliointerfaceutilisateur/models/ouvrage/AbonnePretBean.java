@@ -1,11 +1,13 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class AbonnePretBean {
 
     private int idAbonne;
@@ -50,7 +52,4 @@ public class AbonnePretBean {
      */
     private List<ListePretAbonneBean> listePretAbonnes;
 
-    public AbonnePretBean() {
-
-    }
 }

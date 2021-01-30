@@ -2,15 +2,15 @@ package fr.lardon.bibliocataloguelivres.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name=("auteur"))
 public class Auteur {
@@ -22,28 +22,33 @@ public class Auteur {
     /**
      * nom de l'auteur
      */
+    @NonNull
     @Column(name="nom")
     private String nom;
     /**
      * prénom de l'auteur
      */
+    @NonNull
     @Column(name="prenom")
     private String prenom;
     /**
      * date de naissance de l'auteur
      */
+    @NonNull
     @Column(name="date_de_naissance")
     @Temporal(TemporalType.DATE)
     private Date dateDeNaissance;
     /**
      * date de décès de l'auteur(si décédé)
      */
+    @NonNull
     @Column(name="date_deces")
     @Temporal(TemporalType.DATE)
     private Date dateDeces;
     /**
      * commentaire sur l'auteur
      */
+    @NonNull
     @Column(name="commentaire")
     private String commentaire;
     /**

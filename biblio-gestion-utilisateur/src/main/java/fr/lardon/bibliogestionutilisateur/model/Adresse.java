@@ -1,11 +1,13 @@
 package fr.lardon.bibliogestionutilisateur.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name="adresse", schema = "public")
 public class Adresse {
