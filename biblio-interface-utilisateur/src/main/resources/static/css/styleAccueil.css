@@ -14,6 +14,11 @@ body{
  color: #ffffff;
 }
 
+/*fenêtre*/
+#paragraphe{
+
+}
+
 /*LIVRE*/
 /*Lien*/
 .lien_livre{
@@ -71,6 +76,7 @@ body{
     color: #f5f5dc;
     margin-bottom: 0.36em;
 }
+
 
 
 @media screen and (max-width:1464px){

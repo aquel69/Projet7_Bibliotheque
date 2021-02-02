@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -50,6 +51,11 @@ public class Ouvrage {
      */
     @JsonManagedReference
     @OneToMany(mappedBy = "ouvrage", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Pret> listePretAbonnes;
+    private List<Pret> listePretAbonnes;
+
+    /*public void setListePretAbonnes(List<Pret> listePretAbonnes) {
+        this.listePretAbonnes = listePretAbonnes;
+        listePretAbonnes.forEach(entity -> entity.setOuvrage(this));
+    }*/
 
 }

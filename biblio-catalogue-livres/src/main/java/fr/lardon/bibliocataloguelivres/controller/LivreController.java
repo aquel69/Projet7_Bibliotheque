@@ -180,6 +180,20 @@ public class LivreController {
     @PostMapping(value = "/SauvegarderListePretAbonne")
     public void sauvegarderListePretAbonne(@RequestBody ListePretAbonne listePretAbonne){daoListePretAbonne.save(listePretAbonne);}
 
+    @GetMapping(value = "/PretsSelonAbonne/{id}")
+    public List<Pret> listeDesPretsSelonAbonne(@PathVariable int id){
+        List<Pret> prets = daoPret.listePretSelonAbonne(id);
+
+        return prets;
+    }
+
+    @GetMapping(value = "/AbonnePretSelonId/{id}")
+    public AbonnePret abonnePretSelonSonId(@PathVariable int id){
+        AbonnePret abonnePret = daoAbonnePret.abonnePretSelonId(id);
+
+        return abonnePret;
+    }
+
 
 
 }

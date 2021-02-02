@@ -66,6 +66,7 @@ public class Abonne {
     /**
      * date de création du compte
      */
+    @NonNull
     @Column(name="date_creation_du_compte")
     @Temporal(TemporalType.DATE)
     private Date dateDeCreationDuCompte;

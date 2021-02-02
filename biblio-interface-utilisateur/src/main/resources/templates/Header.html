@@ -36,6 +36,7 @@
                                     <div th:if="${codeRole == 1}">
                                         <div class="dropdown-divider"></div>
                                         <span style="color: #99a5a2" class="pl-4">Compte</span>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#modal">Mes Emprunts</a>
                                         <a class="dropdown-item" th:href="@{|/ModificationCompte|}">Modification</a>
                                     </div>
                                     <div th:if="${codeRole == 0}">

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -23,7 +22,7 @@ public class ListePretAbonne {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_abonne")
+    @JoinColumn(name="id_abonne", nullable=false)
     private AbonnePret abonne;
 
     @OneToOne(cascade = CascadeType.ALL)

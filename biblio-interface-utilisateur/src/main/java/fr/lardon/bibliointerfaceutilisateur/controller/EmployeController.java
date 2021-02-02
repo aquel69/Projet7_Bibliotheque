@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +74,7 @@ public class EmployeController {
         ListePretAbonneBean listePretAbonneBean = new ListePretAbonneBean();
 
         //attibution de la date d'emprunt
-        Date date = new Date();
+        LocalDateTime localDateTime = LocalDateTime.now();
 
         //récupération de l'ouvrage
         ouvrage = livresProxy.ouvrageSelonCodeBibliotheque(ouvrage.getCodeBibliotheque());
@@ -80,18 +82,17 @@ public class EmployeController {
         //récupération de l'abonné
         abonne = livresProxy.recupererAbonneSelonNumeroAbonne(abonne.getNumeroAbonne());
 
-        System.out.println("ouvrage récupéré : " + ouvrage);
-        System.out.println("abonne récupéré : " + abonne);
-
-        pret.setDateDEmprunt(date);
+        //alimentation de l'objet prêt
+        pret.setDateDEmprunt(localDateTime);
+        pret.setDateDeRestitution(localDateTime.plusWeeks(4));
         pret.setProlongation(false);
         pret.setOuvrage(ouvrage);
 
-        livresProxy.sauvegarderPret(pret);
-
+        //alimentation de la liste relation prêt abonné
         listePretAbonneBean.setAbonne(abonne);
         listePretAbonneBean.setPret(pret);
 
+        //sauvegarde de la liste relation prêt abonné
         livresProxy.sauvegarderListePretAbonne(listePretAbonneBean);
 
         //ajout dans le model

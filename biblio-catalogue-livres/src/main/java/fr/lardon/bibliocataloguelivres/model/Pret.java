@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -26,16 +27,16 @@ public class Pret {
      */
     @NonNull
     @Column(name="date_emprunt")
-    @Temporal(TemporalType.DATE)
-    private Date dateDEmprunt;
+    /*@Temporal(TemporalType.TIME)*/
+    private LocalDateTime dateDEmprunt;
 
     /**
      * date de restitution
      */
     @NonNull
     @Column(name="date_restitution")
-    @Temporal(TemporalType.DATE)
-    private Date dateDeRestitution;
+    /*@Temporal(TemporalType.TIME)*/
+    private LocalDateTime dateDeRestitution;
 
     /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois
@@ -48,7 +49,7 @@ public class Pret {
      * ouvrage du prêt
      */
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvrage;
 

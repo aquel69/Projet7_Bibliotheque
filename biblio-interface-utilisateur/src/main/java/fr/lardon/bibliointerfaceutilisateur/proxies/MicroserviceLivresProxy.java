@@ -54,5 +54,11 @@ public interface MicroserviceLivresProxy {
     @PostMapping(value = "/SauvegarderListePretAbonne")
     void sauvegarderListePretAbonne(@RequestBody ListePretAbonneBean listePretAbonne);
 
+    @GetMapping(value = "/PretsSelonAbonne/{id}")
+    List<PretBean> listeDesPretsSelonAbonne(@PathVariable int id);
+
+    @GetMapping(value = "/AbonnePretSelonId/{id}")
+    AbonnePretBean abonnePretSelonSonId(@PathVariable int id);
+
 
 }

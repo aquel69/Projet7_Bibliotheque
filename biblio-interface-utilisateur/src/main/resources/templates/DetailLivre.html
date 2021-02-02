@@ -17,6 +17,7 @@
     <body>
         <span th:insert="Header :: header(codeRole = ${codeRole}, utilisateurAuthentifie = ${utilisateurAuthentifie})"></span>
         <div id="containeur_detail" class="container-fluid">
+            <div th:insert="FenetreModal.html :: fenetre(abonnePret = ${abonnePret})"></div>
             <div class="row">
                 <div class="col-12 mb-5">
                     <h1 id="titre_detail" class="text-center mt-5 mt-md-0">Détail Du Livre</h1>

@@ -18,6 +18,7 @@
     <body>
         <span th:insert="Header :: header(codeRole = ${codeRole}, utilisateurAuthentifie = ${utilisateurAuthentifie})"></span>
         <div id="containeur_detail" class="container-fluid">
+            <div th:insert="FenetreModal.html :: fenetre(abonnePret = ${abonnePret})"></div>
             <div class="row">
                 <div class="col-5">
                     <form th:action="@{|/Catalogue/0/8|}" method="post">

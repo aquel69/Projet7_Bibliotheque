@@ -44,6 +44,7 @@ public class Employe {
     /**
      * date d'embauche de l'employé
      */
+    @NonNull
     @Column(name="date_embauche")
     @Temporal(TemporalType.DATE)
     private Date dateDEmbauche;
@@ -51,6 +52,7 @@ public class Employe {
     /**
      * date de départ(fin de contrat) de l'employé
      */
+    @NonNull
     @Column(name="date_depart")
     @Temporal(TemporalType.DATE)
     private Date dateDeDepart;

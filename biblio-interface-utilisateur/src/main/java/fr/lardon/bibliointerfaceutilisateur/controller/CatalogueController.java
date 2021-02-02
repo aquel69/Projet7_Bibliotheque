@@ -2,9 +2,7 @@ package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AuteurBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.LivreBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +22,7 @@ public class CatalogueController {
     private List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
     private List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
     private List<LivreBean> livres;
+    private AbonnePretBean abonnePret;
     private RoleBean role = new RoleBean();
     private AbonneBean utilisateurAuthentifie = new AbonneBean();
     private int index = 0;
@@ -43,6 +42,7 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
+
         //récupération du message
         String message = (String) model.getAttribute("message");
 
@@ -53,6 +53,11 @@ public class CatalogueController {
         //récupération du code role
         if(model.getAttribute("utilisateurAuthentifie") != null){
             utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+            abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
+            System.out.println("abonne " + abonnePret);
+            /*for(AbonnePretBean abonnePretBean : abonnePrets){
+                System.out.println(abonnePretBean);
+            }*/
         }
 
         //récupération du top 10
@@ -75,6 +80,7 @@ public class CatalogueController {
         //ajout dans le model
         model.addAttribute("message", message);
         model.addAttribute("codeRole", codeRole);
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("livres", livreTop);
         model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
@@ -98,6 +104,7 @@ public class CatalogueController {
         List<AuteurBean> auteurs = livre.getAuteurs();
 
         //ajout dans le model
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("detailLivre", livre);
@@ -132,6 +139,7 @@ public class CatalogueController {
         }
 
         //ajout dans le model
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("listeLivresPagination", listeLivresPagination);
@@ -153,16 +161,19 @@ public class CatalogueController {
     @RequestMapping(value = "/Catalogue/{noPage}/{nbLivresParPage}", method = RequestMethod.POST)
     public String recherche(Model model, @PathVariable int noPage, @PathVariable int nbLivresParPage, @RequestParam String recherche){
 
-        //savoir que nous sommes en recherche et récupérons la recherche dans une variable de classe
-        isRecherche = true;
-        this.recherche = recherche;
+        if(!recherche.isEmpty()) {
+            //savoir que nous sommes en recherche et récupérons la recherche dans une variable de classe
+            isRecherche = true;
+            this.recherche = recherche;
 
-        //nous effaçons la liste de livre du catalogue afin de la remplacer par celle de la recherche
-        listeLivresPagination.clear();
+            //nous effaçons la liste de livre du catalogue afin de la remplacer par celle de la recherche
+            listeLivresPagination.clear();
 
-        recuperationDesLivresRecherche(noPage, nbLivresParPage);
+            recuperationDesLivresRecherche(noPage, nbLivresParPage);
+        }
 
         //ajout dans le model
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("listeLivresPagination", listeLivresPagination);
