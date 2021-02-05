@@ -1,13 +1,10 @@
-package fr.lardon.bibliocataloguelivres.model;
+package fr.lardon.bibliobatch.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +25,7 @@ public class Pret {
      */
     @NonNull
     @Column(name="date_emprunt")
+    /*@Temporal(TemporalType.TIME)*/
     private LocalDateTime dateDEmprunt;
 
     /**
@@ -35,6 +33,7 @@ public class Pret {
      */
     @NonNull
     @Column(name="date_restitution")
+    /*@Temporal(TemporalType.TIME)*/
     private LocalDateTime dateDeRestitution;
 
     /**
@@ -49,15 +48,7 @@ public class Pret {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_abonne")
-    private AbonnePret abonnePret;
-
-    /**
-     * ouvrage du prêt
-     */
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_ouvrage")
-    private Ouvrage ouvragePret;
+    private Ouvrage ouvrage;
 
 }

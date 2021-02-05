@@ -1,18 +1,16 @@
-package fr.lardon.bibliocataloguelivres.controller;
+package fr.lardon.bibliobatch.controller;
 
-import fr.lardon.bibliocataloguelivres.dao.*;
-import fr.lardon.bibliocataloguelivres.model.*;
+import fr.lardon.bibliobatch.dao.*;
+import fr.lardon.bibliobatch.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 @RestController
-public class LivreController {
+public class BatchController {
 
     @Autowired
     private DaoLivre daoLivre;
@@ -146,7 +144,7 @@ public class LivreController {
      * ajouter un prêt pour l'abonné dans la base de données
      * @param pret
      */
-    @PostMapping(value = "/SauvegarderPret", consumes={"application/json"})
+    @PostMapping(value = "/SauvegarderPret")
     public void sauvegarderPret(@RequestBody Pret pret) {daoPret.save(pret);}
 
     /**
@@ -172,7 +170,7 @@ public class LivreController {
     @GetMapping(value = "/Pret/{id}")
     public ListePretAbonne recupererTousLesPret(@PathVariable int id) {
 
-        ListePretAbonne pret = daoListePretAbonne.findById(id).get();
+        ListePretAbonne pret = daoListePretAbonne.findById(id).get();;
 
         return pret;
     }
@@ -181,15 +179,15 @@ public class LivreController {
     public void sauvegarderListePretAbonne(@RequestBody ListePretAbonne listePretAbonne){daoListePretAbonne.save(listePretAbonne);}
 
     @GetMapping(value = "/PretsSelonAbonne/{id}")
-    public Pret listeDesPretsSelonAbonne(@PathVariable int id){
-        Pret prets = daoPret.findById(id).get();
+    public List<Pret> listeDesPretsSelonAbonne(@PathVariable int id){
+        List<Pret> prets = daoPret.listePretSelonAbonne(id);
 
         return prets;
     }
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePret abonnePretSelonSonId(@PathVariable int id){
-        AbonnePret abonnePret = daoAbonnePret.findById(id).get();
+        AbonnePret abonnePret = daoAbonnePret.abonnePretSelonId(id);
 
         return abonnePret;
     }

@@ -1,7 +1,6 @@
-package fr.lardon.bibliocataloguelivres.model;
+package fr.lardon.bibliobatch.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 

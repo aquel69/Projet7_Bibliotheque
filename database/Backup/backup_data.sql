@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2021-01-29 07:25:31
+-- Started on 2021-02-05 09:48:58
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2989 (class 0 OID 42883)
+-- TOC entry 2979 (class 0 OID 42883)
 -- Dependencies: 220
 -- Data for Name: adresse; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -66,7 +66,7 @@ INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, vi
 
 
 --
--- TOC entry 2990 (class 0 OID 42892)
+-- TOC entry 2980 (class 0 OID 42892)
 -- Dependencies: 221
 -- Data for Name: bibliotheque; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -77,7 +77,7 @@ INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('1
 
 
 --
--- TOC entry 2987 (class 0 OID 42873)
+-- TOC entry 2977 (class 0 OID 42873)
 -- Dependencies: 218
 -- Data for Name: enumrole; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -90,7 +90,7 @@ INSERT INTO public.enumrole (code, status, description) VALUES (5, 'Employé', '
 
 
 --
--- TOC entry 2994 (class 0 OID 42913)
+-- TOC entry 2984 (class 0 OID 42913)
 -- Dependencies: 225
 -- Data for Name: abonne; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -100,7 +100,7 @@ INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, 
 
 
 --
--- TOC entry 2980 (class 0 OID 42831)
+-- TOC entry 2970 (class 0 OID 42831)
 -- Dependencies: 211
 -- Data for Name: auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -143,7 +143,7 @@ INSERT INTO public.auteur (id_auteur, nom, prenom, date_de_naissance, date_deces
 
 
 --
--- TOC entry 2998 (class 0 OID 51346)
+-- TOC entry 2988 (class 0 OID 51346)
 -- Dependencies: 229
 -- Data for Name: editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -163,7 +163,7 @@ INSERT INTO public.editeur (id_editeur, nom_maison_edition) VALUES (12, 'Poche')
 
 
 --
--- TOC entry 2992 (class 0 OID 42902)
+-- TOC entry 2982 (class 0 OID 42902)
 -- Dependencies: 223
 -- Data for Name: employe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -172,7 +172,7 @@ INSERT INTO public.employe (id_employe, nom, prenom, matricule, date_embauche, d
 
 
 --
--- TOC entry 2984 (class 0 OID 42853)
+-- TOC entry 2974 (class 0 OID 42853)
 -- Dependencies: 215
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -196,7 +196,7 @@ INSERT INTO public.genre (id_genre, nom, description) VALUES (12, 'Manga', 'Un M
 
 
 --
--- TOC entry 2974 (class 0 OID 42798)
+-- TOC entry 2964 (class 0 OID 42798)
 -- Dependencies: 205
 -- Data for Name: livre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -246,7 +246,7 @@ INSERT INTO public.livre (id_livre, titre, resume, date_edition, num_isbn13, lan
 
 
 --
--- TOC entry 2986 (class 0 OID 42864)
+-- TOC entry 2976 (class 0 OID 42864)
 -- Dependencies: 217
 -- Data for Name: liste_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -274,7 +274,7 @@ INSERT INTO public.liste_genre (id_liste_genre, id_livre, id_genre) VALUES (20, 
 
 
 --
--- TOC entry 2982 (class 0 OID 42842)
+-- TOC entry 2972 (class 0 OID 42842)
 -- Dependencies: 213
 -- Data for Name: livre_auteurs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -300,7 +300,7 @@ INSERT INTO public.livre_auteurs (id_livre_auteur, id_livre, id_auteur) VALUES (
 
 
 --
--- TOC entry 2976 (class 0 OID 42809)
+-- TOC entry 2966 (class 0 OID 42809)
 -- Dependencies: 207
 -- Data for Name: ouvrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -325,35 +325,45 @@ INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout)
 
 
 --
--- TOC entry 2978 (class 0 OID 42820)
+-- TOC entry 2968 (class 0 OID 42820)
 -- Dependencies: 209
 -- Data for Name: pret; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (1, '2020-12-04', NULL, false, 1);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (2, '2020-12-04', NULL, false, 2);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (35, '2021-01-31', '2021-02-28', false, 1);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (36, '2021-02-01', '2021-02-28', false, 1);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (1, '2020-12-04', '2021-02-28', false, 1);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (2, '2020-12-04', '2021-02-28', false, 2);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (39, '2021-02-03', '2021-03-03', false, 1);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (40, '2021-02-03', '2021-03-03', false, 14);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (41, '2021-02-03', '2021-03-03', false, 1);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (42, '2021-02-03', '2021-03-03', false, 14);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (43, '2021-02-03', '2021-03-03', false, 14);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (45, '2021-02-03', '2021-03-03', false, 14);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage) VALUES (46, '2021-02-03', '2021-03-03', false, 14);
 
 
 --
--- TOC entry 2996 (class 0 OID 42924)
+-- TOC entry 2986 (class 0 OID 42924)
 -- Dependencies: 227
 -- Data for Name: pret_abonne; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (1, 1, 1);
 INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (2, 2, 1);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (12, 35, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (13, 36, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (16, 39, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (17, 40, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (18, 41, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (19, 42, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (20, 43, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (22, 45, 34);
+INSERT INTO public.pret_abonne (id_pret_abonne, id_pret, id_abonne) VALUES (23, 46, 34);
 
 
 --
--- TOC entry 3001 (class 0 OID 59723)
--- Dependencies: 232
--- Data for Name: pret_abonne_prets; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
--- TOC entry 3007 (class 0 OID 0)
+-- TOC entry 2996 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: abonne_id_abonne_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -362,7 +372,7 @@ SELECT pg_catalog.setval('public.abonne_id_abonne_seq', 34, true);
 
 
 --
--- TOC entry 3008 (class 0 OID 0)
+-- TOC entry 2997 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -371,7 +381,7 @@ SELECT pg_catalog.setval('public.adresse_id_seq', 39, true);
 
 
 --
--- TOC entry 3009 (class 0 OID 0)
+-- TOC entry 2998 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: auteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -380,7 +390,7 @@ SELECT pg_catalog.setval('public.auteur_id_seq', 1, false);
 
 
 --
--- TOC entry 3010 (class 0 OID 0)
+-- TOC entry 2999 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: editeur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -389,7 +399,7 @@ SELECT pg_catalog.setval('public.editeur_id_seq', 1, false);
 
 
 --
--- TOC entry 3011 (class 0 OID 0)
+-- TOC entry 3000 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: employe_id_employe_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -398,7 +408,7 @@ SELECT pg_catalog.setval('public.employe_id_employe_seq', 1, false);
 
 
 --
--- TOC entry 3012 (class 0 OID 0)
+-- TOC entry 3001 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: genre_nom_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -407,7 +417,7 @@ SELECT pg_catalog.setval('public.genre_nom_seq', 13, false);
 
 
 --
--- TOC entry 3013 (class 0 OID 0)
+-- TOC entry 3002 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -416,7 +426,7 @@ SELECT pg_catalog.setval('public.hibernate_sequence', 9, true);
 
 
 --
--- TOC entry 3014 (class 0 OID 0)
+-- TOC entry 3003 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: id_adresse; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -425,7 +435,7 @@ SELECT pg_catalog.setval('public.id_adresse', 51, true);
 
 
 --
--- TOC entry 3015 (class 0 OID 0)
+-- TOC entry 3004 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: liste_genre_id_liste_genre_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -434,7 +444,7 @@ SELECT pg_catalog.setval('public.liste_genre_id_liste_genre_seq', 1, false);
 
 
 --
--- TOC entry 3016 (class 0 OID 0)
+-- TOC entry 3005 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: livre_auteurs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -443,7 +453,7 @@ SELECT pg_catalog.setval('public.livre_auteurs_id_seq', 1, true);
 
 
 --
--- TOC entry 3017 (class 0 OID 0)
+-- TOC entry 3006 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: livre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -452,7 +462,7 @@ SELECT pg_catalog.setval('public.livre_id_seq', 1, false);
 
 
 --
--- TOC entry 3018 (class 0 OID 0)
+-- TOC entry 3007 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: ouvrage_id_ouvrage_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -461,24 +471,24 @@ SELECT pg_catalog.setval('public.ouvrage_id_ouvrage_seq', 1, false);
 
 
 --
--- TOC entry 3019 (class 0 OID 0)
+-- TOC entry 3008 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: pret_abonne_id_pret_abonne_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_abonne_id_pret_abonne_seq', 2, true);
+SELECT pg_catalog.setval('public.pret_abonne_id_pret_abonne_seq', 23, true);
 
 
 --
--- TOC entry 3020 (class 0 OID 0)
+-- TOC entry 3009 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_id_pret_seq', 9, true);
+SELECT pg_catalog.setval('public.pret_id_pret_seq', 46, true);
 
 
--- Completed on 2021-01-29 07:25:32
+-- Completed on 2021-02-05 09:48:58
 
 --
 -- PostgreSQL database dump complete

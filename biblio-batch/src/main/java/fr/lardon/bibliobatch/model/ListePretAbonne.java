@@ -1,4 +1,4 @@
-package fr.lardon.bibliocataloguelivres.model;
+package fr.lardon.bibliobatch.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;

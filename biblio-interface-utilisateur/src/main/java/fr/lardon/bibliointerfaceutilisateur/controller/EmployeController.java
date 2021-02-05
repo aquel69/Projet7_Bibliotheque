@@ -2,7 +2,6 @@ package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.ListePretAbonneBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.PretBean;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
@@ -14,19 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 public class EmployeController {
 
     private AbonneBean utilisateurAuthentifie;
-    private ListePretAbonneBean listePretAbonneBean;
     private PretBean pret;
-
     private AbonnePretBean abonne = null;
     private OuvrageBean ouvrage = null;
     private int codeRole = 5;
@@ -49,7 +42,6 @@ public class EmployeController {
         pret = new PretBean();
         ouvrage = new OuvrageBean();
         abonne = new AbonnePretBean();
-        listePretAbonneBean = new ListePretAbonneBean();
 
         utilisateurAuthentifie.setPseudo("Régis");
 
@@ -71,7 +63,6 @@ public class EmployeController {
      */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
     public String emprunt(Model model, @ModelAttribute("ouvrage") OuvrageBean ouvrage, @ModelAttribute("abonne") AbonnePretBean abonne){
-        ListePretAbonneBean listePretAbonneBean = new ListePretAbonneBean();
 
         //attibution de la date d'emprunt
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -86,14 +77,11 @@ public class EmployeController {
         pret.setDateDEmprunt(localDateTime);
         pret.setDateDeRestitution(localDateTime.plusWeeks(4));
         pret.setProlongation(false);
-        pret.setOuvrage(ouvrage);
+        pret.setOuvragePret(ouvrage);
+        pret.setAbonnePret(abonne);
 
-        //alimentation de la liste relation prêt abonné
-        listePretAbonneBean.setAbonne(abonne);
-        listePretAbonneBean.setPret(pret);
-
-        //sauvegarde de la liste relation prêt abonné
-        livresProxy.sauvegarderListePretAbonne(listePretAbonneBean);
+        //sauvegarder le prêt
+        livresProxy.sauvegarderPret(pret);
 
         //ajout dans le model
         model.addAttribute("ouvrage", ouvrage);

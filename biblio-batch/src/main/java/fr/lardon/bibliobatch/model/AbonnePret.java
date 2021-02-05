@@ -1,4 +1,4 @@
-package fr.lardon.bibliocataloguelivres.model;
+package fr.lardon.bibliobatch.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -73,10 +73,10 @@ public class AbonnePret {
     private Date dateDeCreationDuCompte;
 
     /**
-     * liste des prêts
+     * abonnés correspondant au prêt
      */
     @JsonManagedReference
-    @OneToMany(mappedBy = "abonnePret", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "abonne", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pret> listePretAbonnes;
 
 }
