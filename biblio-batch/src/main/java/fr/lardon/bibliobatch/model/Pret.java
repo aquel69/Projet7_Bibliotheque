@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(exclude = {"ouvrage"})
+@EqualsAndHashCode(exclude = {"abonnePret", "ouvragePret"})
 @Entity
 @Table(name=("pret"))
 public class Pret {
@@ -25,7 +25,6 @@ public class Pret {
      */
     @NonNull
     @Column(name="date_emprunt")
-    /*@Temporal(TemporalType.TIME)*/
     private LocalDateTime dateDEmprunt;
 
     /**
@@ -33,7 +32,6 @@ public class Pret {
      */
     @NonNull
     @Column(name="date_restitution")
-    /*@Temporal(TemporalType.TIME)*/
     private LocalDateTime dateDeRestitution;
 
     /**
@@ -48,7 +46,15 @@ public class Pret {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_ouvrage")
-    private Ouvrage ouvrage;
+    @JoinColumn(name="id_abonne", nullable=false)
+    private AbonnePret abonnePret;
+
+    /**
+     * ouvrage du prêt
+     */
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_ouvrage", nullable=false)
+    private Ouvrage ouvragePret;
 
 }

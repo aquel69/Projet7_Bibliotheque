@@ -1,6 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(exclude = {"ouvrage"})
+@EqualsAndHashCode(exclude = {"abonnePret", "ouvragePret"})
 @Entity
 @Table(name=("pret"))
 public class Pret {
@@ -49,7 +50,8 @@ public class Pret {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_abonne")
+    @JoinColumn(name="id_abonne", nullable=false)
+
     private AbonnePret abonnePret;
 
     /**
@@ -57,7 +59,7 @@ public class Pret {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_ouvrage")
+    @JoinColumn(name="id_ouvrage", nullable=false)
     private Ouvrage ouvragePret;
 
 }

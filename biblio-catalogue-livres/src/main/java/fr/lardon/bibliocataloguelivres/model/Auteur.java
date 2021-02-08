@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(exclude = "livres")
 @Entity
 @Table(name=("auteur"))
 public class Auteur {

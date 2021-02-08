@@ -1,10 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(exclude = "listePretAbonnes")
 @Entity
 @Table(name=("abonne"))
 public class AbonnePret {

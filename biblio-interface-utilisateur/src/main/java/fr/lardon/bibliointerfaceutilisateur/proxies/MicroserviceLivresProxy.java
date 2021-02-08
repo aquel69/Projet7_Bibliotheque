@@ -2,6 +2,7 @@ package fr.lardon.bibliointerfaceutilisateur.proxies;
 
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public interface MicroserviceLivresProxy {
     @GetMapping(value = "/Ouvrage/{codeBibliotheque}")
     OuvrageBean ouvrageSelonCodeBibliotheque(@PathVariable String codeBibliotheque);
 
-    @PostMapping(value = "/SauvegarderPret")
+    @PostMapping(value = "/SauvegarderPret}")
     void sauvegarderPret(@RequestBody PretBean pret);
 
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")

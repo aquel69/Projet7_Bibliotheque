@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 public class EditeurBean {
 
     private int idEditeur;
+
     /**
      * nom de la maison d'édition
      */

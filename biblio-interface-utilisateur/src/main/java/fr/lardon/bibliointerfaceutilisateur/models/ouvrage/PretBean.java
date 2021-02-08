@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-
 public class PretBean {
 
     private int idPret;

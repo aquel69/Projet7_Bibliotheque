@@ -1,10 +1,7 @@
 package fr.lardon.bibliobatch.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +10,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = {"livre", "listePretAbonnes"})
 @Entity
 @Table(name=("ouvrage"))
 public class Ouvrage {
@@ -48,12 +47,10 @@ public class Ouvrage {
      * liste des prêts
      */
     @JsonManagedReference
-    @OneToMany(mappedBy = "ouvrage", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ouvragePret", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pret> listePretAbonnes;
 
-    /*public void setListePretAbonnes(List<Pret> listePretAbonnes) {
-        this.listePretAbonnes = listePretAbonnes;
-        listePretAbonnes.forEach(entity -> entity.setOuvrage(this));
-    }*/
+
+
 
 }

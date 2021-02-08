@@ -22,9 +22,6 @@ public class BatchController {
     private DaoPret daoPret;
 
     @Autowired
-    private DaoListePretAbonne daoListePretAbonne;
-
-    @Autowired
     private DaoAbonnePret daoAbonnePret;
 
     /**
@@ -144,7 +141,7 @@ public class BatchController {
      * ajouter un prêt pour l'abonné dans la base de données
      * @param pret
      */
-    @PostMapping(value = "/SauvegarderPret")
+    @PostMapping(value = "/SauvegarderPret}")
     public void sauvegarderPret(@RequestBody Pret pret) {daoPret.save(pret);}
 
     /**
@@ -167,31 +164,18 @@ public class BatchController {
         return abonnePret;
     }
 
-    @GetMapping(value = "/Pret/{id}")
-    public ListePretAbonne recupererTousLesPret(@PathVariable int id) {
-
-        ListePretAbonne pret = daoListePretAbonne.findById(id).get();;
-
-        return pret;
-    }
-
-    @PostMapping(value = "/SauvegarderListePretAbonne")
-    public void sauvegarderListePretAbonne(@RequestBody ListePretAbonne listePretAbonne){daoListePretAbonne.save(listePretAbonne);}
-
     @GetMapping(value = "/PretsSelonAbonne/{id}")
-    public List<Pret> listeDesPretsSelonAbonne(@PathVariable int id){
-        List<Pret> prets = daoPret.listePretSelonAbonne(id);
+    public Pret listeDesPretsSelonAbonne(@PathVariable int id){
+        Pret prets = daoPret.findById(id).get();
 
         return prets;
     }
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePret abonnePretSelonSonId(@PathVariable int id){
-        AbonnePret abonnePret = daoAbonnePret.abonnePretSelonId(id);
+        AbonnePret abonnePret = daoAbonnePret.findById(id).get();
 
         return abonnePret;
     }
-
-
 
 }

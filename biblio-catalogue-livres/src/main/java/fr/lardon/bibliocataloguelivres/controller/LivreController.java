@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,9 +23,6 @@ public class LivreController {
 
     @Autowired
     private DaoPret daoPret;
-
-    @Autowired
-    private DaoListePretAbonne daoListePretAbonne;
 
     @Autowired
     private DaoAbonnePret daoAbonnePret;
@@ -146,7 +144,7 @@ public class LivreController {
      * ajouter un prêt pour l'abonné dans la base de données
      * @param pret
      */
-    @PostMapping(value = "/SauvegarderPret", consumes={"application/json"})
+    @PostMapping(value = "/SauvegarderPret}")
     public void sauvegarderPret(@RequestBody Pret pret) {daoPret.save(pret);}
 
     /**
@@ -168,17 +166,6 @@ public class LivreController {
 
         return abonnePret;
     }
-
-    @GetMapping(value = "/Pret/{id}")
-    public ListePretAbonne recupererTousLesPret(@PathVariable int id) {
-
-        ListePretAbonne pret = daoListePretAbonne.findById(id).get();
-
-        return pret;
-    }
-
-    @PostMapping(value = "/SauvegarderListePretAbonne")
-    public void sauvegarderListePretAbonne(@RequestBody ListePretAbonne listePretAbonne){daoListePretAbonne.save(listePretAbonne);}
 
     @GetMapping(value = "/PretsSelonAbonne/{id}")
     public Pret listeDesPretsSelonAbonne(@PathVariable int id){
