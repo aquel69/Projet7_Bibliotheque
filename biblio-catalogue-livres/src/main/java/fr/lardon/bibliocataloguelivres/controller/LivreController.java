@@ -145,7 +145,9 @@ public class LivreController {
      * @param pret
      */
     @PostMapping(value = "/SauvegarderPret}")
-    public void sauvegarderPret(@RequestBody Pret pret) {daoPret.save(pret);}
+    public void sauvegarderPret(@RequestBody Pret pret) {
+        daoPret.save(pret);
+    }
 
     /**
      * ajouter un prêt pour l'abonné dans la base de données

@@ -1,1 +1,0 @@
-Le rôle doit dire si c'est un employé ou un abonné ou un administrateur. Pas besoin de role_employe et un abonné est rattaché à la table rôle.

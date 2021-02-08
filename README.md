@@ -51,4 +51,7 @@ Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de donné
 ---
 
 - Pour se connecter en tant qu'employé, il faut entrer l'adresse suivante : dupont.regis@yahoo.fr  
-et le mot de passe : 123
+et le mot de passe : 123  
+
+- Pour se connecter en tant qu'abonné, il faut entrer l'adresse suivante : alexandre.lardon@yahoo.com  
+  et le mot de passe : 123456
