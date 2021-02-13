@@ -22,7 +22,7 @@ public class CatalogueController {
     private List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
     private List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
     private List<LivreBean> livres;
-    private AbonnePretBean abonnePret;
+    private AbonnePretOuvrageBean abonnePret;
     private RoleBean role = new RoleBean();
     private AbonneBean utilisateurAuthentifie = new AbonneBean();
     private int index = 0;
@@ -42,10 +42,10 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
-        AbonnePretBean abonneBean;
-        abonneBean = livresProxy.abonnePretSelonSonId(34);
+        AbonnePretOuvrageBean abonnePretOuvrageBean;
+        abonnePretOuvrageBean = livresProxy.abonnePretSelonSonId(34);
 
-        System.out.println("abonné prêt " + abonneBean.toString());
+        System.out.println("abonné prêt " + abonnePretOuvrageBean.toString());
 
 
         //récupération du message

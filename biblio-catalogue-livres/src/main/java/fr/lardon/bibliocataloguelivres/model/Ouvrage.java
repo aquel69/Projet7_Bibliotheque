@@ -1,6 +1,8 @@
 package fr.lardon.bibliocataloguelivres.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"livre", "listePretAbonnes"})
 @Entity
+/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idOuvrage", scope = Ouvrage.class)*/
 @Table(name=("ouvrage"))
 public class Ouvrage {
 
@@ -34,13 +37,14 @@ public class Ouvrage {
     /**
      * code bibliothèque de l'ouvrage
      */
-    @NonNull
+
     @Column(name = "code_bibliotheque")
     private String codeBibliotheque;
 
     /**
      * Livre
      */
+    @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_livre")
     private Livre livre;
@@ -48,8 +52,10 @@ public class Ouvrage {
     /**
      * liste des prêts
      */
+    /*@NonNull
     @JsonManagedReference
-    @OneToMany(mappedBy = "ouvragePret", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Pret> listePretAbonnes;
+   *//* @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="idPret")*//*
+    @OneToMany(mappedBy = "ouvragePret",  fetch = FetchType.EAGER)
+    private List<Pret> listePretAbonnes;*/
 
 }

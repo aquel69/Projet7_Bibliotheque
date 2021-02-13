@@ -24,21 +24,51 @@
 <body >
 <div th:fragment="fenetre(abonnePret)" class="container-fluid fenetre mt-4 pr-5" >
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!-- Modal Header -->
-                <div class="modal-header">
+                <div class="modal-header ">
                     <div class="col-11"><h4 class="modal-title text-center pl-5">Mes Emprunts</h4></div>
                     <div class="col-1"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
                 </div>
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <div th:each="abonnePret, inter : ${abonnePret}">
-                        <p th:text="${abonnePret.getNom()}"></p>
-                        <form th:action="@{/Emprunt}" th:object="${abonnePret}" method="post" class="cr form-inline justify-content-start">
-                            <p id="paragraphe">Salut tout le monde</p>
-                        </form>
-                    </div>
+                <div class="modal-body pt-0">
+                    <form th:action="@{/Emprunt}" th:object="${abonnePret}" method="post" class="form-inline justify-content-start">
+
+                            <!--<p th:text="${abonnePret.abonne.getNom()}"></p>-->
+                                    <table  class="table table-hover table-responsive align-items-center border-bottom mb-0" th:each="abonnePret, inter : ${abonnePret}">
+                                        <thead>
+                                            <tr>
+                                                <th class="align-middle text-center" width="10%"></th>
+                                                <th class="align-middle text-center" width="28%">Titre</th>
+                                                <th class="align-middle text-center" width="27%">A rendre avant le</th>
+                                                <th class="align-middle text-center" width="20%">Status</th>
+                                                <th class="align-middle text-center" width="15%">Prolongation</th>
+                                            </tr>
+                                        </thead>
+                                        <div th:each="ouvrage, inter : ${abonnePret.listeOuvrage}">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="align-middle " ><img th:src="@{/photoOuvrage/{image}(image=${ouvrage.getLivre().getPetitePhotoCouverture()})}" /></td>
+                                                    <td class="align-middle titre_livre_fenetre" ><h6 th:text="${ouvrage.getLivre().getTitre()}"></h6></td>
+                                                    <td class="align-middle text-center" ><h6 th:text="${#temporals.format(abonnePret.listePret[inter.index].getDateDeRestitution(), 'dd-MM-yyyy')}"></h6></td>
+                                                    <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter.index].getStatus()}"></h6></td>
+                                                    <td class="align-middle text-center" ><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
+                                                </tr>
+                                            </tbody>
+                                        </div>
+                                     </table>
+
+
+
+
+                            <div class="col-12 pt-3">
+                                <div class="col-6 mx-auto">
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Valider</button>
+                                </div>
+                            </div>
+
+                    </form>
 
                 </div>
                 <!-- Modal footer -->

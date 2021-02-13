@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode
+
 @Entity
 @Table(name=("editeur"))
 public class Editeur {

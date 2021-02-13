@@ -2,6 +2,7 @@ package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +21,11 @@ public class PretBean {
      * date de restitution
      */
     private LocalDateTime dateDeRestitution;
+
+    /**
+     * status de l'emprunt
+     */
+    private String status;
 
     /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois

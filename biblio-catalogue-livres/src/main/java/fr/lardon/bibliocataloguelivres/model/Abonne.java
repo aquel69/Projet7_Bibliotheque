@@ -1,23 +1,19 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(exclude = "listePretAbonnes")
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idAbonne", scope = AbonnePret.class)
 @Table(name=("abonne"))
-public class AbonnePret {
+public class Abonne {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
@@ -76,11 +72,24 @@ public class AbonnePret {
     private Date dateDeCreationDuCompte;
 
     /**
-     * liste des prêts
+     * Adresse de l'abonné
      */
-/*    @NonNull
-    @JsonManagedReference*/
-/*    @OneToMany(mappedBy = "abonnePret", fetch = FetchType.EAGER)
-    private List<Pret> listePretAbonnes;*/
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_adresse")
+    private Adresse adresse;
+
+    /**
+     * Role de l'abonné
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role")
+    private Role role;
+
+    /**
+     * Bibliothèque dont l'abonné dépend
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "bibliotheque")
+    private Bibliotheque bibliotheque;
 
 }

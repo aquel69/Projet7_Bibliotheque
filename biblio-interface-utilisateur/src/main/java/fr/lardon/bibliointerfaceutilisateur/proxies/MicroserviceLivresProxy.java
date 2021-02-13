@@ -1,5 +1,6 @@
 package fr.lardon.bibliointerfaceutilisateur.proxies;
 
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -53,7 +54,7 @@ public interface MicroserviceLivresProxy {
     List<PretBean> listeDesPretsSelonAbonne(@PathVariable int id);
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
-    AbonnePretBean abonnePretSelonSonId(@PathVariable int id);
+    AbonnePretOuvrageBean abonnePretSelonSonId(@PathVariable int id);
 
 
 }

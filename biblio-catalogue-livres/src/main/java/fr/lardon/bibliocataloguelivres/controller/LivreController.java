@@ -2,13 +2,12 @@ package fr.lardon.bibliocataloguelivres.controller;
 
 import fr.lardon.bibliocataloguelivres.dao.*;
 import fr.lardon.bibliocataloguelivres.model.*;
+import fr.lardon.bibliocataloguelivres.services.ServiceAbonnePretOuvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -26,6 +25,12 @@ public class LivreController {
 
     @Autowired
     private DaoAbonnePret daoAbonnePret;
+
+    @Autowired
+    DaoAbonne daoAbonne;
+
+    @Autowired
+    ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
      * renvoi la liste des livres en fonction de leurs nombre de fois qu'ils ont été empruntés
@@ -177,12 +182,17 @@ public class LivreController {
     }
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
-    public AbonnePret abonnePretSelonSonId(@PathVariable int id){
-        AbonnePret abonnePret = daoAbonnePret.findById(id).get();
+    public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
+        AbonnePretOuvrage abonnePret = serviceAbonnePretOuvrage.getAbonnePretOuvrage(id);
 
         return abonnePret;
     }
 
+    @GetMapping(value = "/AbonneSelonSonId/{id}")
+    public Abonne abonneSelonSonId(@PathVariable int id){
+        Abonne abonne = daoAbonne.findById(id).get();
 
+        return abonne;
+    }
 
 }

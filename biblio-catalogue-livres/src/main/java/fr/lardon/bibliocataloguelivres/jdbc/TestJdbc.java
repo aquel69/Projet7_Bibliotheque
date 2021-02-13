@@ -30,7 +30,7 @@ public class TestJdbc {
         try {
 
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/hibernate", "postgres",
+                    "jdbc:postgresql://localhost:5432/OC-bibliotheque", "postgres",
                     "biblio");
 
         } catch (SQLException e) {

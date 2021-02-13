@@ -1,8 +1,6 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +13,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"abonnePret", "ouvragePret"})
 @Entity
+/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPret")*/
 @Table(name=("pret"))
 public class Pret {
 
@@ -46,20 +45,30 @@ public class Pret {
     private boolean prolongation;
 
     /**
-     * ouvrage du prêt
+     * status de l'emprunt
      */
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_abonne", nullable=false)
-
-    private AbonnePret abonnePret;
+    @NonNull
+    @Column(name="status")
+    private String status;
 
     /**
      * ouvrage du prêt
      */
+    @NonNull
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_ouvrage", nullable=false)
+    @JoinColumn(name="id_abonne")
+
+    private Abonne abonne;
+
+    /**
+     * ouvrage du prêt
+     */
+    /*@NonNull
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)*/
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvragePret;
 
 }

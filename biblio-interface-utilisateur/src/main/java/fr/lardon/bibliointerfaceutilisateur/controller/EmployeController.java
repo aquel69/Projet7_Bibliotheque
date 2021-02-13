@@ -2,6 +2,7 @@ package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretBean;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretOuvrageBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.PretBean;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
@@ -20,7 +21,7 @@ public class EmployeController {
 
     private AbonneBean utilisateurAuthentifie;
     private PretBean pret;
-    private AbonnePretBean abonne = null;
+    private AbonnePretOuvrageBean abonne = null;
     private OuvrageBean ouvrage = null;
     private int codeRole = 5;
 
@@ -41,7 +42,7 @@ public class EmployeController {
         utilisateurAuthentifie = new AbonneBean();
         pret = new PretBean();
         ouvrage = new OuvrageBean();
-        abonne = new AbonnePretBean();
+        abonne = new AbonnePretOuvrageBean();
 
         utilisateurAuthentifie.setPseudo("Régis");
 
