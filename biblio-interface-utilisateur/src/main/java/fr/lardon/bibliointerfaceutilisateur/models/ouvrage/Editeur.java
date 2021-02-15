@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class EditeurBean {
+public class Editeur {
 
     private int idEditeur;
 

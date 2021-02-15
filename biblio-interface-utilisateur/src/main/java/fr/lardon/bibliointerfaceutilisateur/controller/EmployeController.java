@@ -1,10 +1,10 @@
 package fr.lardon.bibliointerfaceutilisateur.controller;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretOuvrageBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.OuvrageBean;
-import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.PretBean;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePret;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretOuvrage;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.Ouvrage;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.Pret;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 @Controller
 public class EmployeController {
 
-    private AbonneBean utilisateurAuthentifie;
-    private PretBean pret;
-    private AbonnePretOuvrageBean abonne = null;
-    private OuvrageBean ouvrage = null;
+    private Abonne utilisateurAuthentifie;
+    private Pret pret;
+    private Abonne abonne = null;
+    private Ouvrage ouvrage = null;
     private int codeRole = 5;
 
     @Autowired
@@ -39,10 +39,10 @@ public class EmployeController {
     @RequestMapping(value = "/Emprunt", method = RequestMethod.GET)
     public String employe(Model model){
         //problème thymeleaf
-        utilisateurAuthentifie = new AbonneBean();
-        pret = new PretBean();
-        ouvrage = new OuvrageBean();
-        abonne = new AbonnePretOuvrageBean();
+        utilisateurAuthentifie = new Abonne();
+        pret = new Pret();
+        ouvrage = new Ouvrage();
+        abonne = new Abonne();
 
         utilisateurAuthentifie.setPseudo("Régis");
 
@@ -63,7 +63,7 @@ public class EmployeController {
      * @return
      */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
-    public String emprunt(Model model, @ModelAttribute("ouvrage") OuvrageBean ouvrage, @ModelAttribute("abonne") AbonnePretBean abonne){
+    public String emprunt(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
 
         //attibution de la date d'emprunt
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -79,7 +79,8 @@ public class EmployeController {
         pret.setDateDeRestitution(localDateTime.plusWeeks(4));
         pret.setProlongation(false);
         pret.setOuvragePret(ouvrage);
-        pret.setAbonnePret(abonne);
+        pret.setAbonne(abonne);
+        pret.setStatus("non prolongé");
 
         //sauvegarder le prêt
         livresProxy.sauvegarderPret(pret);

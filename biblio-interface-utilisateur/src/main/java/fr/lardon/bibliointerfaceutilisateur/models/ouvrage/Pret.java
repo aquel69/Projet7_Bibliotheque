@@ -1,14 +1,14 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class PretBean {
+public class Pret {
 
     private int idPret;
 
@@ -35,11 +35,11 @@ public class PretBean {
     /**
      * abonné du prêt
      */
-    private AbonnePretBean abonnePret;
+    private Abonne abonne;
 
     /**
      * ouvrage du prêt
      */
-    private OuvrageBean ouvragePret;
+    private Ouvrage ouvragePret;
 
 }

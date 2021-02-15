@@ -2,14 +2,12 @@ package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-
-public class LivreBean {
+public class Livre {
 
     private int idLivre;
 
@@ -26,12 +24,12 @@ public class LivreBean {
     /**
      * Liste des auteurs du livre sachant qu'un livre a souvent un auteur mais peut être co-ecrit. Auquel cas, il y a plusieurs auteurs.
      */
-    private List<AuteurBean> auteurs;
+    private List<Auteur> auteurs;
 
     /**
      * Editeur du livre.
      */
-    private EditeurBean editeur;
+    private Editeur editeur;
 
     /**
      * Date d'édition du livre.
@@ -51,7 +49,7 @@ public class LivreBean {
     /**
      * Genre associé à cet ouvrage.
      */
-    private List<GenreBean> genres;
+    private List<Genre> genres;
 
     /**
      * nombre de pages

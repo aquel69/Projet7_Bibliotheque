@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class EmployeBean {
+public class Employe {
 
     private int idEmploye;
 
@@ -47,16 +47,16 @@ public class EmployeBean {
     /**
      * Adresse de l'employé
      */
-    private AdresseBean adresse;
+    private Adresse adresse;
 
     /**
      * Bibliothèque dont l'employé dépend
      */
-    private BibliothequeBean bibliotheque;
+    private Bibliotheque bibliotheque;
 
     /**
      * Role de l'employé
      */
-    private RoleBean role;
+    private Role role;
 
 }

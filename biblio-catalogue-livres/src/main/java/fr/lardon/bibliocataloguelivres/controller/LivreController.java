@@ -167,11 +167,11 @@ public class LivreController {
      * @return
      */
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")
-    public AbonnePret recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
+    public Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
 
-        AbonnePret abonnePret = daoAbonnePret.findByNumeroAbonne(numeroAbonne);
+        Abonne abonne = daoAbonne.findByNumeroAbonne(numeroAbonne);
 
-        return abonnePret;
+        return abonne;
     }
 
     @GetMapping(value = "/PretsSelonAbonne/{id}")

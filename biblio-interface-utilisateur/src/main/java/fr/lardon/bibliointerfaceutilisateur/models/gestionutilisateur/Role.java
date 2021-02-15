@@ -3,7 +3,7 @@ package fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur;
 import lombok.Data;
 
 @Data
-public class RoleBean {
+public class Role {
 
     private int code;
 

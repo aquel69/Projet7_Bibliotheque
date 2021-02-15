@@ -7,8 +7,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class AuteurBean {
-
+public class Auteur {
 
     private int idAuteur;
 

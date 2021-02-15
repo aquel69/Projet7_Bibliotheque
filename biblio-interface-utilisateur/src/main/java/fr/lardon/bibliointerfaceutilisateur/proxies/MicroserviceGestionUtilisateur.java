@@ -1,9 +1,9 @@
 package fr.lardon.bibliointerfaceutilisateur.proxies;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AdresseBean;
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.BibliothequeBean;
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Adresse;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Bibliotheque;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Role;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,49 +13,49 @@ import java.util.List;
 public interface MicroserviceGestionUtilisateur {
 
     @GetMapping(value="/Abonnes")
-    List<AbonneBean> listeAbonnes();
+    List<Abonne> listeAbonnes();
 
     //récuperer abonné en fonction de son id
     @GetMapping(value = "/Abonne/{id}")
-    AbonneBean recupererAbonne(@PathVariable int id);
+    Abonne recupererAbonne(@PathVariable int id);
 
     //récuperer abonné en fonction de son numéro d'abonné
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")
-    AbonneBean recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne);
+    Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne);
 
     @PutMapping(value="/ModifierAbonne")
-    void modifierAbonne(@RequestBody AbonneBean abonne);
+    void modifierAbonne(@RequestBody Abonne abonne);
 
     //ajouter une adresse
     @PostMapping(value = "/AjouterAdresse")
-    void ajouterAdresse(@RequestBody AdresseBean adresseBean);
+    void ajouterAdresse(@RequestBody Adresse adresse);
 
     //ajouter un abonné
     @PostMapping(value = "/AjouterAbonne")
-    void ajouterAbonne(@RequestBody AbonneBean abonneBean);
+    void ajouterAbonne(@RequestBody Abonne abonne);
 
     //récuperer la bibliothèque de l'abonné
     @GetMapping(value = "/Bibliotheque/{siret}")
-    BibliothequeBean recupererBibliotheque(@PathVariable String siret);
+    Bibliotheque recupererBibliotheque(@PathVariable String siret);
 
     //récuperer le role de l'abonné
     @GetMapping(value = "/Role/{id}")
-    RoleBean recupererRole(@PathVariable int id);
+    Role recupererRole(@PathVariable int id);
 
     //récuperer l'adresse par l'id
     @GetMapping(value = "/Adresse/{id}")
-    AdresseBean recupererAdresse(@PathVariable int id);
+    Adresse recupererAdresse(@PathVariable int id);
 
     //récuperer la derniere adresse de la base de données
     @GetMapping(value = "/DerniereAdresse")
-    AdresseBean recupererDernierAdresse();
+    Adresse recupererDernierAdresse();
 
     //récuperer le dernier abonné de la base de données
     @GetMapping(value = "/DerniereAbonne")
-    AbonneBean recupererDernierAbonne();
+    Abonne recupererDernierAbonne();
 
     //vérification si l'email n'existe pas
     @GetMapping(value = "/DoublonEmail")
-    Boolean verificationSiEmailDoublon(AbonneBean abonne);
+    Boolean verificationSiEmailDoublon(Abonne abonne);
 
 }

@@ -30,8 +30,6 @@ public class ServiceAbonnePretOuvrage {
         List<Pret> listePret = daoPret.listePretSelonAbonne(id);
         List<Ouvrage> listeOuvrage = new ArrayList<>();
 
-
-
         for(Pret pret : listePret){
             listeOuvrage.add(pret.getOuvragePret());
             modificationDuStatus(pret);

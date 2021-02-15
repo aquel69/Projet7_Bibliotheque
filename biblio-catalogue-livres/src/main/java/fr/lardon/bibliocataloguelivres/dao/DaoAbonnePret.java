@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface DaoAbonnePret extends JpaRepository<AbonnePret, Integer> {
 
-    AbonnePret findByNumeroAbonne(String numeroAbonne);
+
 
 }

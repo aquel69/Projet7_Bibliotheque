@@ -26,14 +26,14 @@ public class GestionUtilisateurController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private BCryptPasswordEncoder bCryptPasswordMatche;
-    private AbonneBean abonneBean = null;
-    private AbonneBean abonneSecurisation = null;
-    private AdresseBean adresseBean = new AdresseBean();
-    private BibliothequeBean bibliothequeBean = null;
-    private RoleBean roleBean = null;
-    private AbonneBean utilisateurAuthentifie = new AbonneBean();
-    private AbonneBean abonneAModifier = null;
-    private List<AbonneBean> abonnes;
+    private Abonne abonne = null;
+    private Abonne abonneSecurisation = null;
+    private Adresse adresse = new Adresse();
+    private Bibliotheque bibliotheque = null;
+    private Role role = null;
+    private Abonne utilisateurAuthentifie = new Abonne();
+    private Abonne abonneAModifier = null;
+    private List<Abonne> abonnes;
     private boolean resultatEmailExistant = false;
     private int codeRole = 0;
 
@@ -53,14 +53,14 @@ public class GestionUtilisateurController {
     @RequestMapping(value = "/Inscription", method = RequestMethod.GET)
     public String inscription(Model model) {
 
-        abonneBean = new AbonneBean();
-        adresseBean = new AdresseBean();
+        abonne = new Abonne();
+        adresse = new Adresse();
 
 
         //ajout dans le model
         model.addAttribute("codeRole", codeRole);
-        model.addAttribute("abonneBean", abonneBean);
-        model.addAttribute("adresseBean", adresseBean);
+        model.addAttribute("abonne", abonne);
+        model.addAttribute("adresse", adresse);
 
         return "Inscription";
     }
@@ -69,29 +69,52 @@ public class GestionUtilisateurController {
      * permet de récupérer toutes les données saisies par l'utilisateur et de créer son compte
      *
      * @param model
-     * @param abonneBeanPost
+     * @param abonnePost
      * @param bindingResult
-     * @param adresseBeanPost
+     * @param adressePost
      * @param bindingResult1
      * @return
      */
     @RequestMapping(value = "/Inscription", method = RequestMethod.POST)
-    public String validationInscription(Model model, @ModelAttribute("abonneBean") @Valid AbonneBean abonneBeanPost, BindingResult bindingResult, @ModelAttribute("adresseBean") @Valid AdresseBean adresseBeanPost, BindingResult bindingResult1) {
+    public String validationInscription(Model model, @ModelAttribute("abonne") @Valid Abonne abonnePost, BindingResult bindingResult, @ModelAttribute("adresse") @Valid Adresse adressePost, BindingResult bindingResult1, @RequestParam String confirmationEmail, @RequestParam String confirmationMotDePasse) {
 
-        abonneBean = new AbonneBean();
-        abonneSecurisation = new AbonneBean();
-        adresseBean = new AdresseBean();
-        bibliothequeBean = new BibliothequeBean();
-        roleBean = new RoleBean();
+        abonne = new Abonne();
+        abonneSecurisation = new Abonne();
+        adresse = new Adresse();
+        bibliotheque = new Bibliotheque();
+        role = new Role();
         bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
         String numeroAbonne;
         String messageErreur;
         resultatEmailExistant = false;
+        String messageErreurEmail;
+        String messageErreurMotDePasse;
+
+        //vérification de la saisie identique du mot de passe et des emails
+        if(!abonnePost.getEmail().equals(confirmationEmail)){
+            messageErreurEmail = "Les emails ne sont pas identiques";
+
+            model.addAttribute("messageErreurEmail", messageErreurEmail);
+            model.addAttribute("codeRole", codeRole);
+            model.addAttribute("abonneBean", abonnePost);
+            model.addAttribute("adresseBean", adressePost);
+
+            return "Inscription";
+        }else if(!abonnePost.getMotDePasse().equals(confirmationMotDePasse)){
+            messageErreurMotDePasse = "Les mots de passe ne sont pas identiques";
+
+            model.addAttribute("messageErreurMotDePasse", messageErreurMotDePasse);
+            model.addAttribute("codeRole", codeRole);
+            model.addAttribute("abonne", abonnePost);
+            model.addAttribute("adresse", adressePost);
+
+            return "Inscription";
+        }
 
         abonnes = gestionUtilisateur.listeAbonnes();
 
-        for (AbonneBean abonne1 : abonnes) {
-            if (abonne1.getEmail().equals(abonneBeanPost.getEmail())) {
+        for (Abonne abonne1 : abonnes) {
+            if (abonne1.getEmail().equals(abonnePost.getEmail())) {
                 resultatEmailExistant = true;
             }
         }
@@ -104,46 +127,46 @@ public class GestionUtilisateurController {
 
             //ajout dans le model
             model.addAttribute("codeRole", codeRole);
-            model.addAttribute("abonneBean", abonneBeanPost);
-            model.addAttribute("adresseBean", adresseBeanPost);
+            model.addAttribute("abonne", abonnePost);
+            model.addAttribute("adresse", adressePost);
 
             return "Inscription";
         }
 
         //attribution du role aux abonnés
-        roleBean = gestionUtilisateur.recupererRole(1);
+        role = gestionUtilisateur.recupererRole(1);
 
         //attribution de la bibliothèque aux abonnés
-        bibliothequeBean = gestionUtilisateur.recupererBibliotheque("18004625200177");
+        bibliotheque = gestionUtilisateur.recupererBibliotheque("18004625200177");
 
         //attribution de la date pour l'ouverture du compte de l'abonnée
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
 
         //attribution du numéro d'abonné
-        abonneBean = gestionUtilisateur.recupererDernierAbonne();
-        numeroAbonne = abonneBean.getNumeroAbonne();
+        abonne = gestionUtilisateur.recupererDernierAbonne();
+        numeroAbonne = abonne.getNumeroAbonne();
         int numeroAbonneInt = Integer.parseInt(numeroAbonne) + 1;
 
         //ajout de l'adresse dans la base de données et récupération de l'id
-        gestionUtilisateur.ajouterAdresse(adresseBeanPost);
-        adresseBean = gestionUtilisateur.recupererDernierAdresse();
+        gestionUtilisateur.ajouterAdresse(adressePost);
+        adresse = gestionUtilisateur.recupererDernierAdresse();
 
         //sécurisation du mot de passe
-        abonneBeanPost.setMotDePasse(bCryptPasswordEncoder.encode(abonneBeanPost.getMotDePasse()));
+        abonnePost.setMotDePasse(bCryptPasswordEncoder.encode(abonnePost.getMotDePasse()));
 
         //alimentation de l'objet abonné
-        abonneBeanPost.setDateDeCreationDuCompte(date);
-        abonneBeanPost.setNumeroAbonne(String.valueOf(numeroAbonneInt));
-        abonneBeanPost.setBibliotheque(bibliothequeBean);
-        abonneBeanPost.setRole(roleBean);
-        abonneBeanPost.setAdresse(adresseBean);
+        abonnePost.setDateDeCreationDuCompte(date);
+        abonnePost.setNumeroAbonne(String.valueOf(numeroAbonneInt));
+        abonnePost.setBibliotheque(bibliotheque);
+        abonnePost.setRole(role);
+        abonnePost.setAdresse(adresse);
 
         //ajout de l'abonné dans la base de données
-        gestionUtilisateur.ajouterAbonne(abonneBeanPost);
+        gestionUtilisateur.ajouterAbonne(abonnePost);
 
         //affichage du message
-        String message = abonneBeanPost.getPseudo() + "!! Vous avez créé votre compte !!";
+        String message = abonnePost.getPseudo() + "!! Vous avez créé votre compte !!";
         model.addAttribute("message", message);
 
         //récupération des livres à afficher dans la page accueil
@@ -162,13 +185,13 @@ public class GestionUtilisateurController {
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.GET)
     public String modificationCompte(Model model) {
 
-        abonneAModifier = new AbonneBean();
+        abonneAModifier = new Abonne();
 
         //récupération du code role
         if (model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
         //récupération du code role
         if (model.getAttribute("utilisateurAuthentifie") != null)
-            utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+            utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
 
         abonneAModifier = gestionUtilisateur.recupererAbonne(utilisateurAuthentifie.getIdAbonne());
 
@@ -176,7 +199,7 @@ public class GestionUtilisateurController {
         model.addAttribute("abonneAModifier", abonneAModifier);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
-        model.addAttribute("adresseBean", adresseBean);
+        model.addAttribute("adresse", adresse);
 
         return "ModificationCompte";
     }
@@ -189,7 +212,7 @@ public class GestionUtilisateurController {
      * @return
      */
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.POST)
-    public String validationModificationCompte(Model model, @RequestParam("ancienMotDePasse") String ancienMotDePasse, @ModelAttribute("abonneAModifier") @Valid AbonneModifieBean abonneBeanModifier, BindingResult bindingResult) {
+    public String validationModificationCompte(Model model, @RequestParam("ancienMotDePasse") String ancienMotDePasse, @ModelAttribute("abonneAModifier") @Valid AbonneModifie abonneBeanModifier, BindingResult bindingResult) {
         String messageErreur;
         String messageErreurMotDePasse = null;
         resultatEmailExistant = false;
@@ -269,13 +292,13 @@ public class GestionUtilisateurController {
         return "ModificationCompte";
     }
 
-    public  void verificationEmailDoublon(AbonneBean abonneBeanPost) {
+    public  void verificationEmailDoublon(Abonne abonnePost) {
         resultatEmailExistant = false;
 
         abonnes = gestionUtilisateur.listeAbonnes();
 
-        for (AbonneBean abonne1 : abonnes) {
-            if (abonne1.getEmail().equals(abonneBeanPost.getEmail())) {
+        for (Abonne abonne1 : abonnes) {
+            if (abonne1.getEmail().equals(abonnePost.getEmail())) {
                 resultatEmailExistant = true;
             }
         }

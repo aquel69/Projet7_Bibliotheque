@@ -1,13 +1,14 @@
 package fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur;
 
 import lombok.Data;
-import lombok.NonNull;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
-public class AbonneBean {
+public class AbonneModifie {
 
    private int idAbonne;
 
@@ -42,7 +43,6 @@ public class AbonneBean {
     /**
      * mot de passe de l'abonné
      */
-    @Min(value = 6, message = "Le mot de passe doit être composés de 6 caractères minimum")
     private String motDePasse;
 
     /**
@@ -58,16 +58,16 @@ public class AbonneBean {
     /**
      * Adresse de l'abonné
      */
-    private AdresseBean adresse;
+    private Adresse adresse;
 
     /**
      * Role de l'abonné
      */
-    private RoleBean role;
+    private Role role;
 
     /**
      * Bibliothèque dont l'abonné dépend
      */
-    private BibliothequeBean bibliotheque;
+    private Bibliotheque bibliotheque;
 
 }

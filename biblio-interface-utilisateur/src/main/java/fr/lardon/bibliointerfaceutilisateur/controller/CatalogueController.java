@@ -1,7 +1,7 @@
 package fr.lardon.bibliointerfaceutilisateur.controller;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Role;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ import java.util.List;
 
 @Controller
 public class CatalogueController {
-    private List<OuvrageBean> ouvragesNouveaute;
-    private ArrayList<LivreBean> livreTop;
-    private List<OuvrageBean> ouvragesPremierePartie = new ArrayList<>();
-    private List<OuvrageBean> ouvragesSecondePartie = new ArrayList<>();
-    private List<LivreBean> livres;
-    private AbonnePretOuvrageBean abonnePret;
-    private RoleBean role = new RoleBean();
-    private AbonneBean utilisateurAuthentifie = new AbonneBean();
+    private List<Ouvrage> ouvragesNouveaute;
+    private ArrayList<Livre> livreTop;
+    private List<Ouvrage> ouvragesPremierePartie = new ArrayList<>();
+    private List<Ouvrage> ouvragesSecondePartie = new ArrayList<>();
+    private List<Livre> livres;
+    private AbonnePretOuvrage abonnePret;
+    private Role role = new Role();
+    private Abonne utilisateurAuthentifie = new Abonne();
     private int index = 0;
     private int codeRole = 0;
     private boolean isRecherche = false;
-    private List<LivreBean> listeLivresPagination = null;
+    private List<Livre> listeLivresPagination = null;
     private String recherche = null;
     private double nbTotalPages = 0;
 
@@ -54,7 +54,7 @@ public class CatalogueController {
         }
         //récupération du code role
         if(model.getAttribute("utilisateurAuthentifie") != null){
-            utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+            utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
             abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
 
         }
@@ -67,7 +67,7 @@ public class CatalogueController {
         ouvragesNouveaute = livresProxy.listeOuvrageNouveaute();
 
         //séparation en deux listes pour l'affichage
-        for(OuvrageBean ouvrage : ouvragesNouveaute){
+        for(Ouvrage ouvrage : ouvragesNouveaute){
             if(index < 3)
                 ouvragesPremierePartie.add(ouvrage);
             else if(index < 6)
@@ -98,9 +98,9 @@ public class CatalogueController {
     public String detailLivre(@PathVariable int id, Model model){
 
         //récuperation du livre en fonction de son id
-        LivreBean livre = livresProxy.recupererUnLivre(id);
+        Livre livre = livresProxy.recupererUnLivre(id);
         //liste des auteurs correspondant au livre
-        List<AuteurBean> auteurs = livre.getAuteurs();
+        List<Auteur> auteurs = livre.getAuteurs();
 
         //ajout dans le model
         model.addAttribute("abonnePret", abonnePret);
@@ -124,7 +124,7 @@ public class CatalogueController {
     public String listeLivrePagination(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable boolean accesCatalogue, Model model){
         if(isRecherche == false || accesCatalogue == true) {
             listeLivresPagination = new ArrayList<>();
-            List<LivreBean> listeTotaleDesLivres = livresProxy.listeLivre();
+            List<Livre> listeTotaleDesLivres = livresProxy.listeLivre();
 
             //calcule du nombre de total de pages
             nbTotalPages = (double) listeTotaleDesLivres.size() / nbLivresParPage;
@@ -188,7 +188,7 @@ public class CatalogueController {
         listeLivresPagination = livresProxy.catalogueListeLivrePaginationRecherche(noPage, nbLivresParPage,recherche);
 
         //récuperation de la liste des livres correspondant à la recherche
-        List<LivreBean> listeLivresRecherche = livresProxy.catalogueListeLivrePaginationRecherche(recherche);
+        List<Livre> listeLivresRecherche = livresProxy.catalogueListeLivrePaginationRecherche(recherche);
 
         //calcule du nombre de total de pages
         nbTotalPages = (double) listeLivresRecherche.size() / nbLivresParPage;

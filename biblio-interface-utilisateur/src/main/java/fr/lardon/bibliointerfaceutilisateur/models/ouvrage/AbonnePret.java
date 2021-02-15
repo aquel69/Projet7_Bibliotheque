@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-
-public class AbonnePretBean {
+public class AbonnePret {
 
     private int idAbonne;
 
@@ -50,6 +49,6 @@ public class AbonnePretBean {
     /**
      * liste des prêts de l'abonné
      */
-    private List<PretBean> listePretAbonnes;
+    private List<Pret> listePretAbonnes;
 
 }

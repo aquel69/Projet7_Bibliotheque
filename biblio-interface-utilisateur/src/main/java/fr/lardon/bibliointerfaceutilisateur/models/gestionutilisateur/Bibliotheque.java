@@ -3,7 +3,7 @@ package fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur;
 import lombok.Data;
 
 @Data
-public class BibliothequeBean {
+public class Bibliotheque {
 
     private String numeroSiret;
 
@@ -20,6 +20,6 @@ public class BibliothequeBean {
     /**
      * Role de l'abonné
      */
-    private AdresseBean adresse;
+    private Adresse adresse;
 
 }

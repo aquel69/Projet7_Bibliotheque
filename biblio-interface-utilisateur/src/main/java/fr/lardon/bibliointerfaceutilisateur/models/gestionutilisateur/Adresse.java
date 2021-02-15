@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
-public class AdresseBean {
+public class Adresse {
 
     private int idAdresse;
 

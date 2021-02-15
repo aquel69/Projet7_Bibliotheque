@@ -1,7 +1,7 @@
 package fr.lardon.bibliointerfaceutilisateur.controller;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.AbonneBean;
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.RoleBean;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
+import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Role;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceAuthentificationUtilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,24 +23,24 @@ public class AuthentificationController {
     private GestionUtilisateurController gestionUtilisateurController;
 
     private int codeRole = 0;
-    private AbonneBean utilisateurAuthentifie = null;
+    private Abonne utilisateurAuthentifie = null;
 
     /**
      * permet d'afficher la page d'authentification
      * @param model
-     * @param abonneBeanGet
+     * @param abonneGet
      * @return
      */
     @RequestMapping(value = "/Authentification", method = RequestMethod.GET)
-    public String authentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanGet){
-        RoleBean role = new RoleBean();
-        utilisateurAuthentifie = new AbonneBean();
+    public String authentification(Model model, @ModelAttribute("abonne") Abonne abonneGet){
+        Role role = new Role();
+        utilisateurAuthentifie = new Abonne();
         codeRole = 0;
 
         //récupération du code role
         if(model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
         //récupération du code role
-        if(model.getAttribute("utilisateurAuthentifie") != null) utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
+        if(model.getAttribute("utilisateurAuthentifie") != null) utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
 
         //ajout dans le model
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
@@ -53,17 +53,17 @@ public class AuthentificationController {
      * permet de récupérer les donnéees saisies par l'utilisateur et de vérifier si l'authentification est valide
      * si elle l'est l'utilisateur est renvoyé sur la page d'accueil sinon il reste sur la page authentification
      * @param model
-     * @param abonneBeanPost
+     * @param abonnePost
      * @return
      */
     @RequestMapping(value = "/Authentification",method = RequestMethod.POST )
-    public String validationAuthentification(Model model, @ModelAttribute("abonneBean") AbonneBean abonneBeanPost){
+    public String validationAuthentification(Model model, @ModelAttribute("abonne") Abonne abonnePost){
 
         //verification du log / récupération du code role et de l'id et du pseudo de l'abonné / si codeRole = 0 envoi message du message d'erreur
-        utilisateurAuthentifie = authentificationUtilisateurProxy.login(abonneBeanPost.getMotDePasse(), abonneBeanPost.getEmail());
+        utilisateurAuthentifie = authentificationUtilisateurProxy.login(abonnePost.getMotDePasse(), abonnePost.getEmail());
 
         if(utilisateurAuthentifie.getRole().getCode() != 0){
-            RoleBean role = new RoleBean();
+            Role role = new Role();
 
             //récupération du role de l'utilisateur
             role.setCode(utilisateurAuthentifie.getRole().getCode());
