@@ -13,7 +13,7 @@ public interface DaoPret extends JpaRepository<Pret, Integer> {
     @Query(value = "SELECT * FROM abonne as abo\n" +
             "    INNER JOIN pret as pre on abo.id_abonne = pre.id_abonne\n" +
             "    INNER JOIN ouvrage as ouv on pre.id_ouvrage = ouv.id_ouvrage\n" +
-            "    WHERE abo.id_abonne = ?", nativeQuery = true)
+            "    WHERE abo.id_abonne = ? ORDER BY pre.date_restitution", nativeQuery = true)
     List<Pret> listePretSelonAbonne(int idAbonne);
 
 }

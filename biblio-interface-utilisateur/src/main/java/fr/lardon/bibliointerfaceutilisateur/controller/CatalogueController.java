@@ -42,10 +42,7 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
-        AbonnePretOuvrageBean abonnePretOuvrageBean;
-        abonnePretOuvrageBean = livresProxy.abonnePretSelonSonId(34);
 
-        System.out.println("abonné prêt " + abonnePretOuvrageBean.toString());
 
 
         //récupération du message
@@ -59,7 +56,7 @@ public class CatalogueController {
         if(model.getAttribute("utilisateurAuthentifie") != null){
             utilisateurAuthentifie = (AbonneBean) model.getAttribute("utilisateurAuthentifie");
             abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
-            System.out.println("abonne " + abonnePret);
+
         }
 
         //récupération du top 10
