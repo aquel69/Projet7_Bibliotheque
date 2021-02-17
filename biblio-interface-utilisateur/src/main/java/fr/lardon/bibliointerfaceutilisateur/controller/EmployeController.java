@@ -21,6 +21,7 @@ public class EmployeController {
     private Abonne abonne = null;
     private Ouvrage ouvrage = null;
     private int codeRole = 5;
+    private boolean isRestitue;
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
@@ -71,6 +72,8 @@ public class EmployeController {
             model.addAttribute("messageErreur", message);
             ajoutDansLeModel(model);
 
+            this.ouvrage.setCodeBibliotheque("");
+
             return "Employe";
         }
 
@@ -99,6 +102,7 @@ public class EmployeController {
     public String restitution(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
         AbonnePretOuvrage abonnePretOuvrage;
         List<Pret> pretList;
+        isRestitue = false;
 
         //récupération de l'ouvrage
         this.ouvrage = livresProxy.ouvrageSelonCodeBibliotheque(ouvrage.getCodeBibliotheque());
@@ -110,7 +114,24 @@ public class EmployeController {
         abonnePretOuvrage = livresProxy.abonnePretSelonSonId(this.abonne.getIdAbonne());
         pretList = abonnePretOuvrage.getListePret();
 
-        restitutionDeLOuvrage(pretList);
+        restitutionDeLOuvrage(pretList, ouvrage);
+
+        if(isRestitue) {
+            //ajout validation
+            String message = "L'ouvrage a été restitué";
+
+            //ajout dans le model
+            model.addAttribute("messageValidation", message);
+            ajoutDansLeModel(model);
+
+        }else{
+            //ajout erreur
+            String message = "L'ouvrage n'a pas pu être restitué";
+
+            //ajout dans le model
+            model.addAttribute("messageErreurRestitution", message);
+            ajoutDansLeModel(model);
+        }
 
         //permet d'empêcher le remplissage des champs automatiquement après validation
         this.ouvrage.setCodeBibliotheque("");
@@ -135,16 +156,15 @@ public class EmployeController {
                 return true;
             }
         }
-
         return false;
     }
 
-    public void restitutionDeLOuvrage(List<Pret> pretList){
+    public void restitutionDeLOuvrage(List<Pret> pretList, Ouvrage ouvrage){
         //attibution de la date de restitution
         LocalDateTime localDateTime = LocalDateTime.now();
 
         for(Pret pretDeLaListe : pretList){
-            if(pretDeLaListe.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque())){
+            if(pretDeLaListe.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque()) && pretDeLaListe.isRendu() == false){
                 //récupération du prêt à modifier
                 PretAModifie pretAModifie = livresProxy.pretAModifieSelonSonId(pretDeLaListe.getIdPret());
 
@@ -156,8 +176,11 @@ public class EmployeController {
 
                 //sauvegarder le prêt
                 livresProxy.sauvegardePretAModifie(pretAModifie);
+
+                isRestitue = true;
             }
         }
+
     }
 
     public void ajoutDansLeModel(Model model){
