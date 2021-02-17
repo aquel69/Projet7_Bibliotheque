@@ -56,13 +56,21 @@
                         </div>
                         <div class="row centrage align-items-center">
                             <div class="col-12">
-                                <form th:action="@{/Pret}" th:object="${ouvrage}" method="post">
-                                    <div class="form-outline mb-4 champ-droite">
-                                        <input type="text" th:field="*{codeBibliotheque}" id="codeOuvrage" class="form-control" />
-                                        <label id="code_ouvrage" class="form-label" for="codeOuvrage">Code de l'ouvrage</label>
+                                <form th:action="@{/Restitution}" th:object="${abonne}" method="post" >
+                                    <div class="form-outline">
+                                        <input type="text" th:field="*{numeroAbonne}" id="numeroAbonneRestitution" class="form-control" />
+                                        <label class="form-label" for="numeroAbonneRestitution">Numéro de l'abonné</label>
                                     </div>
-                                    <button class="btn btn-lg btn-primary btn-block bouton-droite" type="submit">Valider</button>
+                                    <!-- Password input -->
+                                    <div th:object="${ouvrage}" class="form-outline mb-4">
+                                        <input type="text" th:field="*{codeBibliotheque}" id="codeBibliothequeRestitution" class="form-control" />
+                                        <label class="form-label" for="codeBibliothequeRestitution">Code de l'ouvrage</label>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-lg btn-primary btn-block " type="submit">Valider</button>
+                                    </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

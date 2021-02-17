@@ -33,6 +33,6 @@ public class Ouvrage {
      * liste des prêts
      */
 
-    private List<Pret> listePretAbonnes;
+    /*private List<Pret> listePretAbonnes;*/
 
 }

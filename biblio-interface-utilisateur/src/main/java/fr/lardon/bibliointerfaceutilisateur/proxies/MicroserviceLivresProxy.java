@@ -55,5 +55,14 @@ public interface MicroserviceLivresProxy {
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id);
 
+    @GetMapping(value = "/PretSelonSonId/{id}")
+    Pret pretSelonSonId(@PathVariable int id);
+
+    @PostMapping(value = "/SauvegarderPretAModifie")
+    void sauvegardePretAModifie(@RequestBody PretAModifie pretAModifie);
+
+    @GetMapping(value = "/PretAModifieSelonSonId/{id}")
+    PretAModifie pretAModifieSelonSonId(@PathVariable int id);
+
 
 }

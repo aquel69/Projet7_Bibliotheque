@@ -1,12 +1,9 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -45,6 +42,13 @@ public class Pret {
     private boolean prolongation;
 
     /**
+     * l'abonné a rendu l'ouvrage
+     */
+    @NonNull
+    @Column(name="rendu")
+    private boolean rendu;
+
+    /**
      * status de l'emprunt
      */
     @NonNull
@@ -54,12 +58,12 @@ public class Pret {
     /**
      * ouvrage du prêt
      */
-    @NonNull
+    /*@NonNull
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)*/
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="id_abonne")
-
-    private Abonne abonne;
+    private Abonne abonnePret;
 
     /**
      * ouvrage du prêt

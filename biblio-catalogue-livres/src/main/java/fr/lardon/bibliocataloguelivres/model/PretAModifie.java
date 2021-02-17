@@ -1,51 +1,49 @@
-package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
+package fr.lardon.bibliocataloguelivres.model;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class Pret {
+@EqualsAndHashCode
+@Entity
+@Table(name=("pret"))
+public class PretAModifie {
 
+    @Id
+    @Column(name="id_pret")
     private int idPret;
 
     /**
      * date d'emprunt
      */
+    @Column(name="date_emprunt")
     private LocalDateTime dateDEmprunt;
 
     /**
      * date de restitution
      */
+    @Column(name="date_restitution")
     private LocalDateTime dateDeRestitution;
-
-    /**
-     * status de l'emprunt
-     */
-    private String status;
 
     /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois
      */
+    @Column(name="prolongation")
     private boolean prolongation;
 
     /**
      * l'abonné a rendu l'ouvrage
      */
+    @Column(name="rendu")
     private boolean rendu;
 
     /**
-     * abonné du prêt
+     * status de l'emprunt
      */
-    private Abonne abonnePret;
-
-    /**
-     * ouvrage du prêt
-     */
-    private Ouvrage ouvragePret;
+    @Column(name="status")
+    private String status;
 
 }

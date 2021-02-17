@@ -30,6 +30,9 @@ public class LivreController {
     DaoAbonne daoAbonne;
 
     @Autowired
+    DaoPretAModifie daoPretAModifie;
+
+    @Autowired
     ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
@@ -175,10 +178,17 @@ public class LivreController {
     }
 
     @GetMapping(value = "/PretsSelonAbonne/{id}")
-    public Pret listeDesPretsSelonAbonne(@PathVariable int id){
-        Pret prets = daoPret.findById(id).get();
+    public List<Pret> listeDesPretsSelonAbonne(@PathVariable int id){
+        List<Pret> prets = daoPret.listePretSelonAbonne(id);
 
         return prets;
+    }
+
+    @GetMapping(value = "/PretSelonSonId/{id}")
+    public Pret pretSelonSonId(@PathVariable int id){
+        Pret pret = daoPret.findById(id).get();
+
+        return pret;
     }
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
@@ -195,4 +205,15 @@ public class LivreController {
         return abonne;
     }
 
+    @PostMapping(value = "/SauvegarderPretAModifie")
+    public void sauvegardePretAModifie(@RequestBody PretAModifie pretAModifie){
+        daoPretAModifie.save(pretAModifie);
+    }
+
+    @GetMapping(value = "/PretAModifieSelonSonId/{id}")
+    public PretAModifie pretAModifieSelonSonId(@PathVariable int id){
+        PretAModifie pretAModifie = daoPretAModifie.findById(id).get();
+
+        return pretAModifie;
+    }
 }

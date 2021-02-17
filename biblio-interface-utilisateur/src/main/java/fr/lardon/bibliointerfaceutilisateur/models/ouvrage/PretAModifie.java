@@ -1,15 +1,16 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
-import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class Pret {
+public class PretAModifie {
+
 
     private int idPret;
 
@@ -24,11 +25,6 @@ public class Pret {
     private LocalDateTime dateDeRestitution;
 
     /**
-     * status de l'emprunt
-     */
-    private String status;
-
-    /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois
      */
     private boolean prolongation;
@@ -39,13 +35,8 @@ public class Pret {
     private boolean rendu;
 
     /**
-     * abonné du prêt
+     * status de l'emprunt
      */
-    private Abonne abonnePret;
-
-    /**
-     * ouvrage du prêt
-     */
-    private Ouvrage ouvragePret;
+    private String status;
 
 }
