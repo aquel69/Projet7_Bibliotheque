@@ -2,7 +2,6 @@ package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
-import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +25,6 @@ public class EmployeController {
     @Autowired
     private MicroserviceLivresProxy livresProxy;
 
-    @Autowired
-    private MicroserviceGestionUtilisateur gestionUtilisateur;
-
     /**
      * permet de renvoyer sur la page d'emprunt des employés
      * @param model
@@ -36,7 +32,6 @@ public class EmployeController {
      */
     @RequestMapping(value = "/Emprunt", method = RequestMethod.GET)
     public String employe(Model model){
-        //problème thymeleaf
         utilisateurAuthentifie = new Abonne();
         pret = new Pret();
         ouvrage = new Ouvrage();
@@ -44,11 +39,7 @@ public class EmployeController {
 
         utilisateurAuthentifie.setPseudo("Régis");
 
-        //ajout dans le model
-        model.addAttribute("ouvrage", ouvrage);
-        model.addAttribute("abonne", abonne);
-        model.addAttribute("codeRole", codeRole);
-        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        ajoutDansLeModel(model);
 
         return "Employe";
     }
@@ -72,8 +63,16 @@ public class EmployeController {
         //récupération de l'abonné
         this.abonne = livresProxy.recupererAbonneSelonNumeroAbonne(abonne.getNumeroAbonne());
 
-        System.out.println(ouvrage);
-        System.out.println(this.ouvrage);
+        if(verificationDEmpruntIdentique(ouvrage)){
+            //ajout erreur
+            String message = "L'ouvrage est déjà emprunté par cet abonné";
+
+            //ajout dans le model
+            model.addAttribute("messageErreur", message);
+            ajoutDansLeModel(model);
+
+            return "Employe";
+        }
 
         //alimentation de l'objet prêt
         pret.setDateDEmprunt(localDateTime);
@@ -86,25 +85,20 @@ public class EmployeController {
         //sauvegarder le prêt
         livresProxy.sauvegarderPret(pret);
 
+        //permet d'empêcher le remplissage des champs automatiquement après validation
         this.ouvrage.setCodeBibliotheque("");
         this.abonne.setNumeroAbonne("");
 
-        //ajout dans le model
-        model.addAttribute("ouvrage", this.ouvrage);
-        model.addAttribute("abonne", this.abonne);
-        model.addAttribute("codeRole", codeRole);
-        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        ajoutDansLeModel(model);
 
         return "Employe";
     }
 
+
     @RequestMapping(value = "/Restitution", method = RequestMethod.POST)
     public String restitution(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
-        AbonnePretOuvrage abonnePretOuvrage = new AbonnePretOuvrage();
-        List<Pret> pretList = null;
-
-        //attibution de la date de restitution
-        LocalDateTime localDateTime = LocalDateTime.now();
+        AbonnePretOuvrage abonnePretOuvrage;
+        List<Pret> pretList;
 
         //récupération de l'ouvrage
         this.ouvrage = livresProxy.ouvrageSelonCodeBibliotheque(ouvrage.getCodeBibliotheque());
@@ -116,36 +110,61 @@ public class EmployeController {
         abonnePretOuvrage = livresProxy.abonnePretSelonSonId(this.abonne.getIdAbonne());
         pretList = abonnePretOuvrage.getListePret();
 
-        for(Pret pretDeLaListe : pretList){
-            if(pretDeLaListe.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque())){
-                PretAModifie pretBoucle;
-                pretBoucle = livresProxy.pretAModifieSelonSonId(pretDeLaListe.getIdPret());
+        restitutionDeLOuvrage(pretList);
 
-                System.out.println("pret avant " + pretBoucle);
-
-                pretBoucle.setStatus("Rendu");
-                pretBoucle.setRendu(true);
-                pretBoucle.setDateDeRestitution(localDateTime);
-                pretBoucle.setDateDEmprunt(pretDeLaListe.getDateDEmprunt());
-
-                System.out.println("pret apres " + pretBoucle);
-
-                //sauvegarder le prêt
-                livresProxy.sauvegardePretAModifie(pretBoucle);
-            }
-        }
-
-
-
+        //permet d'empêcher le remplissage des champs automatiquement après validation
         this.ouvrage.setCodeBibliotheque("");
         this.abonne.setNumeroAbonne("");
 
-        model.addAttribute("abonne", this.abonne);
-        model.addAttribute("ouvrage", this.ouvrage);
-        model.addAttribute("codeRole", codeRole);
-        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        ajoutDansLeModel(model);
 
         return "Employe";
+    }
+
+    private boolean verificationDEmpruntIdentique(Ouvrage ouvrage) {
+        AbonnePretOuvrage abonnePretOuvrage;
+        List<Ouvrage> ouvrageList;
+        List<Pret> pretList;
+
+        //récupération de la liste des prêt
+        abonnePretOuvrage = livresProxy.abonnePretSelonSonId(this.abonne.getIdAbonne());
+        pretList = abonnePretOuvrage.getListePret();
+
+        for(Pret pret : pretList){
+            if(pret.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque()) && pret.isRendu() == false){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void restitutionDeLOuvrage(List<Pret> pretList){
+        //attibution de la date de restitution
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        for(Pret pretDeLaListe : pretList){
+            if(pretDeLaListe.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque())){
+                //récupération du prêt à modifier
+                PretAModifie pretAModifie = livresProxy.pretAModifieSelonSonId(pretDeLaListe.getIdPret());
+
+                //modification du prêt
+                pretAModifie.setStatus("Rendu");
+                pretAModifie.setRendu(true);
+                pretAModifie.setDateDeRestitution(localDateTime);
+                pretAModifie.setDateDEmprunt(pretDeLaListe.getDateDEmprunt());
+
+                //sauvegarder le prêt
+                livresProxy.sauvegardePretAModifie(pretAModifie);
+            }
+        }
+    }
+
+    public void ajoutDansLeModel(Model model){
+        model.addAttribute("ouvrage", this.ouvrage);
+        model.addAttribute("abonne", this.abonne);
+        model.addAttribute("codeRole", this.codeRole);
+        model.addAttribute("utilisateurAuthentifie", this.utilisateurAuthentifie);
     }
 
 }
