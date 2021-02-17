@@ -41,10 +41,16 @@ public class LivreController {
      */
     @GetMapping(value = "/Top")
     public List<Livre> topLivre(){
-
         List<Livre> livres = daoLivre.listeLivreTop();
 
         return livres;
+    }
+
+    @GetMapping(value = "/ListeOuvrage")
+    public List<Ouvrage> listeDesOuvrages(){
+        List<Ouvrage> listeOuvrage = daoOuvrage.findAll();
+
+        return listeOuvrage;
     }
 
     /**
@@ -53,7 +59,6 @@ public class LivreController {
      */
     @GetMapping(value = "/Livres")
     public List<Livre> listeLivre(){
-
         List<Livre> livres = daoLivre.findAll();
 
         return livres;
@@ -95,7 +100,6 @@ public class LivreController {
      */
     @GetMapping(value="/Recherche/{recherche}")
     public List<Livre> catalogueListeLivrePaginationRecherche(@PathVariable String recherche){
-
         List<Livre> listeLivrePagination = daoLivre.listeLivreRecherchePagination(recherche, recherche);
 
         return listeLivrePagination;
@@ -108,7 +112,6 @@ public class LivreController {
      */
     @GetMapping( value = "/Livres/{id}")
     public Livre recupererUnLivre(@PathVariable int id) {
-
         Livre livre = daoLivre.findById(id).get();
 
         return livre;
@@ -120,7 +123,6 @@ public class LivreController {
      */
     @GetMapping(value = "/Livres/Nouveau")
     public List<Ouvrage> listeOuvrageNouveaute(){
-
         List<Ouvrage> ouvrages = daoOuvrage.trouverDerniereOuvrage();
 
         return ouvrages;
@@ -142,7 +144,6 @@ public class LivreController {
      */
     @GetMapping(value = "/Ouvrage/{codeBibliotheque}")
     public Ouvrage ouvrageSelonCodeBibliotheque(@PathVariable String codeBibliotheque){
-
         Ouvrage ouvrage = daoOuvrage.findByCodeBibliotheque(codeBibliotheque);
 
         return ouvrage;
@@ -162,7 +163,9 @@ public class LivreController {
      * @param abonnePret
      */
     @PostMapping(value = "/SauvegarderAbonne")
-    public void sauvegarderAbonnePret(@RequestBody AbonnePret abonnePret) {daoAbonnePret.save(abonnePret);}
+    public void sauvegarderAbonnePret(@RequestBody AbonnePret abonnePret) {
+        daoAbonnePret.save(abonnePret);
+    }
 
     /**
      * récupérer un abonné dans la base de données selon son numéro d'abonné
@@ -171,7 +174,6 @@ public class LivreController {
      */
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")
     public Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
-
         Abonne abonne = daoAbonne.findByNumeroAbonne(numeroAbonne);
 
         return abonne;

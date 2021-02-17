@@ -16,6 +16,9 @@ public interface MicroserviceLivresProxy {
     @GetMapping(value = "/Livres")
     List<Livre> listeLivre();
 
+    @GetMapping(value = "/ListeOuvrage")
+    List<Ouvrage> listeDesOuvrages();
+
     @GetMapping(value="/Catalogue/{noPage}/{nbLivresParPage}")
     List<Livre> catalogueListeLivrePagination(@PathVariable("noPage") int noPage, @PathVariable("nbLivresParPage") int nbLivresParPage);
 

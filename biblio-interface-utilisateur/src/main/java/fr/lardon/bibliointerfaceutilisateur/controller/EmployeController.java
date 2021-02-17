@@ -2,6 +2,7 @@ package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
 import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.*;
+import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class EmployeController {
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
+
+    @Autowired
+    private MicroserviceGestionUtilisateur gestionUtilisateur;
 
     /**
      * permet de renvoyer sur la page d'emprunt des employés
@@ -57,6 +61,20 @@ public class EmployeController {
 
         //attibution de la date d'emprunt
         LocalDateTime localDateTime = LocalDateTime.now();
+
+        if(!verificationOuvrageExistant(ouvrage) || !verificationAbonneExistant(abonne)){
+            //ajout erreur
+            String message = "L'ouvrage ou l'abonné ne sont pas existant";
+
+            //ajout dans le model
+            model.addAttribute("messageErreur", message);
+            ajoutDansLeModel(model);
+
+            this.ouvrage.setCodeBibliotheque("");
+            this.abonne.setNumeroAbonne("");
+
+            return "Employe";
+        }
 
         //récupération de l'ouvrage
         this.ouvrage = livresProxy.ouvrageSelonCodeBibliotheque(ouvrage.getCodeBibliotheque());
@@ -104,6 +122,20 @@ public class EmployeController {
         List<Pret> pretList;
         isRestitue = false;
 
+        if(!verificationOuvrageExistant(ouvrage) || !verificationAbonneExistant(abonne)){
+            //ajout erreur
+            String message = "L'ouvrage ou l'abonné ne sont pas existant";
+
+            //ajout dans le model
+            model.addAttribute("messageErreurRestitution", message);
+            ajoutDansLeModel(model);
+
+            this.ouvrage.setCodeBibliotheque("");
+            this.abonne.setNumeroAbonne("");
+
+            return "Employe";
+        }
+
         //récupération de l'ouvrage
         this.ouvrage = livresProxy.ouvrageSelonCodeBibliotheque(ouvrage.getCodeBibliotheque());
 
@@ -140,6 +172,33 @@ public class EmployeController {
         ajoutDansLeModel(model);
 
         return "Employe";
+    }
+
+
+    private boolean verificationOuvrageExistant(Ouvrage ouvrage){
+        //Récupération de la liste des ouvrages
+        List<Ouvrage> ouvrageList;
+        ouvrageList = livresProxy.listeDesOuvrages();
+
+        for(Ouvrage ouvrageBoucle : ouvrageList){
+            if(ouvrageBoucle.getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque())){
+               return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean verificationAbonneExistant(Abonne abonne){
+        //Récupération de la liste des abonnés
+        List<Abonne> abonneList;
+        abonneList = gestionUtilisateur.listeAbonnes();
+
+        for(Abonne abonneBoucle : abonneList){
+            if(abonneBoucle.getNumeroAbonne().equals(abonne.getNumeroAbonne())){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean verificationDEmpruntIdentique(Ouvrage ouvrage) {

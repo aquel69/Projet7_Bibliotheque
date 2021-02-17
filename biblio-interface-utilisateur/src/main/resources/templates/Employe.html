@@ -66,12 +66,12 @@
                                 <form th:action="@{/Restitution}" th:object="${abonne}" method="post" >
                                     <div class="form-outline">
                                         <input type="text" th:field="*{numeroAbonne}" id="numeroAbonneRestitution" class="form-control" />
-                                        <label class="form-label" for="numeroAbonneRestitution">Numéro de l'abonné</label>
+                                        <label class="form-label labelRestitution" for="numeroAbonneRestitution">Numéro de l'abonné</label>
                                     </div>
                                     <!-- Password input -->
                                     <div th:object="${ouvrage}" class="form-outline mb-4">
                                         <input type="text" th:field="*{codeBibliotheque}" id="codeBibliothequeRestitution" class="form-control" />
-                                        <label class="form-label" for="codeBibliothequeRestitution">Code de l'ouvrage</label>
+                                        <label class="form-label labelRestitution" for="codeBibliothequeRestitution">Code de l'ouvrage</label>
                                     </div>
                                     <div th:if="${messageValidation != null}">
                                         <div class="alert alert-warning alert-dismissible my-3" role="alert" >

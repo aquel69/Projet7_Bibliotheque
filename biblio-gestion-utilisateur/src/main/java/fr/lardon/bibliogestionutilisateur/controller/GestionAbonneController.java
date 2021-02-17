@@ -29,7 +29,7 @@ public class GestionAbonneController {
 
     @GetMapping(value="/Abonnes")
     public List<Abonne> listeAbonnes(){
-            List<Abonne> listeAbonne = daoAbonne.findAll();
+        List<Abonne> listeAbonne = daoAbonne.findAll();
 
         return listeAbonne;
     }
@@ -39,7 +39,9 @@ public class GestionAbonneController {
      * @param abonne
      */
     @PutMapping(value="/ModifierAbonne")
-    public void modifierAbonne(@RequestBody Abonne abonne) {daoAbonne.save(abonne);}
+    public void modifierAbonne(@RequestBody Abonne abonne) {
+        daoAbonne.save(abonne);
+    }
 
     /**
      * ajouter un abonné dans la base de données
@@ -55,7 +57,6 @@ public class GestionAbonneController {
      */
     @GetMapping(value = "/Abonne/{id}")
     public Abonne recupererAbonne(@PathVariable int id) {
-
         Abonne abonne = daoAbonne.findById(id).get();
 
         return abonne;
@@ -68,7 +69,6 @@ public class GestionAbonneController {
      */
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")
     public Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne) {
-
         Abonne abonne = daoAbonne.findByNumeroAbonne(numeroAbonne);
 
         return abonne;
@@ -81,7 +81,6 @@ public class GestionAbonneController {
      */
     @GetMapping(value = "/Role/{id}")
     public Role recupererRole(@PathVariable int id) {
-
         Role role = daoRole.findById(id).get();
 
         return role;
@@ -94,7 +93,6 @@ public class GestionAbonneController {
      */
     @GetMapping(value = "/Bibliotheque/{siret}")
     public Bibliotheque recupererBibliotheque(@PathVariable String siret) {
-
         Bibliotheque bibliotheque = daoBibliotheque.findByNumeroSiret(siret);
 
         return bibliotheque;
@@ -116,8 +114,6 @@ public class GestionAbonneController {
      */
     @GetMapping(value = "/Adresse/{id}")
     public Adresse recupererAdresse(@PathVariable int id) {
-
-        /*Livre livre = daoLivre.getOne(id);*/
         Adresse adresse = daoAdresse.findById(id).get();
 
         return adresse;
