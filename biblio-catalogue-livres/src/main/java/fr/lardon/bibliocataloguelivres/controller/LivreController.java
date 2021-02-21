@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @RestController
@@ -195,7 +197,17 @@ public class LivreController {
 
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
+        List<Pret> pretList;
+        LocalDateTime localDateTime = LocalDateTime.now();
+
         AbonnePretOuvrage abonnePret = serviceAbonnePretOuvrage.getAbonnePretOuvrage(id);
+        pretList = abonnePret.getListePret();
+
+        for(Pret pret : pretList){
+            daoPret.save(pret);
+
+        }
+
 
         return abonnePret;
     }

@@ -7,10 +7,7 @@ import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +40,6 @@ public class CatalogueController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
 
-
-
         //récupération du message
         String message = (String) model.getAttribute("message");
 
@@ -52,11 +47,10 @@ public class CatalogueController {
         if(model.getAttribute("codeRole") != null) {
             codeRole = (int) model.getAttribute("codeRole");
         }
-        //récupération du code role
+        //récupération des prêt de l'abonné pour la gestion de ses emprunts
         if(model.getAttribute("utilisateurAuthentifie") != null){
             utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
             abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
-
         }
 
         //récupération du top 10
@@ -80,6 +74,43 @@ public class CatalogueController {
         model.addAttribute("message", message);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("abonnePret", abonnePret);
+        model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
+        model.addAttribute("livres", livreTop);
+        model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
+        model.addAttribute("ouvragesPartieDeux", ouvragesSecondePartie);
+
+        return "Accueil";
+    }
+
+    @RequestMapping(value = "/Prolongation", method = RequestMethod.POST)
+    public String accueilPost(Model model,@RequestParam int pretProlongation){
+
+        Pret pret;
+        PretAModifie pretAModifie = new PretAModifie();
+
+        pret = livresProxy.pretSelonSonId(pretProlongation);
+
+        System.out.println(pret);
+
+        pretAModifie.setIdPret(pret.getIdPret());
+        pretAModifie.setRendu(false);
+        pretAModifie.setStatus("Prêt en cours");
+        pretAModifie.setDateDEmprunt(pret.getDateDEmprunt());
+        pretAModifie.setProlongation(true);
+        pretAModifie.setDateDeRestitution(pret.getDateDeRestitution().plusMonths(1));
+
+        livresProxy.sauvegardePretAModifie(pretAModifie);
+
+        //récupération des prêt de l'abonné pour la gestion de ses emprunts
+        if(model.getAttribute("utilisateurAuthentifie") != null){
+            utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
+            abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
+        }
+
+        //ajout dans le model
+        /*model.addAttribute("message", message);*/
+        model.addAttribute("codeRole", codeRole);
+        model.addAttribute("abonnePretModal", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("livres", livreTop);
         model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
@@ -182,6 +213,8 @@ public class CatalogueController {
 
         return "Catalogue";
     }
+
+
 
     public void recuperationDesLivresRecherche(int noPage, int nbLivresParPage){
         //récuperation des livres en fonction du numéro de la page

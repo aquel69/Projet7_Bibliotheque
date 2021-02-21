@@ -56,7 +56,6 @@ public class GestionUtilisateurController {
         abonne = new Abonne();
         adresse = new Adresse();
 
-
         //ajout dans le model
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("abonne", abonne);

@@ -97,7 +97,7 @@ public class EmployeController {
 
         //alimentation de l'objet prêt
         pret.setDateDEmprunt(localDateTime);
-        pret.setDateDeRestitution(localDateTime.plusWeeks(4));
+        pret.setDateDeRestitution(localDateTime.plusMonths(1));
         pret.setProlongation(false);
         pret.setOuvragePret(this.ouvrage);
         pret.setAbonnePret(this.abonne);

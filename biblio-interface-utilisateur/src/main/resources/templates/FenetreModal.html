@@ -33,7 +33,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body pt-0">
-                    <form th:action="@{/Emprunt}" th:object="${abonnePret}" method="post" class="form-inline justify-content-start">
+                    <form th:action="@{/Prolongation}" th:object="${abonnePret}" method="post" class="form-inline justify-content-start">
 
                             <!--<p th:text="${abonnePret.abonne.getNom()}"></p>-->
                                     <table  class="table table-hover table-responsive align-items-center border-bottom mb-0" th:each="abonnePret, inter : ${abonnePret}">
@@ -46,22 +46,18 @@
                                                 <th class="align-middle text-center" width="15%">Prolongation</th>
                                             </tr>
                                         </thead>
-                                        <div th:each="ouvrage, inter : ${abonnePret.listeOuvrage}">
+                                        <div th:each="ouvrage, inter2 : ${abonnePret.listeOuvrage}">
                                             <tbody>
                                                 <tr>
                                                     <td class="align-middle " ><img th:src="@{/photoOuvrage/{image}(image=${ouvrage.getLivre().getPetitePhotoCouverture()})}" /></td>
                                                     <td class="align-middle titre_livre_fenetre" ><h6 th:text="${ouvrage.getLivre().getTitre()}"></h6></td>
-                                                    <td class="align-middle text-center" ><h6 th:text="${#temporals.format(abonnePret.listePret[inter.index].getDateDeRestitution(), 'dd-MM-yyyy')}"></h6></td>
-                                                    <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter.index].getStatus()}"></h6></td>
-                                                    <td class="align-middle text-center" ><input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"></td>
+                                                    <td class="align-middle text-center" ><h6 th:text="${#temporals.format(abonnePret.listePret[inter2.index].getDateDeRestitution(), 'dd-MM-yyyy')}"></h6></td>
+                                                    <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter2.index].getStatus()}"></h6></td>
+                                                    <td class="align-middle text-center" ><input class="form-check-input" type="radio" th:value="${abonnePret.listePret[inter2.index].getIdPret()}" name="pretProlongation"></td>
                                                 </tr>
                                             </tbody>
                                         </div>
                                      </table>
-
-
-
-
                             <div class="col-12 pt-3">
                                 <div class="col-6 mx-auto">
                                     <button class="btn btn-lg btn-primary btn-block" type="submit">Valider</button>
