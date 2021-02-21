@@ -41,24 +41,25 @@ public class ServiceAbonnePretOuvrage {
         //changement du status suivant la période
         for(Pret pret : listePret){
             long chrono = ChronoUnit.DAYS.between(localDateTime, pret.getDateDeRestitution());
-            if(chrono > 14 && pret.isRendu() == false){
-                System.out.println("Prêt en cours " + chrono);
+            if(chrono > 14 && pret.isRendu() == false && pret.isProlongation() ==false){
                 pret.setStatus("Prêt en cours");
+            }else if(chrono > 14 && pret.isRendu() == false && pret.isProlongation() ==true){
+                pret.setStatus("Prolongation");
             }else if(chrono <= 14 && chrono > 7 && pret.isRendu() == false){
-                System.out.println("A rendre bientôt " + chrono);
                 pret.setStatus("A rendre bientôt");
             }else if(chrono <= 7 && chrono >= 0 && pret.isRendu() == false){
-                System.out.println("A rendre cette semaine " + chrono);
                 pret.setStatus("A rendre cette semaine");
             }else if(chrono < 0 && pret.isRendu() == false ){
-                System.out.println("A rendre " + chrono);
                 pret.setStatus("A rendre");
+                /*pret.setRendu(true);*/
             }
         }
 
         //mise en ordre de la liste des prêts
         for(Pret pret : listePret){
             if(pret.getStatus().equals("A rendre")) {
+                listeTrie.add(listePret.get(index1));
+            }else if(pret.getStatus().equals("Prolongation")){
                 listeTrie.add(listePret.get(index1));
             }else if(pret.getStatus().equals("A rendre cette semaine")){
                 listeTrie.add(listePret.get(index1));

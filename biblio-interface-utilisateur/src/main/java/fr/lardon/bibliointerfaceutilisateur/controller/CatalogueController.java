@@ -84,37 +84,39 @@ public class CatalogueController {
 
     @RequestMapping(value = "/Prolongation", method = RequestMethod.POST)
     public String accueilPost(Model model,@RequestParam int pretProlongation){
-
+        String message = null;
         Pret pret;
         PretAModifie pretAModifie = new PretAModifie();
 
+        //récupération du prêt en fonction de l'id
         pret = livresProxy.pretSelonSonId(pretProlongation);
 
-        System.out.println(pret);
-
+        //modification du prêt
         pretAModifie.setIdPret(pret.getIdPret());
         pretAModifie.setRendu(false);
-        pretAModifie.setStatus("Prêt en cours");
+        pretAModifie.setStatus("Prolongé");
         pretAModifie.setDateDEmprunt(pret.getDateDEmprunt());
         pretAModifie.setProlongation(true);
         pretAModifie.setDateDeRestitution(pret.getDateDeRestitution().plusMonths(1));
 
+        //sauvegarde du prêt
         livresProxy.sauvegardePretAModifie(pretAModifie);
 
-        //récupération des prêt de l'abonné pour la gestion de ses emprunts
-        if(model.getAttribute("utilisateurAuthentifie") != null){
-            utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
-            abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
-        }
+        //récupération de l'abonné après les modifications effectuées
+        abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
+
+        //ajout du message
+        message = "Le livre : " + pret.getOuvragePret().getLivre().getTitre() + " a bien été prolongé";
 
         //ajout dans le model
-        /*model.addAttribute("message", message);*/
+        model.addAttribute("message", message);
         model.addAttribute("codeRole", codeRole);
         model.addAttribute("abonnePretModal", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("livres", livreTop);
         model.addAttribute("ouvragesPartieUne", ouvragesPremierePartie);
         model.addAttribute("ouvragesPartieDeux", ouvragesSecondePartie);
+        accueil(model);
 
         return "Accueil";
     }

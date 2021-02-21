@@ -42,7 +42,7 @@
                                                 <th class="align-middle text-center" width="10%"></th>
                                                 <th class="align-middle text-center" width="28%">Titre</th>
                                                 <th class="align-middle text-center" width="27%">A rendre avant le</th>
-                                                <th class="align-middle text-center" width="20%">Status</th>
+                                                <th class="align-middle text-center" width="20%">Statut</th>
                                                 <th class="align-middle text-center" width="15%">Prolongation</th>
                                             </tr>
                                         </thead>
@@ -53,7 +53,7 @@
                                                     <td class="align-middle titre_livre_fenetre" ><h6 th:text="${ouvrage.getLivre().getTitre()}"></h6></td>
                                                     <td class="align-middle text-center" ><h6 th:text="${#temporals.format(abonnePret.listePret[inter2.index].getDateDeRestitution(), 'dd-MM-yyyy')}"></h6></td>
                                                     <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter2.index].getStatus()}"></h6></td>
-                                                    <td class="align-middle text-center" ><input class="form-check-input" type="radio" th:value="${abonnePret.listePret[inter2.index].getIdPret()}" name="pretProlongation"></td>
+                                                    <td class="align-middle text-center" ><input class="form-check-input" type="radio" th:value="${abonnePret.listePret[inter2.index].getIdPret()}" name="pretProlongation" th:disabled="${abonnePret.listePret[inter2.index].isRendu() == true || abonnePret.listePret[inter2.index].isProlongation()}"></td>
                                                 </tr>
                                             </tbody>
                                         </div>
