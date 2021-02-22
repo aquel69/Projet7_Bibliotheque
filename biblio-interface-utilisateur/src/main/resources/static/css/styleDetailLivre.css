@@ -9,6 +9,20 @@ body{
     height: 100%;
 }
 
+/*fenêtre*/
+.titre_livre_fenetre{
+    font-size: 0.8em;
+}
+
+#table_fenetre{
+    overflow-x: auto;
+}
+
+#modal .modal-dialog .modal-content{
+    background-color: #c4dae2;
+
+}
+
 /*menu*/
 #bienvenue_pseudo{
     color: #4e4747;

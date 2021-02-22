@@ -94,7 +94,8 @@ public class CatalogueController {
         //modification du prêt
         pretAModifie.setIdPret(pret.getIdPret());
         pretAModifie.setRendu(false);
-        pretAModifie.setStatus("Prolongé");
+        pretAModifie.setStatut("Prolongation");
+        pretAModifie.setStatutPriorite("3");
         pretAModifie.setDateDEmprunt(pret.getDateDEmprunt());
         pretAModifie.setProlongation(true);
         pretAModifie.setDateDeRestitution(pret.getDateDeRestitution().plusMonths(1));

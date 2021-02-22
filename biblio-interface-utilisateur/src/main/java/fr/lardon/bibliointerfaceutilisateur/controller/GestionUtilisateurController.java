@@ -1,7 +1,9 @@
 package fr.lardon.bibliointerfaceutilisateur.controller;
 
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.*;
+import fr.lardon.bibliointerfaceutilisateur.models.ouvrage.AbonnePretOuvrage;
 import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceGestionUtilisateur;
+import fr.lardon.bibliointerfaceutilisateur.proxies.MicroserviceLivresProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ public class GestionUtilisateurController {
     private BCryptPasswordEncoder bCryptPasswordMatche;
     private Abonne abonne = null;
     private Abonne abonneSecurisation = null;
+    AbonnePretOuvrage abonnePret = null;
     private Adresse adresse = new Adresse();
     private Bibliotheque bibliotheque = null;
     private Role role = null;
@@ -43,6 +46,10 @@ public class GestionUtilisateurController {
 
     @Autowired
     private CatalogueController catalogueController;
+
+    @Autowired
+    private MicroserviceLivresProxy livresProxy;
+
 
     /**
      * permet de renvoyer à la page inscription
@@ -183,18 +190,24 @@ public class GestionUtilisateurController {
      */
     @RequestMapping(value = "/ModificationCompte", method = RequestMethod.GET)
     public String modificationCompte(Model model) {
+        abonnePret = new AbonnePretOuvrage();
 
         abonneAModifier = new Abonne();
 
         //récupération du code role
         if (model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
         //récupération du code role
+        //récupération des prêt de l'abonné pour la gestion de ses emprunts
         if (model.getAttribute("utilisateurAuthentifie") != null)
             utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
+            abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
+
+        System.out.println(abonnePret);
 
         abonneAModifier = gestionUtilisateur.recupererAbonne(utilisateurAuthentifie.getIdAbonne());
 
         //ajout dans le model
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("abonneAModifier", abonneAModifier);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);
@@ -258,6 +271,7 @@ public class GestionUtilisateurController {
                     messageErreurMotDePasse = "Le mot de passe doit être composé de 6 caractères minimum";
                 }
 
+                model.addAttribute("abonnePret", abonnePret);
                 model.addAttribute("messageErreurMotDePasse", messageErreurMotDePasse);
                 model.addAttribute("abonneAModifier", abonneBeanModifier);
                 model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
@@ -283,6 +297,7 @@ public class GestionUtilisateurController {
         //affichage du message
         String message = "Vous avez modifié votre compte !!";
 
+        model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("message", message);
         model.addAttribute("abonneAModifier", abonneAModifier);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);

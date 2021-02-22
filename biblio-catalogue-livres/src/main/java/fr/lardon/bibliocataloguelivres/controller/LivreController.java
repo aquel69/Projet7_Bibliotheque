@@ -198,16 +198,18 @@ public class LivreController {
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
         List<Pret> pretList;
-        LocalDateTime localDateTime = LocalDateTime.now();
 
         AbonnePretOuvrage abonnePret = serviceAbonnePretOuvrage.getAbonnePretOuvrage(id);
         pretList = abonnePret.getListePret();
 
+        //sauvegarde des prêts avec leurs nouveaux statuts
         for(Pret pret : pretList){
             daoPret.save(pret);
-
         }
 
+        //rappel de la liste des prêts pour la mise en ordre selon priorité
+        pretList = listeDesPretsSelonAbonne(abonnePret.getAbonne().getIdAbonne());
+        abonnePret.setListePret(pretList);
 
         return abonnePret;
     }

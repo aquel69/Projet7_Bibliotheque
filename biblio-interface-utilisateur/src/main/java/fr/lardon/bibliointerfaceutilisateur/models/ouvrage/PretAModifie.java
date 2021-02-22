@@ -1,9 +1,6 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -37,6 +34,11 @@ public class PretAModifie {
     /**
      * status de l'emprunt
      */
-    private String status;
+    private String statut;
+
+    /**
+     * status de l'emprunt
+     */
+    private String statutPriorite;
 
 }

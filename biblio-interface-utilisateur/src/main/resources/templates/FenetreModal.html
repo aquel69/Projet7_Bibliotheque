@@ -52,7 +52,7 @@
                                                     <td class="align-middle " ><img th:src="@{/photoOuvrage/{image}(image=${ouvrage.getLivre().getPetitePhotoCouverture()})}" /></td>
                                                     <td class="align-middle titre_livre_fenetre" ><h6 th:text="${ouvrage.getLivre().getTitre()}"></h6></td>
                                                     <td class="align-middle text-center" ><h6 th:text="${#temporals.format(abonnePret.listePret[inter2.index].getDateDeRestitution(), 'dd-MM-yyyy')}"></h6></td>
-                                                    <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter2.index].getStatus()}"></h6></td>
+                                                    <td class="align-middle text-center" ><h6 th:text="${abonnePret.listePret[inter2.index].getStatut()}"></h6></td>
                                                     <td class="align-middle text-center" ><input class="form-check-input" type="radio" th:value="${abonnePret.listePret[inter2.index].getIdPret()}" name="pretProlongation" th:disabled="${abonnePret.listePret[inter2.index].isRendu() == true || abonnePret.listePret[inter2.index].isProlongation()}"></td>
                                                 </tr>
                                             </tbody>

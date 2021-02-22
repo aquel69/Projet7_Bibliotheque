@@ -19,6 +19,20 @@ body{
     background-color: #83ece4;
 }
 
+/*fenêtre*/
+.titre_livre_fenetre{
+    font-size: 0.8em;
+}
+
+#table_fenetre{
+    overflow-x: auto;
+}
+
+#modal .modal-dialog .modal-content{
+    background-color: #c4dae2;
+
+}
+
 /*Lien*/
 .lien_livre{
     text-decoration:none;

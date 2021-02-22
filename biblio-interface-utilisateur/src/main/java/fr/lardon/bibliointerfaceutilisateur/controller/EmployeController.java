@@ -23,6 +23,9 @@ public class EmployeController {
     private Ouvrage ouvrage = null;
     private int codeRole = 5;
     private boolean isRestitue;
+    private  String message = null;
+    private  String messageRestitution = null;
+
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
@@ -59,19 +62,19 @@ public class EmployeController {
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
     public String emprunt(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
 
+
         //attibution de la date d'emprunt
         LocalDateTime localDateTime = LocalDateTime.now();
 
         if(!verificationOuvrageExistant(ouvrage) || !verificationAbonneExistant(abonne)){
             //ajout erreur
-            String message = "L'ouvrage ou l'abonné ne sont pas existant";
+            message = "L'ouvrage ou l'abonné ne sont pas existant";
 
             //ajout dans le model
-            model.addAttribute("messageErreur", message);
+            model.addAttribute("message", message);
             ajoutDansLeModel(model);
 
-            this.ouvrage.setCodeBibliotheque("");
-            this.abonne.setNumeroAbonne("");
+            effacementDesChampsDeSaisies();
 
             return "Employe";
         }
@@ -84,13 +87,13 @@ public class EmployeController {
 
         if(verificationDEmpruntIdentique(ouvrage)){
             //ajout erreur
-            String message = "L'ouvrage est déjà emprunté par cet abonné";
+            message = "L'ouvrage est déjà emprunté par cet abonné";
 
             //ajout dans le model
-            model.addAttribute("messageErreur", message);
+            model.addAttribute("message", message);
             ajoutDansLeModel(model);
 
-            this.ouvrage.setCodeBibliotheque("");
+            effacementDesChampsDeSaisies();
 
             return "Employe";
         }
@@ -98,18 +101,22 @@ public class EmployeController {
         //alimentation de l'objet prêt
         pret.setDateDEmprunt(localDateTime);
         pret.setDateDeRestitution(localDateTime.plusMonths(1));
+        pret.setStatutPriorite("4");
         pret.setProlongation(false);
         pret.setOuvragePret(this.ouvrage);
         pret.setAbonnePret(this.abonne);
-        pret.setStatus("non prolongé");
+        pret.setStatut("non prolongé");
 
         //sauvegarder le prêt
         livresProxy.sauvegarderPret(pret);
 
-        //permet d'empêcher le remplissage des champs automatiquement après validation
-        this.ouvrage.setCodeBibliotheque("");
-        this.abonne.setNumeroAbonne("");
+        effacementDesChampsDeSaisies();
 
+        //ajout message validation emprunt
+        message = "Le livre " + this.ouvrage.getLivre().getTitre() + " emprunté par " + this.abonne.getPrenom() + this.abonne.getNom() + " est enregistré";
+
+        //ajout dans le model
+        model.addAttribute("message", message);
         ajoutDansLeModel(model);
 
         return "Employe";
@@ -124,14 +131,13 @@ public class EmployeController {
 
         if(!verificationOuvrageExistant(ouvrage) || !verificationAbonneExistant(abonne)){
             //ajout erreur
-            String message = "L'ouvrage ou l'abonné ne sont pas existant";
+            messageRestitution = "L'ouvrage ou l'abonné ne sont pas existant";
 
             //ajout dans le model
-            model.addAttribute("messageErreurRestitution", message);
+            model.addAttribute("messageRestitution", messageRestitution);
             ajoutDansLeModel(model);
 
-            this.ouvrage.setCodeBibliotheque("");
-            this.abonne.setNumeroAbonne("");
+            effacementDesChampsDeSaisies();
 
             return "Employe";
         }
@@ -150,30 +156,37 @@ public class EmployeController {
 
         if(isRestitue) {
             //ajout validation
-            String message = "L'ouvrage a été restitué";
+            messageRestitution = "L'ouvrage a été restitué";
 
             //ajout dans le model
-            model.addAttribute("messageValidation", message);
+            model.addAttribute("messageRestitution", messageRestitution);
             ajoutDansLeModel(model);
 
         }else{
             //ajout erreur
-            String message = "L'ouvrage n'a pas pu être restitué";
+            messageRestitution = "L'ouvrage n'a pas pu être restitué";
 
             //ajout dans le model
-            model.addAttribute("messageErreurRestitution", message);
+            model.addAttribute("messageRestitution", messageRestitution);
             ajoutDansLeModel(model);
         }
 
-        //permet d'empêcher le remplissage des champs automatiquement après validation
-        this.ouvrage.setCodeBibliotheque("");
-        this.abonne.setNumeroAbonne("");
+        effacementDesChampsDeSaisies();
 
+        /*model.addAttribute("messageRestitution", messageRestitution);*/
         ajoutDansLeModel(model);
 
         return "Employe";
     }
 
+    /**
+     * permet d'empêcher le remplissage des champs automatiquement après validation
+     */
+    private void effacementDesChampsDeSaisies(){
+
+        this.ouvrage.setCodeBibliotheque("");
+        this.abonne.setNumeroAbonne("");
+    }
 
     private boolean verificationOuvrageExistant(Ouvrage ouvrage){
         //Récupération de la liste des ouvrages
@@ -228,7 +241,9 @@ public class EmployeController {
                 PretAModifie pretAModifie = livresProxy.pretAModifieSelonSonId(pretDeLaListe.getIdPret());
 
                 //modification du prêt
-                pretAModifie.setStatus("Rendu");
+                pretAModifie.setStatut("Rendu");
+                pretAModifie.setStatutPriorite("5");
+                pretAModifie.setProlongation(true);
                 pretAModifie.setRendu(true);
                 pretAModifie.setDateDeRestitution(localDateTime);
                 pretAModifie.setDateDEmprunt(pretDeLaListe.getDateDEmprunt());
@@ -243,6 +258,7 @@ public class EmployeController {
     }
 
     public void ajoutDansLeModel(Model model){
+
         model.addAttribute("ouvrage", this.ouvrage);
         model.addAttribute("abonne", this.abonne);
         model.addAttribute("codeRole", this.codeRole);

@@ -26,7 +26,12 @@ public class Pret {
     /**
      * status de l'emprunt
      */
-    private String status;
+    private String statut;
+
+    /**
+     * status de l'emprunt
+     */
+    private String statutPriorite;
 
     /**
      * l'abonné a le droit de prolonger l'ouvrage emprunté une fois

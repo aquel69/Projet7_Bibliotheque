@@ -43,7 +43,14 @@ public class PretAModifie {
     /**
      * status de l'emprunt
      */
-    @Column(name="status")
-    private String status;
+    @Column(name="statut")
+    private String statut;
+
+    /**
+     * status de l'emprunt
+     */
+    @NonNull
+    @Column(name="statut_priorite")
+    private String statutPriorite;
 
 }
