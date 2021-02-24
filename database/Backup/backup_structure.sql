@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2021-02-08 19:59:43
+-- Started on 2021-02-24 17:49:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -470,7 +470,8 @@ CREATE TABLE public.ouvrage (
     id_ouvrage numeric NOT NULL,
     code_bibliotheque character varying NOT NULL,
     id_livre numeric NOT NULL,
-    date_ajout date NOT NULL
+    date_ajout date NOT NULL,
+    nombre_exemplaires numeric NOT NULL
 );
 
 
@@ -511,7 +512,10 @@ CREATE TABLE public.pret (
     date_restitution date NOT NULL,
     prolongation boolean NOT NULL,
     id_ouvrage numeric NOT NULL,
-    id_abonne numeric NOT NULL
+    id_abonne numeric NOT NULL,
+    statut character varying NOT NULL,
+    rendu boolean NOT NULL,
+    statut_priorite character varying NOT NULL
 );
 
 
@@ -904,7 +908,7 @@ ALTER TABLE ONLY public.pret
     ADD CONSTRAINT ouvrage_pret_fk FOREIGN KEY (id_ouvrage) REFERENCES public.ouvrage(id_ouvrage);
 
 
--- Completed on 2021-02-08 19:59:44
+-- Completed on 2021-02-24 17:49:02
 
 --
 -- PostgreSQL database dump complete

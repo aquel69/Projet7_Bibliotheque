@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2021-02-08 20:00:42
+-- Started on 2021-02-24 17:49:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,46 +24,13 @@ SET row_security = off;
 -- Data for Name: adresse; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (1, '25', 'rue Oreste Zenezini', NULL, '69680', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (3, '78', 'Route de Lyon', NULL, '69680', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (5, '65', 'rue Victor Hugo', 'Au fond de l''impasse', '69680', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (2, '36', 'rue de la république', 'derrière la maison 35', '69680', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (4, '58', 'chemin du trèves', NULL, '69680', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (6, '24', 'chemin de la coupe', '', '69580', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (7, '56', 'rue de l''égalité', '', '69580', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (8, '56', 'rue de l''égalité', '', '69130', 'ecully');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (9, '56', 'rue de l''égalité', '', '69130', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (10, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (11, '56', 'rue de l''égalité', '', '69580', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (12, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (13, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (14, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (15, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (16, '56', 'rue des marronier', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (17, '56', 'rue des marronier', '', '69580', 'Gotham');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (18, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (19, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (20, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (21, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (22, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (23, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (24, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (26, '56', 'rue des marronier', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (27, '56', 'rue des marronier', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (28, '56', 'rue des marronier', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (29, '56', 'rue de l''égalité', '', '69130', 'ec');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (25, '56', 'rue de l''égalité', 'tout en haut', '69130', 'ecully');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (30, '56', 'rue de l''égalité', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (31, '', '', '', '', '');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (32, '', '', '', '', '');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (33, '', '', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (34, '', '', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (35, '', '', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (36, '', '', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (37, '56', 'rue de l''égalité', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (38, '15', 'rue de l''égalité', '', '38200', 'Serpaize');
-INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (39, '15', 'rue de l''égalité', 'tout en bas', '69130', 'Ecully');
 INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (40, '15', 'chemin de la coupe', '', '38200', 'Serpaize');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (41, '15', 'rue des marroniers', '', '69130', 'ecully');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (39, '15', 'rue de l''égalité', 'tout en haut', '69130', 'Ecully');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (1, '25', 'rue du manoir', NULL, 'NJ 12345', 'Gotham');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (4, '58', 'chemin du comics', NULL, 'NJ 12345', 'Gotham');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (2, '36', 'rue d''Arkham', 'derrière la maison 35', 'NJ 12345', 'Gotham');
+INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, ville) VALUES (3, '78', 'Route du GCPD', NULL, 'NJ 12345', 'Gotham');
 
 
 --
@@ -72,9 +39,9 @@ INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, vi
 -- Data for Name: bibliotheque; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200177', 'Bibliothèque Molière', 'AEZ', 1);
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200568', 'Bibliothèque Victor Hugo', 'AFB', 3);
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200356', 'Bibliothèque Emile Zola', 'AFA', 2);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200356', 'Bibliothèque Robin', 'AFA', 2);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200177', 'Bibliothèque Bruce Wayne', 'AEZ', 1);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200568', 'Bibliothèque Alfred', 'AFB', 3);
 
 
 --
@@ -96,9 +63,9 @@ INSERT INTO public.enumrole (code, status, description) VALUES (5, 'Employé', '
 -- Data for Name: abonne; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (1, 'Dujardin', 'Jean', 'Jeannot', 'dujardin.jean@gmail.com', '1234', '456132245', '2018-12-14', 1, 5, '18004625200177');
 INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (34, 'Lardon', 'Alexandre', 'alouadmin', 'alexandre.lardon@yahoo.com', '$2a$12$ZJXF.1iQ9yEfZDZh1PTvGuOBCFhQYd/B4XsGA6lhSCg.ozlny7LM2', '456132246', '2021-01-26', 1, 39, '18004625200177');
 INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (35, 'Bertrand', 'François', 'beber', 'bertrandfrancois@gmail.com', '$2a$12$Y5cLuwAaLVO8lk7dotuA4OBg8thmJeuNMaZgOoGDwbDxDvwItY1YW', '456132247', '2021-02-05', 1, 40, '18004625200177');
+INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (36, 'Lardon', 'Alexandre', 'alouadmin2', 'alexandre.lardon@gmail.com', '$2a$12$Gm6Xj9YsN4flAJ8hd1xaBeuKgfDJKF/EI57AiPHj0IdbjVvRfNZqu', '456132248', '2021-02-15', 1, 41, '18004625200177');
 
 
 --
@@ -307,23 +274,23 @@ INSERT INTO public.livre_auteurs (id_livre_auteur, id_livre, id_auteur) VALUES (
 -- Data for Name: ouvrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (1, 'AEZCON1355', 1, '2016-08-10');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (3, 'AEZCON855', 3, '2018-12-20');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (2, 'AEZROM565', 2, '2019-12-19');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (11, 'AEZGAS341', 11, '2021-01-06');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (12, 'AEZROM558', 12, '2020-12-20');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (13, 'AEZHOR331', 13, '2021-01-02');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (14, 'AEZDEV150', 14, '2021-01-01');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (15, 'AEZGAS342', 15, '2021-01-08');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (16, 'AEZMAN117', 16, '2021-01-01');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (17, 'AEZDEV151', 17, '2021-01-14');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (4, 'AEZMEM058', 4, '2018-12-21');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (8, 'AEZSFI198', 8, '2018-12-25');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (6, 'AEZROM595', 6, '2018-12-23');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (9, 'AEZFAN698', 9, '2018-12-26');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (7, 'AEZBAN432', 7, '2018-12-24');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (10, 'AEZBAN458', 10, '2018-12-27');
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout) VALUES (5, 'AEZDEV98', 5, '2018-12-22');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (13, 'AEZHOR331', 13, '2021-01-02', 3);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (10, 'AEZBAN458', 10, '2018-12-27', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (16, 'AEZMAN117', 16, '2021-01-01', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (3, 'AEZCON855', 3, '2018-12-20', 2);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (9, 'AEZFAN698', 9, '2018-12-26', 3);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (5, 'AEZDEV98', 5, '2018-12-22', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (14, 'AEZDEV150', 14, '2021-01-01', 2);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (12, 'AEZROM558', 12, '2020-12-20', 2);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (15, 'AEZGAS342', 15, '2021-01-08', 4);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (11, 'AEZGAS341', 11, '2021-01-06', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (6, 'AEZROM595', 6, '2018-12-23', 0);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (1, 'AEZCON1355', 1, '2016-08-10', 2);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (8, 'AEZSFI198', 8, '2018-12-25', 0);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (7, 'AEZBAN432', 7, '2018-12-24', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (4, 'AEZMEM058', 4, '2018-12-21', 4);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (17, 'AEZDEV151', 17, '2021-01-14', 0);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (2, 'AEZROM565', 2, '2019-12-19', 1);
 
 
 --
@@ -332,17 +299,21 @@ INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout)
 -- Data for Name: pret; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (41, '2021-02-03', '2021-03-03', false, 1, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (35, '2021-01-31', '2021-02-28', false, 1, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (2, '2020-12-04', '2021-02-28', false, 2, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (42, '2021-02-03', '2021-03-03', false, 14, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (46, '2021-02-03', '2021-03-03', false, 14, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (1, '2020-12-04', '2021-02-28', false, 1, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (40, '2021-02-03', '2021-03-03', false, 14, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (45, '2021-02-03', '2021-03-03', false, 14, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (43, '2021-02-03', '2021-03-03', false, 14, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (36, '2021-02-01', '2021-02-28', false, 1, 34);
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne) VALUES (39, '2021-02-03', '2021-03-03', false, 1, 34);
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (69, '2021-02-22', '2021-02-25', true, 17, 34, 'A rendre', false, '1');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (78, '2021-02-22', '2021-02-24', true, 15, 34, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (80, '2021-02-24', '2021-02-24', true, 11, 34, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (82, '2021-02-24', '2021-03-24', false, 1, 35, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (83, '2021-02-24', '2021-03-24', false, 2, 35, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (86, '2021-02-24', '2021-04-24', true, 8, 35, 'Prolongation', false, '3');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (85, '2021-02-24', '2021-02-24', true, 7, 35, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (84, '2021-02-24', '2021-02-24', true, 4, 35, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (87, '2021-02-24', '2021-03-24', false, 17, 35, 'non prolongé', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (88, '2021-02-24', '2021-03-24', false, 2, 34, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (68, '2021-02-22', '2021-03-02', false, 3, 34, 'Dernière semaine', false, '2');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (67, '2021-02-21', '2021-04-21', true, 1, 34, 'Prolongation', false, '3');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (70, '2021-02-22', '2021-03-22', false, 9, 34, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (72, '2021-02-22', '2021-02-21', true, 16, 34, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (71, '2021-02-22', '2021-02-22', true, 5, 34, 'A rendre', false, '1');
 
 
 --
@@ -351,7 +322,7 @@ INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, 
 -- Name: abonne_id_abonne_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.abonne_id_abonne_seq', 35, true);
+SELECT pg_catalog.setval('public.abonne_id_abonne_seq', 36, true);
 
 
 --
@@ -360,7 +331,7 @@ SELECT pg_catalog.setval('public.abonne_id_abonne_seq', 35, true);
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.adresse_id_seq', 40, true);
+SELECT pg_catalog.setval('public.adresse_id_seq', 41, true);
 
 
 --
@@ -423,7 +394,7 @@ SELECT pg_catalog.setval('public.id_adresse', 51, true);
 -- Name: liste_genre_id_liste_genre_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.liste_genre_id_liste_genre_seq', 1, false);
+SELECT pg_catalog.setval('public.liste_genre_id_liste_genre_seq', 11, true);
 
 
 --
@@ -432,7 +403,7 @@ SELECT pg_catalog.setval('public.liste_genre_id_liste_genre_seq', 1, false);
 -- Name: livre_auteurs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.livre_auteurs_id_seq', 1, true);
+SELECT pg_catalog.setval('public.livre_auteurs_id_seq', 3, true);
 
 
 --
@@ -468,10 +439,10 @@ SELECT pg_catalog.setval('public.pret_abonne_id_pret_abonne_seq', 2, false);
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_id_pret_seq', 46, true);
+SELECT pg_catalog.setval('public.pret_id_pret_seq', 88, true);
 
 
--- Completed on 2021-02-08 20:00:43
+-- Completed on 2021-02-24 17:49:50
 
 --
 -- PostgreSQL database dump complete

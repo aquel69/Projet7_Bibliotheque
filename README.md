@@ -46,7 +46,7 @@ Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de donné
 ![photo 1 fichier properties abonné](documentation/screenshots/installation_du_projet_2.png "fichier properties abonné")
 
 
-### 4 - Connection employé  
+### 4 - Connexions utilisateurs  
 
 ---
 
