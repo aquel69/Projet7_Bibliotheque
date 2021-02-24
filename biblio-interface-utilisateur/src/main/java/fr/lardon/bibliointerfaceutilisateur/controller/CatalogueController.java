@@ -39,6 +39,7 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
+        livres = new ArrayList<>();
 
         //récupération du message
         String message = (String) model.getAttribute("message");
@@ -54,7 +55,14 @@ public class CatalogueController {
         }
 
         //récupération du top 10
-        livres = livresProxy.topLivre();
+        List<Ouvrage> ouvragesTop;
+        ouvragesTop = livresProxy.listeOuvrageSelonNombreDEmprunt();
+        for(Ouvrage ouvrage : ouvragesTop){
+            System.out.println(ouvrage.toString());
+            livres.add(ouvrage.getLivre());
+        }
+
+        /*livres = livresProxy.topLivre();*/
         livreTop = new ArrayList<>(livres.subList(0, 10));
 
         //récupération des nouveautés

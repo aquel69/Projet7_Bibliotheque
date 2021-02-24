@@ -41,15 +41,17 @@ public class LivreController {
     ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
-     * renvoi la liste des livres en fonction de leurs nombre de fois qu'ils ont été empruntés
+     * renvoi la liste des ouvrages en fonction de leurs nombre de fois qu'ils ont été empruntés
      * @return
      */
     @GetMapping(value = "/Top")
-    public List<Livre> topLivre(){
-        List<Livre> livres = daoLivre.listeLivreTop();
+    public List<Ouvrage> listeOuvrageSelonNombreDEmprunt(){
+        List<Ouvrage> ouvrages = daoOuvrage.listeOuvrageSelonNombreDEmprunt();
 
-        return livres;
+        return ouvrages;
     }
+
+
 
     @GetMapping(value = "/ListeOuvrage")
     public List<Ouvrage> listeDesOuvrages(){

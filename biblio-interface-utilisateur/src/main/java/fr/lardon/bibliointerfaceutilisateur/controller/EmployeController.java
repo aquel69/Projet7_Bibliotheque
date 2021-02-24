@@ -129,7 +129,7 @@ public class EmployeController {
         effacementDesChampsDeSaisies();
 
         //ajout message validation emprunt
-        message = "Le livre " + this.ouvrage.getLivre().getTitre() + " emprunté par " + this.abonne.getPrenom() + this.abonne.getNom() + " est enregistré";
+        message = "Le livre '" + this.ouvrage.getLivre().getTitre()  + "' emprunté par '" + this.abonne.getPrenom()  + " " + this.abonne.getNom() + "' est enregistré";
 
         //ajout dans le model
         model.addAttribute("message", message);
@@ -171,7 +171,7 @@ public class EmployeController {
 
         if(isRestitue) {
             //ajout validation
-            messageRestitution = "L'ouvrage a été restitué";
+            messageRestitution = "L'ouvrage '" + this.ouvrage.getLivre().getTitre() + "' emprunté par '" + this.abonne.getPrenom()  + " " + this.abonne.getNom() + "' a été restitué";
 
             //ajout dans le model
             model.addAttribute("messageRestitution", messageRestitution);

@@ -30,7 +30,7 @@ public class GestionUtilisateurController {
     private BCryptPasswordEncoder bCryptPasswordMatche;
     private Abonne abonne = null;
     private Abonne abonneSecurisation = null;
-    AbonnePretOuvrage abonnePret = null;
+    private AbonnePretOuvrage abonnePret = null;
     private Adresse adresse = new Adresse();
     private Bibliotheque bibliotheque = null;
     private Role role = null;
