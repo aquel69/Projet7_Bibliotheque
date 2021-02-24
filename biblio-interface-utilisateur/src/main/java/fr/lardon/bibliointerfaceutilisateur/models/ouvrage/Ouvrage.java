@@ -14,19 +14,21 @@ public class Ouvrage {
     /**
      * date d'ajout de l'ouvrage'
      */
-
     private Date dateAjoutOuvrage;
 
     /**
      * code bibliothèque de l'ouvrage
      */
-
     private String codeBibliotheque;
+
+    /**
+     * nombre d'exemplaire de l'ouvrage
+     */
+    private int nombreExemplaires;
 
     /**
      * Livre
      */
-
     private Livre livre;
 
     /**

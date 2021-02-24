@@ -130,13 +130,18 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
     public String detailLivre(@PathVariable int id, Model model){
+        Ouvrage ouvrage = new Ouvrage();
 
         //récuperation du livre en fonction de son id
         Livre livre = livresProxy.recupererUnLivre(id);
         //liste des auteurs correspondant au livre
         List<Auteur> auteurs = livre.getAuteurs();
 
+        ouvrage = livresProxy.recupererUnOuvrageSelonIdLivre(id);
+
+
         //ajout dans le model
+        model.addAttribute("ouvrage", ouvrage);
         model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);

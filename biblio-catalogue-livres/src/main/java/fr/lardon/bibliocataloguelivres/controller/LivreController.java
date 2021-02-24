@@ -35,6 +35,9 @@ public class LivreController {
     DaoPretAModifie daoPretAModifie;
 
     @Autowired
+    DaoOuvrageAModifie daoOuvrageAModifie;
+
+    @Autowired
     ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
@@ -108,7 +111,7 @@ public class LivreController {
     }
 
     /**
-     * récupérer un livre en fontion de son id
+     * récupérer un livre en fonction de son id
      * @param id
      * @return
      */
@@ -117,6 +120,18 @@ public class LivreController {
         Livre livre = daoLivre.findById(id).get();
 
         return livre;
+    }
+
+    /**
+     * récupérer un ouvrage en fonction de l'id du livre
+     * @param id
+     * @return
+     */
+    @GetMapping( value = "/OuvrageSelonIdLivre/{id}")
+    public Ouvrage recupererUnOuvrageSelonIdLivre(@PathVariable int id) {
+        Ouvrage ouvrage = daoOuvrage.findById(id).get();
+
+        return ouvrage;
     }
 
     /**
@@ -137,6 +152,15 @@ public class LivreController {
     @PostMapping(value = "/AjouterPret")
     public void ajouterPret(@RequestBody Pret pret) {
         daoPret.save(pret);
+    }
+
+    /**
+     * ajouter un prêt dans la base de données
+     * @param pret
+     */
+    @PostMapping(value = "/SauvegarderOuvrage")
+    public void sauvegarderOuvrage(@RequestBody OuvrageAModifie ouvrageAModifie) {
+        daoOuvrageAModifie.save(ouvrageAModifie);
     }
 
     /**

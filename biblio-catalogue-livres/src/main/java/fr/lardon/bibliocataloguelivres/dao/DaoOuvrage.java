@@ -15,6 +15,9 @@ public interface DaoOuvrage extends JpaRepository<Ouvrage, Integer> {
 
     Ouvrage findByCodeBibliotheque(String codeBibliotheque);
 
+    @Query(value = "SELECT * FROM ouvrage WHERE id_livre = ?", nativeQuery = true)
+    Ouvrage recupererUnOuvrageSelonIdLivre(int idLivre);
+
 
 
 }

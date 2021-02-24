@@ -1,15 +1,9 @@
 package fr.lardon.bibliocataloguelivres.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -37,9 +31,16 @@ public class Ouvrage {
     /**
      * code bibliothèque de l'ouvrage
      */
-
+    @NonNull
     @Column(name = "code_bibliotheque")
     private String codeBibliotheque;
+
+    /**
+     * nombre d'exemplaire de l'ouvrage
+     */
+    @NonNull
+    @Column(name = "nombre_exemplaires")
+    private int nombreExemplaires;
 
     /**
      * Livre

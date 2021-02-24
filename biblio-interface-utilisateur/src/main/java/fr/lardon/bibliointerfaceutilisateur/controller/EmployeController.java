@@ -21,6 +21,7 @@ public class EmployeController {
     private Pret pret;
     private Abonne abonne = null;
     private Ouvrage ouvrage = null;
+    private OuvrageAModifie ouvrageAModifie = null;
     private int codeRole = 5;
     private boolean isRestitue;
     private  String message = null;
@@ -43,6 +44,7 @@ public class EmployeController {
         utilisateurAuthentifie = new Abonne();
         pret = new Pret();
         ouvrage = new Ouvrage();
+        ouvrageAModifie = new OuvrageAModifie();
         abonne = new Abonne();
 
         utilisateurAuthentifie.setPseudo("Régis");
@@ -62,7 +64,6 @@ public class EmployeController {
     @RequestMapping(value = "/Emprunt", method = RequestMethod.POST)
     public String emprunt(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
 
-
         //attibution de la date d'emprunt
         LocalDateTime localDateTime = LocalDateTime.now();
 
@@ -73,7 +74,6 @@ public class EmployeController {
             //ajout dans le model
             model.addAttribute("message", message);
             ajoutDansLeModel(model);
-
             effacementDesChampsDeSaisies();
 
             return "Employe";
@@ -92,7 +92,6 @@ public class EmployeController {
             //ajout dans le model
             model.addAttribute("message", message);
             ajoutDansLeModel(model);
-
             effacementDesChampsDeSaisies();
 
             return "Employe";
@@ -106,6 +105,23 @@ public class EmployeController {
         pret.setOuvragePret(this.ouvrage);
         pret.setAbonnePret(this.abonne);
         pret.setStatut("non prolongé");
+
+        //reajustement du nombre d'exemplaires et sauvegarde de l'ouvrage
+        if(this.ouvrage.getNombreExemplaires() > 0) {
+            ouvrageAModifie.setNombreExemplaires(this.ouvrage.getNombreExemplaires() - 1);
+            ouvrageAModifie.setIdOuvrage(this.ouvrage.getIdOuvrage());
+            livresProxy.sauvegarderOuvrage(ouvrageAModifie);
+        }else{
+            //ajout erreur
+            message = "Il n'y a plus d'ouvrage disponible";
+
+            //ajout dans le model
+            model.addAttribute("message", message);
+            effacementDesChampsDeSaisies();
+            ajoutDansLeModel(model);
+
+            return "Employe";
+        }
 
         //sauvegarder le prêt
         livresProxy.sauvegarderPret(pret);
@@ -136,7 +152,6 @@ public class EmployeController {
             //ajout dans le model
             model.addAttribute("messageRestitution", messageRestitution);
             ajoutDansLeModel(model);
-
             effacementDesChampsDeSaisies();
 
             return "Employe";
@@ -169,7 +184,15 @@ public class EmployeController {
             //ajout dans le model
             model.addAttribute("messageRestitution", messageRestitution);
             ajoutDansLeModel(model);
+            effacementDesChampsDeSaisies();
+
+            return "Employe";
         }
+
+        //reajustement du nombre d'exemplaires et sauvegarde de l'ouvrage
+        ouvrageAModifie.setNombreExemplaires(this.ouvrage.getNombreExemplaires() + 1);
+        ouvrageAModifie.setIdOuvrage(this.ouvrage.getIdOuvrage());
+        livresProxy.sauvegarderOuvrage(ouvrageAModifie);
 
         effacementDesChampsDeSaisies();
 
@@ -178,6 +201,7 @@ public class EmployeController {
 
         return "Employe";
     }
+
 
     /**
      * permet d'empêcher le remplissage des champs automatiquement après validation
@@ -188,7 +212,7 @@ public class EmployeController {
         this.abonne.setNumeroAbonne("");
     }
 
-    private boolean verificationOuvrageExistant(Ouvrage ouvrage){
+    public boolean verificationOuvrageExistant(Ouvrage ouvrage){
         //Récupération de la liste des ouvrages
         List<Ouvrage> ouvrageList;
         ouvrageList = livresProxy.listeDesOuvrages();
@@ -201,7 +225,7 @@ public class EmployeController {
         return false;
     }
 
-    private boolean verificationAbonneExistant(Abonne abonne){
+    public boolean verificationAbonneExistant(Abonne abonne){
         //Récupération de la liste des abonnés
         List<Abonne> abonneList;
         abonneList = gestionUtilisateur.listeAbonnes();
@@ -214,7 +238,7 @@ public class EmployeController {
         return false;
     }
 
-    private boolean verificationDEmpruntIdentique(Ouvrage ouvrage) {
+    public boolean verificationDEmpruntIdentique(Ouvrage ouvrage) {
         AbonnePretOuvrage abonnePretOuvrage;
         List<Ouvrage> ouvrageList;
         List<Pret> pretList;
