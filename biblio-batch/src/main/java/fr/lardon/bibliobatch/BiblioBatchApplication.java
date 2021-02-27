@@ -1,13 +1,11 @@
 package fr.lardon.bibliobatch;
 
+import fr.lardon.bibliobatch.configuration.FreemarkerConfig;
 import fr.lardon.bibliobatch.controller.BatchController;
 import fr.lardon.bibliobatch.dao.DaoAbonnePret;
 import fr.lardon.bibliobatch.dao.DaoOuvrage;
 import fr.lardon.bibliobatch.dao.DaoPret;
-import fr.lardon.bibliobatch.model.AbonnePretOuvrage;
-import fr.lardon.bibliobatch.model.Mail;
-import fr.lardon.bibliobatch.model.Ouvrage;
-import fr.lardon.bibliobatch.model.Pret;
+import fr.lardon.bibliobatch.model.*;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -36,23 +34,25 @@ public class BiblioBatchApplication implements CommandLineRunner {
 	Ouvrage ouvrage;
 	Mail mail;
 	List<Pret> pretList;
+	List<AbonnePret> abonnePretList;
 	Pret pretAEnvoyer;
 	String logo = null;
+	String typeEmail = null;
 
 	@Autowired
 	private JavaMailSender javaMailSender;
 
 	@Autowired
-	DaoAbonnePret daoAbonnePret;
+	private DaoAbonnePret daoAbonnePret;
 
 	@Autowired
-	DaoOuvrage daoOuvrage;
+	private DaoOuvrage daoOuvrage;
 
 	@Autowired
-	DaoPret daoPret;
+	private DaoPret daoPret;
 
 	@Autowired
-	BatchController batchController;
+	private BatchController batchController;
 
 	@Autowired
 	private Configuration freemarkerConfig;
@@ -72,31 +72,40 @@ public class BiblioBatchApplication implements CommandLineRunner {
 		ouvrage = new Ouvrage();
 		mail = new Mail();
 		pretAEnvoyer = new Pret();
-		logo = "static/logo/gotham.png";
 
-		abonnePretOuvrage = batchController.abonnePretSelonSonId(34);
-		pretList = abonnePretOuvrage.getListePret();
+		//récuperation de tous les abonnés
+		abonnePretList = daoAbonnePret.findAll();
 
-		System.out.println(abonnePretOuvrage);
+		for(AbonnePret abonnePret : abonnePretList){
+			abonnePretOuvrage = batchController.abonnePretSelonSonId(abonnePret.getIdAbonne());
+			pretList = abonnePretOuvrage.getListePret();
 
-		//récupération de l'ouvrage
-		ouvrage = daoOuvrage.findByCodeBibliotheque("AEZCON1355");
+			for(Pret pret : pretList){
+				//envoi de l'email
+				if(pret.getStatutPriorite() == "1" || pret.getStatutPriorite() == "2") {
+					System.out.println("getttttt statussssss" + pret.getAbonnePret().getIdAbonne() + "   " + pret.getStatutPriorite());
+					//type d'email à envoyé
+					if(pret.getStatutPriorite() == "2"){
+						typeEmail = "Email.ftl";
+					}else if(pret.getStatutPriorite() == "1"){
+						typeEmail = "EmailRappel.ftl";
+					}
 
-		for(Pret pret : pretList){
-			if(pret.getIdPret() == 69){
-				pretAEnvoyer = pret;
+					pretAEnvoyer = pret;
+
+					//récupération de l'ouvrage
+					ouvrage = daoOuvrage.findByCodeBibliotheque(pretAEnvoyer.getOuvragePret().getCodeBibliotheque());
+
+					/*mail.setFrom("no-reply@memorynotfound.com");*/
+					mail.setTo(abonnePretOuvrage.getAbonne().getEmail());
+					mail.setSubject("Rappel de restitution du livre '" + ouvrage.getLivre().getTitre() + "'");
+					mail.setOuvrage(ouvrage);
+					mail.setPret(pretAEnvoyer);
+
+					envoiEmail(mail);
+				}
 			}
 		}
-
-		/*mail.setFrom("no-reply@memorynotfound.com");*/
-		mail.setTo("alexandre.lardon@yahoo.fr");
-		mail.setSubject("Rappel de restitution du livre " + ouvrage.getLivre().getTitre());
-		mail.setOuvrage(ouvrage);
-		mail.setPret(pretAEnvoyer);
-		mail.setLogo(logo);
-
-		envoiEmail(mail);
-
 		System.out.println("Done");
 	}
 
@@ -108,7 +117,7 @@ public class BiblioBatchApplication implements CommandLineRunner {
 
 		helper.addAttachment("logo.png", new ClassPathResource("static/logo/Logo_bibliothèque.png"));
 
-		Template template = freemarkerConfig.getTemplate("Email.ftl");
+		Template template = freemarkerConfig.getTemplate(typeEmail);
 		String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, mail);
 
 		helper.setTo(mail.getTo());

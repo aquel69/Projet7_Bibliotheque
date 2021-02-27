@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -155,6 +156,13 @@ public class BatchController {
         AbonnePret abonnePret = daoAbonnePret.findByNumeroAbonne(numeroAbonne);
 
         return abonnePret;
+    }
+
+    @GetMapping(value = "/ListeAbonnePret")
+    public List<AbonnePret> recupererLaListeDesAbonnes(){
+        List<AbonnePret> abonnePretsList = daoAbonnePret.findAll();
+
+        return abonnePretsList;
     }
 
     @GetMapping(value = "/PretsSelonAbonne/{id}")

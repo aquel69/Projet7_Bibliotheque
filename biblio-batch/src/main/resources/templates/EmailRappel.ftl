@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <head>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="src/main/resources/static/css/styleEmail.css">
+    <link rel="stylesheet" type="text/css" href="/css/styleEmail.css">
 </head>
 <body>
 
@@ -15,8 +15,8 @@
         <td>
             <p>Chèr(e) abonné(e),</p>
             <p><br>Nous vous rapellons que vous avez emprunté '${pret.ouvragePret.livre.titre}' en date du <strong>${(pret.dateDEmprunt).format('dd-MM-yyyy')}</strong>.</p>
-            <p>La période d'emprunt étant arrivé à terme le <strong>${(pret.dateDeRestitution).format('dd-MM-yyyy')}</strong>.</p>
-            <p>Nous vous invitons à ramener l'ouvrage rapidement afin que d'autres lecteurs puissent en bénéficier.</p>
+            <p>La période d'emprunt arrive bientôt à son terme le <strong>${(pret.dateDeRestitution).format('dd-MM-yyyy')}</strong>.</p>
+            <p>Pensez à le prolonger ou à nous le ramener.</p>
             <p><br>Merci de votre compréhension et à bientôt.</p>
         </td>
     </tr>

@@ -50,7 +50,7 @@ public class ServiceAbonnePretOuvrage {
             }else if(chrono > 14 && pret.isRendu() == false && pret.isProlongation() ==true){
                 pret.setStatut("Prolongation");
                 pret.setStatutPriorite("3");
-            }else if(chrono <= 7 && chrono == 1 && pret.isRendu() == false){
+            }else if(chrono <= 7 && chrono >= 1 && pret.isRendu() == false){
                 pret.setStatut("Dernière semaine");
                 pret.setStatutPriorite("2");
             }else if(chrono <= 0 && pret.isRendu() == false ){
@@ -59,6 +59,8 @@ public class ServiceAbonnePretOuvrage {
                 pret.setProlongation(true);
             }
         }
+
+
 
         /*//mise en ordre de la liste des prêts
         for(Pret pret : listePret){

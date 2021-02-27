@@ -36,11 +36,13 @@ public class ServiceAbonnePretOuvrage {
         //ajout des prêt dans la liste d'ouvrage
         for(Pret pret : listePret){
             listeOuvrage.add(pret.getOuvragePret());
+            System.out.println(pret.getIdPret());
         }
 
         //changement du status suivant la période
         for(Pret pret : listePret){
             long chrono = ChronoUnit.DAYS.between(localDateTime, pret.getDateDeRestitution());
+            System.out.println("chrono = " + chrono);
             if(pret.isRendu() == true){
                 pret.setStatut("Rendu");
                 pret.setStatutPriorite("5");
@@ -50,7 +52,7 @@ public class ServiceAbonnePretOuvrage {
             }else if(chrono > 14 && pret.isRendu() == false && pret.isProlongation() ==true){
                 pret.setStatut("Prolongation");
                 pret.setStatutPriorite("3");
-            }else if(chrono <= 7 && chrono == 1 && pret.isRendu() == false){
+            }else if(chrono <= 7 && chrono >= 1 && pret.isRendu() == false){
                 pret.setStatut("Dernière semaine");
                 pret.setStatutPriorite("2");
             }else if(chrono <= 0 && pret.isRendu() == false ){

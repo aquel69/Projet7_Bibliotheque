@@ -1,6 +1,7 @@
 package fr.lardon.bibliobatch.model;
 
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class Pret {
      * date d'emprunt
      */
     @NonNull
+    @LastModifiedDate
     @Column(name="date_emprunt")
     private LocalDateTime dateDEmprunt;
 
@@ -30,6 +32,7 @@ public class Pret {
      * date de restitution
      */
     @NonNull
+    @LastModifiedDate
     @Column(name="date_restitution")
     private LocalDateTime dateDeRestitution;
 
