@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"abonnePret", "ouvragePret"})
 @Entity
-/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPret")*/
 @Table(name=("pret"))
 public class Pret {
 
@@ -65,9 +64,6 @@ public class Pret {
     /**
      * ouvrage du prêt
      */
-    /*@NonNull
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)*/
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="id_abonne")
     private Abonne abonnePret;
@@ -75,9 +71,6 @@ public class Pret {
     /**
      * ouvrage du prêt
      */
-    /*@NonNull
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)*/
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvragePret;

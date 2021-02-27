@@ -1,6 +1,5 @@
 package fr.lardon.bibliocataloguelivres.dao;
 
-import fr.lardon.bibliocataloguelivres.model.Ouvrage;
 import fr.lardon.bibliocataloguelivres.model.Pret;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

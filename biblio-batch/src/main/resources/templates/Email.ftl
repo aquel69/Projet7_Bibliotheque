@@ -9,22 +9,24 @@
 <table>
     <tr>
         <td>
-            <img src="/static/logo/Logo_bibliothèque.png" alt="https://localhost:8443" style="display: block;" />
+            <a href="https://localhost:8443"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-cPHM9g72sUuXwYWDfIOTyqNKMfOQFfT3Dg&usqp=CAU" alt="Logo Bibliothèque"/></a>
         </td>
     </tr>
     <tr>
         <td>
-            <p>${ouvrage.dateAjoutOuvrage}
-            </p>
-            <p>Sending Email using Spring Boot with <b>FreeMarker template !!!</b></p>
-            <p id="thanks">Thanks</p>
+            <p>${.now?time?string('HH:mm')}</p>
+            <p>Chère abonné,</p>
+            <p>nous vous rapellons que vous avez emprunté '${pret.ouvragePret.livre.titre}' en date du : ${pret.dateDEmprunt}</p>
+            <p>La période d'emprunt étant arrivé à terme le ${pret.dateDeRestitution}.</p>
+            <p>Nous vous invitons à ramener l'ouvrage rapidement afin que d'autres lecteurs puissent en bénéficier.</p>
+            <p>Merci de votre compréhension et à bientôt.</p>
         </td>
     </tr>
     <tr>
         <td>
-            <p>Bibliothèque de Gotham</p>
-            <p>Rue Oreste Zenezini</p>
-            <p>69680 Gotham</p>
+            <p>Bibliothèque Bruce Wayne</p>
+            <p>Rue du manoir</p>
+            <p>NJ 12345 Gotham</p>
         </td>
     </tr>
 </table>

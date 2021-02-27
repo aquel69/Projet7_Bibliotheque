@@ -1,22 +1,19 @@
 package fr.lardon.bibliobatch.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idAbonne", scope = AbonnePret.class)
 @Table(name=("abonne"))
-public class AbonnePret {
+public class Abonne {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_generator")
@@ -74,5 +71,25 @@ public class AbonnePret {
     @Temporal(TemporalType.DATE)
     private Date dateDeCreationDuCompte;
 
+    /**
+     * Adresse de l'abonné
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_adresse")
+    private Adresse adresse;
+
+    /**
+     * Role de l'abonné
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role")
+    private Role role;
+
+    /**
+     * Bibliothèque dont l'abonné dépend
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "bibliotheque")
+    private Bibliotheque bibliotheque;
 
 }

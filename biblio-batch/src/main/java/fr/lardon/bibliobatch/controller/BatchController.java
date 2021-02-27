@@ -2,6 +2,7 @@ package fr.lardon.bibliobatch.controller;
 
 import fr.lardon.bibliobatch.dao.*;
 import fr.lardon.bibliobatch.model.*;
+import fr.lardon.bibliobatch.services.ServiceAbonnePretOuvrage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,17 +25,9 @@ public class BatchController {
     @Autowired
     private DaoAbonnePret daoAbonnePret;
 
-    /**
-     * renvoi la liste des livres en fonction de leurs nombre de fois qu'ils ont été empruntés
-     * @return
-     */
-    @GetMapping(value = "/Top")
-    public List<Livre> topLivre(){
+    @Autowired
+    private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
-        List<Livre> livres = daoLivre.listeLivreTop();
-
-        return livres;
-    }
 
     /**
      * renvoi la liste de tous les livres
@@ -171,9 +164,22 @@ public class BatchController {
         return prets;
     }
 
+
     @GetMapping(value = "/AbonnePretSelonId/{id}")
-    public AbonnePret abonnePretSelonSonId(@PathVariable int id){
-        AbonnePret abonnePret = daoAbonnePret.findById(id).get();
+    public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
+        List<Pret> pretList;
+
+        AbonnePretOuvrage abonnePret = serviceAbonnePretOuvrage.getAbonnePretOuvrage(id);
+        pretList = abonnePret.getListePret();
+
+        //sauvegarde des prêts avec leurs nouveaux statuts
+        for(Pret pret : pretList){
+            daoPret.save(pret);
+        }
+
+        //rappel de la liste des prêts pour la mise en ordre selon priorité
+
+        abonnePret.setListePret(pretList);
 
         return abonnePret;
     }

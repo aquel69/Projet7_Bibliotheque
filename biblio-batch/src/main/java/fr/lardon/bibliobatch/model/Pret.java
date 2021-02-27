@@ -1,6 +1,5 @@
 package fr.lardon.bibliobatch.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -42,19 +41,38 @@ public class Pret {
     private boolean prolongation;
 
     /**
-     * ouvrage du prêt
+     * l'abonné a rendu l'ouvrage
      */
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_abonne", nullable=false)
-    private AbonnePret abonnePret;
+    @NonNull
+    @Column(name="rendu")
+    private boolean rendu;
+
+    /**
+     * status de l'emprunt
+     */
+    @NonNull
+    @Column(name="statut")
+    private String statut;
+
+    /**
+     * status de l'emprunt
+     */
+    @NonNull
+    @Column(name="statut_priorite")
+    private String statutPriorite;
 
     /**
      * ouvrage du prêt
      */
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_ouvrage", nullable=false)
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="id_abonne")
+    private Abonne abonnePret;
+
+    /**
+     * ouvrage du prêt
+     */
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="id_ouvrage")
     private Ouvrage ouvragePret;
 
 }

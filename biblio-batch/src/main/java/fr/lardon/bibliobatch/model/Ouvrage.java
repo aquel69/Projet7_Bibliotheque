@@ -1,11 +1,9 @@
 package fr.lardon.bibliobatch.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -37,20 +35,18 @@ public class Ouvrage {
     private String codeBibliotheque;
 
     /**
+     * nombre d'exemplaire de l'ouvrage
+     */
+    @NonNull
+    @Column(name = "nombre_exemplaires")
+    private int nombreExemplaires;
+
+    /**
      * Livre
      */
+    @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_livre")
     private Livre livre;
-
-    /**
-     * liste des prêts
-     */
-    @JsonManagedReference
-    @OneToMany(mappedBy = "ouvragePret", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Pret> listePretAbonnes;
-
-
-
 
 }

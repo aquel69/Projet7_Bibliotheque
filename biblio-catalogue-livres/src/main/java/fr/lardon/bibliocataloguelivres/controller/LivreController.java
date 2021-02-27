@@ -29,16 +29,16 @@ public class LivreController {
     private DaoAbonnePret daoAbonnePret;
 
     @Autowired
-    DaoAbonne daoAbonne;
+    private DaoAbonne daoAbonne;
 
     @Autowired
-    DaoPretAModifie daoPretAModifie;
+    private DaoPretAModifie daoPretAModifie;
 
     @Autowired
-    DaoOuvrageAModifie daoOuvrageAModifie;
+    private DaoOuvrageAModifie daoOuvrageAModifie;
 
     @Autowired
-    ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
+    private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
      * renvoi la liste des ouvrages en fonction de leurs nombre de fois qu'ils ont été empruntés

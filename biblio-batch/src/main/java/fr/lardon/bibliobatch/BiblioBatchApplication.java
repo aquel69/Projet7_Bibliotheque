@@ -1,11 +1,13 @@
 package fr.lardon.bibliobatch;
 
+import fr.lardon.bibliobatch.controller.BatchController;
 import fr.lardon.bibliobatch.dao.DaoAbonnePret;
 import fr.lardon.bibliobatch.dao.DaoOuvrage;
 import fr.lardon.bibliobatch.dao.DaoPret;
-import fr.lardon.bibliobatch.model.AbonnePret;
+import fr.lardon.bibliobatch.model.AbonnePretOuvrage;
 import fr.lardon.bibliobatch.model.Mail;
 import fr.lardon.bibliobatch.model.Ouvrage;
+import fr.lardon.bibliobatch.model.Pret;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -17,7 +19,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.Model;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -25,14 +26,18 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @EnableBatchProcessing
 @SpringBootApplication
 public class BiblioBatchApplication implements CommandLineRunner {
 
-	AbonnePret abonnePret;
+	AbonnePretOuvrage abonnePretOuvrage;
 	Ouvrage ouvrage;
 	Mail mail;
+	List<Pret> pretList;
+	Pret pretAEnvoyer;
+	String logo = null;
 
 	@Autowired
 	private JavaMailSender javaMailSender;
@@ -47,65 +52,11 @@ public class BiblioBatchApplication implements CommandLineRunner {
 	DaoPret daoPret;
 
 	@Autowired
+	BatchController batchController;
+
+	@Autowired
 	private Configuration freemarkerConfig;
 
-	/*public static void main(String[] args) {
-		SpringApplication.run(BiblioBatchApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws MessagingException {
-		System.out.println("Sending Email...");
-		abonnePret = new AbonnePret();
-		ouvrage = new Ouvrage();
-
-		//récupération de l'abonné
-		abonnePret = daoAbonnePret.findById(34).get();
-
-		//récupération de l'ouvrage
-		ouvrage = daoOuvrage.findByCodeBibliotheque("AEZCON1355");
-
-		envoiEmail(abonnePret, ouvrage);
-
-		System.out.println("Done");
-	}
-
-	public void envoiEmail(AbonnePret abonne, Ouvrage ouvrage) throws MessagingException {
-
-		MimeMessage msg = javaMailSender.createMimeMessage();
-
-		// true = multipart message
-		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
-		helper.setTo("alexandre.lardon@yahoo.fr");
-
-		helper.setSubject("Rappel de restitution du livre " + ouvrage.getLivre().getTitre());
-
-		// default = text/plain
-		//helper.setText("Check attachment for image!");
-
-		// true = text/html
-		helper.setText(
-				"  <body>\n" +
-				"    <p>\n" +
-				"      Cher, \n" + abonne.getPseudo() +
-				"    </p>\n" +
-
-				"    <p>L'ouvrage " + ouvrage.getLivre().getTitre() + " que vous avez emprunté le "  +
-
-				"    <p>\n" +
-				"      You can find <b>your inlined image</b> just below this text.\n" +
-				"    </p>\n" +
-
-				"    <p th:text=\"${abonnePret.getPseudo()}\">\n" +
-
-				"    </p>\n" +
-				"  </body>\n" +
-				"</html>", true);
-
-		javaMailSender.send(msg);
-
-	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(BiblioBatchApplication.class, args);
@@ -117,21 +68,32 @@ public class BiblioBatchApplication implements CommandLineRunner {
 		bean.setTemplateLoaderPath("/templates/");
 
 		System.out.println("Sending Email...");
-		abonnePret = new AbonnePret();
+		abonnePretOuvrage = new AbonnePretOuvrage();
 		ouvrage = new Ouvrage();
 		mail = new Mail();
+		pretAEnvoyer = new Pret();
+		logo = "static/logo/gotham.png";
 
-		//récupération de l'abonné
-		abonnePret = daoAbonnePret.findById(34).get();
+		abonnePretOuvrage = batchController.abonnePretSelonSonId(34);
+		pretList = abonnePretOuvrage.getListePret();
+
+		System.out.println(abonnePretOuvrage);
 
 		//récupération de l'ouvrage
 		ouvrage = daoOuvrage.findByCodeBibliotheque("AEZCON1355");
+
+		for(Pret pret : pretList){
+			if(pret.getIdPret() == 69){
+				pretAEnvoyer = pret;
+			}
+		}
 
 		/*mail.setFrom("no-reply@memorynotfound.com");*/
 		mail.setTo("alexandre.lardon@yahoo.fr");
 		mail.setSubject("Rappel de restitution du livre " + ouvrage.getLivre().getTitre());
 		mail.setOuvrage(ouvrage);
-		mail.setAbonnePret(abonnePret);
+		mail.setPret(pretAEnvoyer);
+		mail.setLogo(logo);
 
 		envoiEmail(mail);
 

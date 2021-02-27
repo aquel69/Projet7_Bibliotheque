@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode
 @Entity
-/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idOuvrage", scope = Ouvrage.class)*/
 @Table(name=("ouvrage"))
 public class OuvrageAModifie {
 

@@ -9,9 +9,8 @@ import java.util.Date;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"livre", "listePretAbonnes"})
+@EqualsAndHashCode(exclude = {"livre"})
 @Entity
-/*@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idOuvrage", scope = Ouvrage.class)*/
 @Table(name=("ouvrage"))
 public class Ouvrage {
 
@@ -49,14 +48,5 @@ public class Ouvrage {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_livre")
     private Livre livre;
-
-    /**
-     * liste des prêts
-     */
-    /*@NonNull
-    @JsonManagedReference
-   *//* @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="idPret")*//*
-    @OneToMany(mappedBy = "ouvragePret",  fetch = FetchType.EAGER)
-    private List<Pret> listePretAbonnes;*/
 
 }
