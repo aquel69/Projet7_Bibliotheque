@@ -6,6 +6,9 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+/**
+ * configuration de freemarker pour l'affichage des date en local date time sinon une erreur se créée
+ */
 @Configuration
 public class FreemarkerConfig implements BeanPostProcessor {
 

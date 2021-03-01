@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DaoAbonne extends JpaRepository<Abonne, Integer> {
 
-    Abonne findByNumeroAbonne(String numeroAbonne);
-
 }

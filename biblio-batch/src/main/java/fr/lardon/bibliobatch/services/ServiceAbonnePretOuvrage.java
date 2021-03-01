@@ -60,45 +60,11 @@ public class ServiceAbonnePretOuvrage {
             }
         }
 
-
-
-        /*//mise en ordre de la liste des prêts
-        for(Pret pret : listePret){
-            if(pret.getStatus().equals("Prêt en cours")) {
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("Prolongation")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre cette semaine")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre bientôt")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre")){
-                listeTrie.add(listePret.get(index1));
-            }
-            index1++;
-        }*/
-
-       /* for(Pret pret : listePret){
-            if(pret.getStatus().equals("Rendu")) {
-                listeTrie.add(listePret.get(index2));
-            }
-            index2++;
-        }*/
-
         abonnePretOuvrage.setAbonne(abonne);
         abonnePretOuvrage.setListeOuvrage(listeOuvrage);
         abonnePretOuvrage.setListePret(listePret);
 
         return abonnePretOuvrage;
     }
-
-    /*public void modificationDuStatus(Pret pret){
-        LocalDateTime localDateTime = LocalDateTime.now();
-        long chrono = ChronoUnit.DAYS.between(localDateTime, pret.getDateDeRestitution());
-
-        System.out.println(chrono + " seconde(s)");
-
-
-    }*/
 
 }

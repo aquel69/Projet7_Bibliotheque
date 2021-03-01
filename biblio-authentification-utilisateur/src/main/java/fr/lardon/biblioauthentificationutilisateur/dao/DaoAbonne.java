@@ -12,7 +12,4 @@ public interface DaoAbonne extends JpaRepository<Abonne, Integer> {
 
     Abonne findByEmail(String email);
 
-    @Query("SELECT o FROM Abonne o")
-    List<Abonne> listeDesAbonnes();
-
 }

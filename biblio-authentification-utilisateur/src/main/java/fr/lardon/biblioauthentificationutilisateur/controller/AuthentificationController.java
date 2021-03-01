@@ -42,11 +42,7 @@ public class AuthentificationController {
         boolean emailCorrespondance = false;
 
         //comparaison des emails pour vérifier qu'il est dans la base de données
-        List<Abonne> listeDesAbonnes = daoAbonne.listeDesAbonnes();
-
-        for(Abonne abonneBoucle : listeDesAbonnes) {
-            System.out.println(abonneBoucle);
-        }
+        List<Abonne> listeDesAbonnes = daoAbonne.findAll();
 
         for(Abonne abonneBoucle : listeDesAbonnes){
             if(abonneBoucle.getEmail().equals(email)) {

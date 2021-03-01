@@ -1,10 +1,8 @@
 package fr.lardon.bibliobatch;
 
-import fr.lardon.bibliobatch.configuration.FreemarkerConfig;
 import fr.lardon.bibliobatch.controller.BatchController;
 import fr.lardon.bibliobatch.dao.DaoAbonnePret;
 import fr.lardon.bibliobatch.dao.DaoOuvrage;
-import fr.lardon.bibliobatch.dao.DaoPret;
 import fr.lardon.bibliobatch.model.*;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -36,7 +34,6 @@ public class BiblioBatchApplication implements CommandLineRunner {
 	List<Pret> pretList;
 	List<AbonnePret> abonnePretList;
 	Pret pretAEnvoyer;
-	String logo = null;
 	String typeEmail = null;
 
 	@Autowired
@@ -49,14 +46,10 @@ public class BiblioBatchApplication implements CommandLineRunner {
 	private DaoOuvrage daoOuvrage;
 
 	@Autowired
-	private DaoPret daoPret;
-
-	@Autowired
 	private BatchController batchController;
 
 	@Autowired
 	private Configuration freemarkerConfig;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(BiblioBatchApplication.class, args);
@@ -83,11 +76,10 @@ public class BiblioBatchApplication implements CommandLineRunner {
 			for(Pret pret : pretList){
 				//envoi de l'email
 				if(pret.getStatutPriorite() == "1" || pret.getStatutPriorite() == "2") {
-					System.out.println("getttttt statussssss" + pret.getAbonnePret().getIdAbonne() + "   " + pret.getStatutPriorite());
 					//type d'email à envoyé
-					if(pret.getStatutPriorite() == "2"){
+					if(pret.getStatutPriorite() == "1"){
 						typeEmail = "Email.ftl";
-					}else if(pret.getStatutPriorite() == "1"){
+					}else if(pret.getStatutPriorite() == "2"){
 						typeEmail = "EmailRappel.ftl";
 					}
 
@@ -123,7 +115,6 @@ public class BiblioBatchApplication implements CommandLineRunner {
 		helper.setTo(mail.getTo());
 		helper.setText(html, true);
 		helper.setSubject(mail.getSubject());
-		/*helper.setFrom(mail.getFrom());*/
 
 		javaMailSender.send(message);
 	}

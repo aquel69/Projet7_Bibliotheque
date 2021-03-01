@@ -58,7 +58,6 @@ public class CatalogueController {
         List<Ouvrage> ouvragesTop;
         ouvragesTop = livresProxy.listeOuvrageSelonNombreDEmprunt();
         for(Ouvrage ouvrage : ouvragesTop){
-            System.out.println(ouvrage.toString());
             livres.add(ouvrage.getLivre());
         }
 

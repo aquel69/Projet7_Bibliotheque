@@ -10,7 +10,5 @@ public class BiblioAuthentificationUtilisateurApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BiblioAuthentificationUtilisateurApplication.class, args);
 
-
 	}
-
 }
