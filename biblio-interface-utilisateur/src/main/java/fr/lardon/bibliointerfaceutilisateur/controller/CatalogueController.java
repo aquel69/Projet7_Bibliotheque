@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class CatalogueController {
     private List<Ouvrage> ouvragesPremierePartie = new ArrayList<>();
     private List<Ouvrage> ouvragesSecondePartie = new ArrayList<>();
     private List<Livre> livres;
+    private List<Ouvrage> ouvrages;
     private AbonnePretOuvrage abonnePret;
     private Role role = new Role();
     private Abonne utilisateurAuthentifie = new Abonne();
@@ -40,6 +42,7 @@ public class CatalogueController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
         livres = new ArrayList<>();
+        Ouvrage ouvrage = n
 
         //récupération du message
         String message = (String) model.getAttribute("message");
@@ -53,6 +56,16 @@ public class CatalogueController {
             utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
             abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
         }
+
+        ouvrages = livresProxy.listeDesOuvrages();
+
+        for(int i = 0; i < ouvrages.size() / 3; i++){
+            for(int j = 1; j < 4; j++){
+                ouvrages.get(i * j)
+            }
+
+        }
+
 
         //récupération du top 10
         List<Ouvrage> ouvragesTop;
@@ -91,7 +104,7 @@ public class CatalogueController {
 
     @RequestMapping(value = "/Prolongation", method = RequestMethod.POST)
     public String accueilPost(Model model,@RequestParam int pretProlongation){
-        String message = null;
+        String message;
         Pret pret;
         PretAModifie pretAModifie = new PretAModifie();
 
@@ -137,18 +150,20 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/Detail/{id}", method = RequestMethod.GET)
     public String detailLivre(@PathVariable int id, Model model){
-        Ouvrage ouvrage = new Ouvrage();
 
         //récuperation du livre en fonction de son id
         Livre livre = livresProxy.recupererUnLivre(id);
         //liste des auteurs correspondant au livre
         List<Auteur> auteurs = livre.getAuteurs();
 
-        ouvrage = livresProxy.recupererUnOuvrageSelonIdLivre(id);
+        ouvrages = livresProxy.listeDesOuvragesSelonIdLivre(id);
 
+        for(Ouvrage ouvrage : ouvrages) {
+            System.out.println(ouvrage);
+        }
 
         //ajout dans le model
-        model.addAttribute("ouvrage", ouvrage);
+        model.addAttribute("ouvrages", ouvrages);
         model.addAttribute("abonnePret", abonnePret);
         model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
         model.addAttribute("codeRole", codeRole);

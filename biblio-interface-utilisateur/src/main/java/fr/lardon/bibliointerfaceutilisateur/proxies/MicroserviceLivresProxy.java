@@ -73,5 +73,8 @@ public interface MicroserviceLivresProxy {
     @PostMapping(value = "/SauvegarderOuvrage")
     void sauvegarderOuvrage(@RequestBody OuvrageAModifie ouvrageAModifie);
 
+    @GetMapping(value = "/OuvragesSelonIdLivre/{id}")
+    List<Ouvrage> listeDesOuvragesSelonIdLivre(@PathVariable int id);
+
 
 }

@@ -42,7 +42,6 @@ public class ServiceAbonnePretOuvrage {
         //changement du status suivant la période
         for(Pret pret : listePret){
             long chrono = ChronoUnit.DAYS.between(localDateTime, pret.getDateDeRestitution());
-            System.out.println("chrono = " + chrono);
             if(pret.isRendu() == true){
                 pret.setStatut("Rendu");
                 pret.setStatutPriorite("5");
@@ -52,38 +51,15 @@ public class ServiceAbonnePretOuvrage {
             }else if(chrono > 14 && pret.isRendu() == false && pret.isProlongation() ==true){
                 pret.setStatut("Prolongation");
                 pret.setStatutPriorite("3");
-            }else if(chrono <= 7 && chrono >= 1 && pret.isRendu() == false){
+            }else if(chrono <= 7 && chrono >= 0 && pret.isRendu() == false){
                 pret.setStatut("Dernière semaine");
                 pret.setStatutPriorite("2");
-            }else if(chrono <= 0 && pret.isRendu() == false ){
+            }else if(chrono < 0 && pret.isRendu() == false ){
                 pret.setStatut("A rendre");
                 pret.setStatutPriorite("1");
                 pret.setProlongation(true);
             }
         }
-
-        /*//mise en ordre de la liste des prêts
-        for(Pret pret : listePret){
-            if(pret.getStatus().equals("Prêt en cours")) {
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("Prolongation")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre cette semaine")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre bientôt")){
-                listeTrie.add(listePret.get(index1));
-            }else if(pret.getStatus().equals("A rendre")){
-                listeTrie.add(listePret.get(index1));
-            }
-            index1++;
-        }*/
-
-       /* for(Pret pret : listePret){
-            if(pret.getStatus().equals("Rendu")) {
-                listeTrie.add(listePret.get(index2));
-            }
-            index2++;
-        }*/
 
         abonnePretOuvrage.setAbonne(abonne);
         abonnePretOuvrage.setListeOuvrage(listeOuvrage);
@@ -92,12 +68,10 @@ public class ServiceAbonnePretOuvrage {
         return abonnePretOuvrage;
     }
 
-    /*public void modificationDuStatus(Pret pret){
-        LocalDateTime localDateTime = LocalDateTime.now();
-        long chrono = ChronoUnit.DAYS.between(localDateTime, pret.getDateDeRestitution());
+    /*public List<Livre> getLivreOuvrageBibliotheque(int id){
 
-        System.out.println(chrono + " seconde(s)");
 
+        return null;
 
     }*/
 

@@ -42,11 +42,20 @@ public class Ouvrage {
     private int nombreExemplaires;
 
     /**
+     * nombre d'exemplaire de l'ouvrage
+     */
+    @NonNull
+    @Column(name = "siret_bibliotheque")
+    private String siretBibliotheque;
+
+    /**
      * Livre
      */
     @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_livre")
     private Livre livre;
+
+
 
 }

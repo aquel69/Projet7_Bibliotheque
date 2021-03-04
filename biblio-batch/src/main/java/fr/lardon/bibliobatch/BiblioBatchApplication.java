@@ -1,121 +1,19 @@
 package fr.lardon.bibliobatch;
 
-import fr.lardon.bibliobatch.controller.BatchController;
-import fr.lardon.bibliobatch.dao.DaoAbonnePret;
-import fr.lardon.bibliobatch.dao.DaoOuvrage;
-import fr.lardon.bibliobatch.model.*;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 @EnableBatchProcessing
+@EnableScheduling
 @SpringBootApplication
-public class BiblioBatchApplication implements CommandLineRunner {
-
-	AbonnePretOuvrage abonnePretOuvrage;
-	Ouvrage ouvrage;
-	Mail mail;
-	List<Pret> pretList;
-	List<AbonnePret> abonnePretList;
-	Pret pretAEnvoyer;
-	String typeEmail = null;
-
-	@Autowired
-	private JavaMailSender javaMailSender;
-
-	@Autowired
-	private DaoAbonnePret daoAbonnePret;
-
-	@Autowired
-	private DaoOuvrage daoOuvrage;
-
-	@Autowired
-	private BatchController batchController;
-
-	@Autowired
-	private Configuration freemarkerConfig;
+public class BiblioBatchApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BiblioBatchApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws MessagingException, IOException, TemplateException {
-		FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
-		bean.setTemplateLoaderPath("/templates/");
 
-		System.out.println("Sending Email...");
-		abonnePretOuvrage = new AbonnePretOuvrage();
-		ouvrage = new Ouvrage();
-		mail = new Mail();
-		pretAEnvoyer = new Pret();
-
-		//récuperation de tous les abonnés
-		abonnePretList = daoAbonnePret.findAll();
-
-		for(AbonnePret abonnePret : abonnePretList){
-			abonnePretOuvrage = batchController.abonnePretSelonSonId(abonnePret.getIdAbonne());
-			pretList = abonnePretOuvrage.getListePret();
-
-			for(Pret pret : pretList){
-				//envoi de l'email
-				if(pret.getStatutPriorite() == "1" || pret.getStatutPriorite() == "2") {
-					//type d'email à envoyé
-					if(pret.getStatutPriorite() == "1"){
-						typeEmail = "Email.ftl";
-					}else if(pret.getStatutPriorite() == "2"){
-						typeEmail = "EmailRappel.ftl";
-					}
-
-					pretAEnvoyer = pret;
-
-					//récupération de l'ouvrage
-					ouvrage = daoOuvrage.findByCodeBibliotheque(pretAEnvoyer.getOuvragePret().getCodeBibliotheque());
-
-					/*mail.setFrom("no-reply@memorynotfound.com");*/
-					mail.setTo(abonnePretOuvrage.getAbonne().getEmail());
-					mail.setSubject("Rappel de restitution du livre '" + ouvrage.getLivre().getTitre() + "'");
-					mail.setOuvrage(ouvrage);
-					mail.setPret(pretAEnvoyer);
-
-					envoiEmail(mail);
-				}
-			}
-		}
-		System.out.println("Done");
-	}
-
-	public void envoiEmail(Mail mail) throws MessagingException, IOException, TemplateException {
-		MimeMessage message = javaMailSender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message,
-				MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-				StandardCharsets.UTF_8.name());
-
-		helper.addAttachment("logo.png", new ClassPathResource("static/logo/Logo_bibliothèque.png"));
-
-		Template template = freemarkerConfig.getTemplate(typeEmail);
-		String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, mail);
-
-		helper.setTo(mail.getTo());
-		helper.setText(html, true);
-		helper.setSubject(mail.getSubject());
-
-		javaMailSender.send(message);
-	}
 }

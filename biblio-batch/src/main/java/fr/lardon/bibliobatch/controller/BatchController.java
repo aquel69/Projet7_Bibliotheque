@@ -1,7 +1,9 @@
 package fr.lardon.bibliobatch.controller;
 
+import fr.lardon.bibliobatch.dao.DaoOuvrage;
 import fr.lardon.bibliobatch.dao.DaoPret;
 import fr.lardon.bibliobatch.model.AbonnePretOuvrage;
+import fr.lardon.bibliobatch.model.Ouvrage;
 import fr.lardon.bibliobatch.model.Pret;
 import fr.lardon.bibliobatch.services.ServiceAbonnePretOuvrage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class BatchController {
 
     @Autowired
     private DaoPret daoPret;
+
+    @Autowired
+    private DaoOuvrage daoOuvrage;
 
     @Autowired
     private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
@@ -36,5 +41,17 @@ public class BatchController {
         abonnePret.setListePret(pretList);
 
         return abonnePret;
+    }
+
+    /**
+     * renvoi l'ouvrage selon son code bibliothèque
+     * @param codeBibliotheque
+     * @return
+     */
+    @GetMapping(value = "/Ouvrage/{codeBibliotheque}")
+    public Ouvrage ouvrageSelonCodeBibliotheque(@PathVariable String codeBibliotheque){
+        Ouvrage ouvrage = daoOuvrage.findByCodeBibliotheque(codeBibliotheque);
+
+        return ouvrage;
     }
 }

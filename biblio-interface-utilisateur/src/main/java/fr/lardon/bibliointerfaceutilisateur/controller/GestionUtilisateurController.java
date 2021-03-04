@@ -231,9 +231,6 @@ public class GestionUtilisateurController {
         bCryptPasswordMatche = new BCryptPasswordEncoder();
         bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
 
-        System.out.println("ancien mot de passe : " +ancienMotDePasse);
-        System.out.println("mot de passe actuel crypté : " +abonneAModifier.getMotDePasse());
-        System.out.println("mot de passe a modifie" + abonneBeanModifier.getMotDePasse());
         abonnes = gestionUtilisateur.listeAbonnes();
 
         //vérification que l'email est diffèrent que celui dans le compte de l'abonné
@@ -317,5 +314,4 @@ public class GestionUtilisateurController {
             }
         }
     }
-
 }

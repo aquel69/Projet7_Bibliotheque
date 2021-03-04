@@ -14,6 +14,6 @@ public class Mail {
     private Ouvrage ouvrage;
     private AbonnePret abonnePret;
     private Pret pret;
-    private String logo;
+    private Bibliotheque bibliotheque;
 
 }

@@ -21,8 +21,16 @@
         </td>
     </tr>
     <tr>
+        <#assign siret = "${ouvrage.getSiretBibliotheque()}">
         <td>
-            <p><br>Bibliothèque Bruce Wayne<br>Rue du manoir<br>NJ 12345 Gotham</p>
+            <#switch siret>
+                <#case "18004625200177"><p><br>Bibliothèque Bruce Wayne<br>25 rue du manoir<br>NJ 12345 Gotham</p>
+                    <#break>
+                <#case "18004625200568"><p><br>Bibliothèque Alfred<br>78 route du GCPD<br>NJ 12345 Gotham</p>
+                    <#break>
+                <#case "18004625200356"><p><br>Bibliothèque Robin<br>36 rue d'Arkham<br>NJ 12345 Gotham</p>
+                    <#break>
+            </#switch>
         </td>
     </tr>
 </table>

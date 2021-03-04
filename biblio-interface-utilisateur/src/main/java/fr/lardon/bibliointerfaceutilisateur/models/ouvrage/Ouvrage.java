@@ -32,9 +32,8 @@ public class Ouvrage {
     private Livre livre;
 
     /**
-     * liste des prêts
+     * Bibliothèque
      */
-
-    /*private List<Pret> listePretAbonnes;*/
+    private String siretBibliotheque;
 
 }

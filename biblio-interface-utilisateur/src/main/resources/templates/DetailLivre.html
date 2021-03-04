@@ -79,18 +79,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-5">
-                                <div class="col-12 mt-1">
-                                    <h6 class="d-inline">Bibliothèque Gotham : </h6>
-                                    <p class="d-inline" th:text="${ouvrage.getNombreExemplaires()} + ' exemplaires'"></p>
+                            <div class="row mt-5" >
+                                <div class="col-12 mt-1" >
+                                    <h6 class="d-inline">Bibliothèque Bruce Wayne : </h6>
+                                    <p class="d-inline" th:text="${ouvrages[1].getNombreExemplaires()} + ' exemplaires'"></p>
                                 </div>
                                 <div class="col-12 mt-1">
-                                    <h6 class="d-inline">Bibliothèque Victor Hugo : </h6>
-                                    <p class="d-inline">0 exemplaires</p>
+                                    <h6 class="d-inline">Bibliothèque Robin : </h6>
+                                    <p class="d-inline" th:text="${ouvrages[2].getNombreExemplaires()} + ' exemplaires'"></p>
                                 </div>
                                 <div class="col-12 mt-1">
-                                    <h6 class="d-inline">Bibliothèque Emile Zola : </h6>
-                                    <p class="d-inline">1 exemplaires</p>
+                                    <h6 class="d-inline">Bibliothèque Alfred : </h6>
+                                    <p class="d-inline" th:text="${ouvrages[0].getNombreExemplaires()} + ' exemplaires'"></p>
                                 </div>
                             </div>
                         </div>

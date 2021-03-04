@@ -51,11 +51,18 @@ public class LivreController {
         return ouvrages;
     }
 
+    @GetMapping(value = "/NombreDePret")
+    public List<LivreTop> listeDuNombreDePretParLivre(){
+        List<LivreTop> livreTops;
 
+        livreTops = daoLivre.listeNombreDePretParLivre();
+
+        return livreTops;
+    }
 
     @GetMapping(value = "/ListeOuvrage")
     public List<Ouvrage> listeDesOuvrages(){
-        List<Ouvrage> listeOuvrage = daoOuvrage.findAll();
+        List<Ouvrage> listeOuvrage = daoOuvrage.recupererTousLesOuvrages();
 
         return listeOuvrage;
     }
@@ -158,7 +165,7 @@ public class LivreController {
 
     /**
      * ajouter un prêt dans la base de données
-     * @param pret
+     * @param ouvrageAModifie
      */
     @PostMapping(value = "/SauvegarderOuvrage")
     public void sauvegarderOuvrage(@RequestBody OuvrageAModifie ouvrageAModifie) {
@@ -257,5 +264,14 @@ public class LivreController {
         PretAModifie pretAModifie = daoPretAModifie.findById(id).get();
 
         return pretAModifie;
+    }
+
+    @GetMapping(value = "/OuvragesSelonIdLivre/{id}")
+    public List<Ouvrage> listeDesOuvragesSelonIdLivre(@PathVariable int id){
+        List<Ouvrage> ouvrages;
+
+        ouvrages = daoOuvrage.listeOuvragesSelonIdLivre(id);
+
+        return ouvrages;
     }
 }

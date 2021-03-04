@@ -42,6 +42,13 @@ public class Ouvrage {
     private int nombreExemplaires;
 
     /**
+     * nombre d'exemplaire de l'ouvrage
+     */
+    @NonNull
+    @Column(name = "siret_bibliotheque")
+    private String siretBibliotheque;
+
+    /**
      * Livre
      */
     @NonNull
