@@ -9,9 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class LivreController {
@@ -38,26 +39,58 @@ public class LivreController {
     private DaoOuvrageAModifie daoOuvrageAModifie;
 
     @Autowired
+    private daoLivreTop daoLivreTop;
+
+    @Autowired
     private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
      * renvoi la liste des ouvrages en fonction de leurs nombre de fois qu'ils ont été empruntés
      * @return
      */
+    /*@GetMapping(value = "/Top")
+    public MapDesLivresEmpruntes listeOuvrageSelonNombreDEmprunt(){
+        MapDesLivresEmpruntes mapDesLivresEmpruntes = new MapDesLivresEmpruntes();
+        Map<Livre, Integer> mapDesLivres = new HashMap<>();
+
+
+        List<Livre> livres = daoLivre.listeNombreDePretParLivre();
+
+        for(Livre livre : livres){
+            *//*if(mapDesLivres.isEmpty()){
+                mapDesLivres.put(livre, 1);
+            }else{*//*
+                *//*mapDesLivres.*//*
+                //1 - vérifier si la clé existe dans la map, si elle existe alors tu récupères la valeur et tu l'ajoute +1 mapDesLivres.put(livre, value)
+                //maintenant si elle n'existe pas alors mapDesLivres.put(livre, 1)
+            if()
+
+        }
+
+        mapDesLivresEmpruntes.setMapLivre(mapDesLivres);
+        return mapDesLivresEmpruntes;
+    }*/
+
+    /*@GetMapping(value = "/NombreDePret")
+    public List<Pret> listeDuNombreDePretParLivre(){
+        List<Pret> pretTops;
+
+        pretTops = daoPret.listeNombreDePretParLivre();
+
+        return pretTops;
+    }*/
     @GetMapping(value = "/Top")
-    public List<Ouvrage> listeOuvrageSelonNombreDEmprunt(){
-        List<Ouvrage> ouvrages = daoOuvrage.listeOuvrageSelonNombreDEmprunt();
+    public List<Livre> listeOuvrageSelonNombreDEmprunt(){
+        List<LivreTop> livresTop = daoLivreTop.listeNombreDePretParLivre();
+        List<Livre> livres = new ArrayList<>();
+        Livre livre = new Livre();
 
-        return ouvrages;
-    }
+        for(LivreTop livreTop : livresTop){
+            livre = recupererUnLivre(livreTop.getIdLivre());
+            livres.add(livre);
+        }
 
-    @GetMapping(value = "/NombreDePret")
-    public List<LivreTop> listeDuNombreDePretParLivre(){
-        List<LivreTop> livreTops;
-
-        livreTops = daoLivre.listeNombreDePretParLivre();
-
-        return livreTops;
+        return livres;
     }
 
     @GetMapping(value = "/ListeOuvrage")

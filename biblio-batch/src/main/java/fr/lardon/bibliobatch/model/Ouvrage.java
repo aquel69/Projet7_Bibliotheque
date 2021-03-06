@@ -42,7 +42,7 @@ public class Ouvrage {
     private int nombreExemplaires;
 
     /**
-     * nombre d'exemplaire de l'ouvrage
+     * nombre code siret de la bibliothèque
      */
     @NonNull
     @Column(name = "siret_bibliotheque")

@@ -16,4 +16,6 @@ public interface DaoPret extends JpaRepository<Pret, Integer> {
             "    WHERE abo.id_abonne = ? ORDER BY pre.statut_priorite", nativeQuery = true)
     List<Pret> listePretSelonAbonne(int idAbonne);
 
+
+
 }

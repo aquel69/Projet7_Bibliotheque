@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2021-02-24 17:49:50
+-- Started on 2021-03-05 14:19:42
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2973 (class 0 OID 42883)
+-- TOC entry 2975 (class 0 OID 42883)
 -- Dependencies: 222
 -- Data for Name: adresse; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -34,18 +34,18 @@ INSERT INTO public.adresse (id_adresse, numero, rue, complement, code_postal, vi
 
 
 --
--- TOC entry 2974 (class 0 OID 42892)
+-- TOC entry 2976 (class 0 OID 42892)
 -- Dependencies: 223
 -- Data for Name: bibliotheque; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200356', 'Bibliothèque Robin', 'AFA', 2);
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200177', 'Bibliothèque Bruce Wayne', 'AEZ', 1);
-INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200568', 'Bibliothèque Alfred', 'AFB', 3);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200177', 'Bibliothèque Bruce Wayne', 'BBW', 1);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200568', 'Bibliothèque Alfred', 'BAL', 3);
+INSERT INTO public.bibliotheque (numero_siret, nom, code, id_adresse) VALUES ('18004625200356', 'Bibliothèque Robin', 'BRO', 2);
 
 
 --
--- TOC entry 2971 (class 0 OID 42873)
+-- TOC entry 2973 (class 0 OID 42873)
 -- Dependencies: 220
 -- Data for Name: enumrole; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -58,18 +58,18 @@ INSERT INTO public.enumrole (code, status, description) VALUES (5, 'Employé', '
 
 
 --
--- TOC entry 2978 (class 0 OID 42913)
+-- TOC entry 2980 (class 0 OID 42913)
 -- Dependencies: 227
 -- Data for Name: abonne; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (34, 'Lardon', 'Alexandre', 'alouadmin', 'alexandre.lardon@yahoo.com', '$2a$12$ZJXF.1iQ9yEfZDZh1PTvGuOBCFhQYd/B4XsGA6lhSCg.ozlny7LM2', '456132246', '2021-01-26', 1, 39, '18004625200177');
-INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (35, 'Bertrand', 'François', 'beber', 'bertrandfrancois@gmail.com', '$2a$12$Y5cLuwAaLVO8lk7dotuA4OBg8thmJeuNMaZgOoGDwbDxDvwItY1YW', '456132247', '2021-02-05', 1, 40, '18004625200177');
+INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (34, 'Lardon', 'Alexandre', 'alouadmin', 'alexandre.lardon@yahoo.fr', '$2a$12$ZJXF.1iQ9yEfZDZh1PTvGuOBCFhQYd/B4XsGA6lhSCg.ozlny7LM2', '456132246', '2021-01-26', 1, 39, '18004625200177');
 INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (36, 'Lardon', 'Alexandre', 'alouadmin2', 'alexandre.lardon@gmail.com', '$2a$12$Gm6Xj9YsN4flAJ8hd1xaBeuKgfDJKF/EI57AiPHj0IdbjVvRfNZqu', '456132248', '2021-02-15', 1, 41, '18004625200177');
+INSERT INTO public.abonne (id_abonne, nom, prenom, pseudo, email, mot_de_passe, numero_abonne, date_creation_du_compte, role, id_adresse, bibliotheque) VALUES (35, 'Bertrand', 'François', 'beber', 'alexandre.lardon69@gmail.com', '$2a$12$Y5cLuwAaLVO8lk7dotuA4OBg8thmJeuNMaZgOoGDwbDxDvwItY1YW', '456132247', '2021-02-05', 1, 40, '18004625200177');
 
 
 --
--- TOC entry 2964 (class 0 OID 42831)
+-- TOC entry 2966 (class 0 OID 42831)
 -- Dependencies: 213
 -- Data for Name: auteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -112,7 +112,7 @@ INSERT INTO public.auteur (id_auteur, nom, prenom, date_de_naissance, date_deces
 
 
 --
--- TOC entry 2980 (class 0 OID 51346)
+-- TOC entry 2982 (class 0 OID 51346)
 -- Dependencies: 229
 -- Data for Name: editeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -132,7 +132,7 @@ INSERT INTO public.editeur (id_editeur, nom_maison_edition) VALUES (12, 'Poche')
 
 
 --
--- TOC entry 2976 (class 0 OID 42902)
+-- TOC entry 2978 (class 0 OID 42902)
 -- Dependencies: 225
 -- Data for Name: employe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -141,7 +141,7 @@ INSERT INTO public.employe (id_employe, nom, prenom, matricule, date_embauche, d
 
 
 --
--- TOC entry 2968 (class 0 OID 42853)
+-- TOC entry 2970 (class 0 OID 42853)
 -- Dependencies: 217
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -165,7 +165,7 @@ INSERT INTO public.genre (id_genre, nom, description) VALUES (12, 'Manga', 'Un M
 
 
 --
--- TOC entry 2958 (class 0 OID 42798)
+-- TOC entry 2960 (class 0 OID 42798)
 -- Dependencies: 207
 -- Data for Name: livre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -215,7 +215,7 @@ INSERT INTO public.livre (id_livre, titre, resume, date_edition, num_isbn13, lan
 
 
 --
--- TOC entry 2970 (class 0 OID 42864)
+-- TOC entry 2972 (class 0 OID 42864)
 -- Dependencies: 219
 -- Data for Name: liste_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -243,7 +243,7 @@ INSERT INTO public.liste_genre (id_liste_genre, id_livre, id_genre) VALUES (20, 
 
 
 --
--- TOC entry 2966 (class 0 OID 42842)
+-- TOC entry 2968 (class 0 OID 42842)
 -- Dependencies: 215
 -- Data for Name: livre_auteurs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -269,55 +269,90 @@ INSERT INTO public.livre_auteurs (id_livre_auteur, id_livre, id_auteur) VALUES (
 
 
 --
--- TOC entry 2960 (class 0 OID 42809)
+-- TOC entry 2962 (class 0 OID 42809)
 -- Dependencies: 209
 -- Data for Name: ouvrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (13, 'AEZHOR331', 13, '2021-01-02', 3);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (10, 'AEZBAN458', 10, '2018-12-27', 1);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (16, 'AEZMAN117', 16, '2021-01-01', 1);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (3, 'AEZCON855', 3, '2018-12-20', 2);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (9, 'AEZFAN698', 9, '2018-12-26', 3);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (5, 'AEZDEV98', 5, '2018-12-22', 1);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (14, 'AEZDEV150', 14, '2021-01-01', 2);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (12, 'AEZROM558', 12, '2020-12-20', 2);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (15, 'AEZGAS342', 15, '2021-01-08', 4);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (11, 'AEZGAS341', 11, '2021-01-06', 1);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (6, 'AEZROM595', 6, '2018-12-23', 0);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (1, 'AEZCON1355', 1, '2016-08-10', 2);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (8, 'AEZSFI198', 8, '2018-12-25', 0);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (7, 'AEZBAN432', 7, '2018-12-24', 1);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (4, 'AEZMEM058', 4, '2018-12-21', 4);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (17, 'AEZDEV151', 17, '2021-01-14', 0);
-INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires) VALUES (2, 'AEZROM565', 2, '2019-12-19', 1);
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (2, 'BBWROM565', 2, '2019-12-19', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (9, 'BBWFAN698', 9, '2018-12-26', 3, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (16, 'BBWMAN117', 16, '2021-01-01', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (8, 'BBWSFI198', 8, '2018-12-25', 0, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (15, 'BBWGAS342', 15, '2021-01-08', 4, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (14, 'BBWDEV150', 14, '2021-01-01', 2, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (7, 'BBWBAN432', 7, '2018-12-24', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (6, 'BBWROM595', 6, '2018-12-23', 0, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (13, 'BBWHOR331', 13, '2021-01-02', 3, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (12, 'BBWROM558', 12, '2020-12-20', 2, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (23, 'BALROM595', 6, '2018-12-23', 1, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (5, 'BBWDEV98', 5, '2018-12-22', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (4, 'BBWMEM058', 4, '2018-12-21', 4, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (11, 'BBWGAS341', 11, '2021-01-06', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (10, 'BBWBAN458', 10, '2018-12-27', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (3, 'BBWCON855', 3, '2018-12-20', 2, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (29, 'BALROM558', 12, '2020-12-20', 1, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (17, 'BBWDEV151', 17, '2021-01-14', 0, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (43, 'BROGAS341', 11, '2021-01-06', 3, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (51, 'BROMEM058', 4, '2018-12-21', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (40, 'BRODEV151', 17, '2021-01-14', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (41, 'BRODEV98', 5, '2018-12-22', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (47, 'BROFAN698', 9, '2018-12-26', 0, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (50, 'BROMAN117', 16, '2021-01-01', 1, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (46, 'BROBAN432', 7, '2018-12-24', 1, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (44, 'BRODEV150', 14, '2021-01-01', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (38, 'BROSFI198', 8, '2018-12-25', 1, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (45, 'BROBAN458', 10, '2018-12-27', 1, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (48, 'BROROM565', 2, '2019-12-19', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (36, 'BROROM595', 6, '2018-12-23', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (37, 'BROROM558', 12, '2020-12-20', 0, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (35, 'BROHOR331', 13, '2021-01-02', 3, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (42, 'BROGAS342', 15, '2021-01-08', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (25, 'BALSFI198', 8, '2018-12-25', 0, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (20, 'BALCON855', 3, '2018-12-20', 3, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (22, 'BALDEV98', 5, '2018-12-22', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (32, 'BALGAS342', 15, '2021-01-08', 3, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (28, 'BALGAS341', 11, '2021-01-06', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (31, 'BALDEV150', 14, '2021-01-01', 3, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (27, 'BALBAN458', 10, '2018-12-27', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (24, 'BALBAN432', 7, '2018-12-24', 0, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (26, 'BALFAN698', 9, '2018-12-26', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (19, 'BALROM565', 2, '2019-12-19', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (33, 'BALMAN117', 16, '2021-01-01', 2, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (21, 'BALMEM058', 4, '2018-12-21', 3, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (30, 'BALHOR331', 13, '2021-01-02', 4, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (34, 'BALDEV151', 17, '2021-01-14', 2, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (39, 'BROCON855', 3, '2018-12-20', 3, '18004625200356');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (1, 'BBWCON1355', 1, '2016-08-10', 1, '18004625200177');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (18, 'BALCON1355', 1, '2016-08-10', 3, '18004625200568');
+INSERT INTO public.ouvrage (id_ouvrage, code_bibliotheque, id_livre, date_ajout, nombre_exemplaires, siret_bibliotheque) VALUES (49, 'BROCON1355', 1, '2016-08-10', 1, '18004625200356');
 
 
 --
--- TOC entry 2962 (class 0 OID 42820)
+-- TOC entry 2964 (class 0 OID 42820)
 -- Dependencies: 211
 -- Data for Name: pret; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (69, '2021-02-22', '2021-02-25', true, 17, 34, 'A rendre', false, '1');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (78, '2021-02-22', '2021-02-24', true, 15, 34, 'Rendu', true, '5');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (80, '2021-02-24', '2021-02-24', true, 11, 34, 'Rendu', true, '5');
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (82, '2021-02-24', '2021-03-24', false, 1, 35, 'Prêt en cours', false, '4');
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (83, '2021-02-24', '2021-03-24', false, 2, 35, 'Prêt en cours', false, '4');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (86, '2021-02-24', '2021-04-24', true, 8, 35, 'Prolongation', false, '3');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (85, '2021-02-24', '2021-02-24', true, 7, 35, 'Rendu', true, '5');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (84, '2021-02-24', '2021-02-24', true, 4, 35, 'Rendu', true, '5');
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (87, '2021-02-24', '2021-03-24', false, 17, 35, 'non prolongé', false, '4');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (88, '2021-02-24', '2021-03-24', false, 2, 34, 'Prêt en cours', false, '4');
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (68, '2021-02-22', '2021-03-02', false, 3, 34, 'Dernière semaine', false, '2');
-INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (67, '2021-02-21', '2021-04-21', true, 1, 34, 'Prolongation', false, '3');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (69, '2021-01-25', '2021-02-25', true, 17, 34, 'A rendre', false, '1');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (87, '2021-02-24', '2021-03-24', false, 17, 35, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (82, '2021-02-24', '2021-02-27', true, 1, 35, 'Rendu', true, '5');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (83, '2021-01-24', '2021-02-24', true, 2, 35, 'A rendre', false, '1');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (70, '2021-02-22', '2021-03-22', false, 9, 34, 'Prêt en cours', false, '4');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (72, '2021-02-22', '2021-02-21', true, 16, 34, 'Rendu', true, '5');
 INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (71, '2021-02-22', '2021-02-22', true, 5, 34, 'A rendre', false, '1');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (89, '2021-03-01', '2021-04-01', false, 49, 35, 'Prêt en cours', false, '4');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (67, '2021-02-21', '2021-03-01', true, 49, 34, 'A rendre', false, '1');
+INSERT INTO public.pret (id_pret, date_emprunt, date_restitution, prolongation, id_ouvrage, id_abonne, statut, rendu, statut_priorite) VALUES (68, '2021-02-02', '2021-03-02', true, 3, 34, 'A rendre', false, '1');
 
 
 --
--- TOC entry 2989 (class 0 OID 0)
+-- TOC entry 2991 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: abonne_id_abonne_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -326,7 +361,7 @@ SELECT pg_catalog.setval('public.abonne_id_abonne_seq', 36, true);
 
 
 --
--- TOC entry 2990 (class 0 OID 0)
+-- TOC entry 2992 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -335,7 +370,7 @@ SELECT pg_catalog.setval('public.adresse_id_seq', 41, true);
 
 
 --
--- TOC entry 2991 (class 0 OID 0)
+-- TOC entry 2993 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: auteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -344,7 +379,7 @@ SELECT pg_catalog.setval('public.auteur_id_seq', 1, false);
 
 
 --
--- TOC entry 2992 (class 0 OID 0)
+-- TOC entry 2994 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: editeur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -353,7 +388,7 @@ SELECT pg_catalog.setval('public.editeur_id_seq', 1, false);
 
 
 --
--- TOC entry 2993 (class 0 OID 0)
+-- TOC entry 2995 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: employe_id_employe_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -362,7 +397,7 @@ SELECT pg_catalog.setval('public.employe_id_employe_seq', 1, false);
 
 
 --
--- TOC entry 2994 (class 0 OID 0)
+-- TOC entry 2996 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: genre_nom_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -371,7 +406,7 @@ SELECT pg_catalog.setval('public.genre_nom_seq', 13, false);
 
 
 --
--- TOC entry 2995 (class 0 OID 0)
+-- TOC entry 2997 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -380,7 +415,7 @@ SELECT pg_catalog.setval('public.hibernate_sequence', 9, true);
 
 
 --
--- TOC entry 2996 (class 0 OID 0)
+-- TOC entry 2998 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: id_adresse; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -389,7 +424,7 @@ SELECT pg_catalog.setval('public.id_adresse', 51, true);
 
 
 --
--- TOC entry 2997 (class 0 OID 0)
+-- TOC entry 2999 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: liste_genre_id_liste_genre_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -398,7 +433,7 @@ SELECT pg_catalog.setval('public.liste_genre_id_liste_genre_seq', 11, true);
 
 
 --
--- TOC entry 2998 (class 0 OID 0)
+-- TOC entry 3000 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: livre_auteurs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -407,7 +442,7 @@ SELECT pg_catalog.setval('public.livre_auteurs_id_seq', 3, true);
 
 
 --
--- TOC entry 2999 (class 0 OID 0)
+-- TOC entry 3001 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: livre_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -416,7 +451,7 @@ SELECT pg_catalog.setval('public.livre_id_seq', 1, false);
 
 
 --
--- TOC entry 3000 (class 0 OID 0)
+-- TOC entry 3002 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: ouvrage_id_ouvrage_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -425,7 +460,7 @@ SELECT pg_catalog.setval('public.ouvrage_id_ouvrage_seq', 1, false);
 
 
 --
--- TOC entry 3001 (class 0 OID 0)
+-- TOC entry 3003 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: pret_abonne_id_pret_abonne_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -434,15 +469,15 @@ SELECT pg_catalog.setval('public.pret_abonne_id_pret_abonne_seq', 2, false);
 
 
 --
--- TOC entry 3002 (class 0 OID 0)
+-- TOC entry 3004 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: pret_id_pret_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pret_id_pret_seq', 88, true);
+SELECT pg_catalog.setval('public.pret_id_pret_seq', 89, true);
 
 
--- Completed on 2021-02-24 17:49:50
+-- Completed on 2021-03-05 14:19:42
 
 --
 -- PostgreSQL database dump complete

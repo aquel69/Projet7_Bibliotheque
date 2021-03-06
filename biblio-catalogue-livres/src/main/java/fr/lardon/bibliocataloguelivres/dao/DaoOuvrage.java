@@ -29,4 +29,6 @@ public interface DaoOuvrage extends JpaRepository<Ouvrage, Integer> {
             "    WHERE id_livre = ? ORDER BY code_bibliotheque", nativeQuery = true)
     List<Ouvrage> listeOuvragesSelonIdLivre(int id);
 
+
+
 }

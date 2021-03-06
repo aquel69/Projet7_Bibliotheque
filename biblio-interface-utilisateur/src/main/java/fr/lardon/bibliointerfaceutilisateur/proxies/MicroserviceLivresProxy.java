@@ -29,7 +29,7 @@ public interface MicroserviceLivresProxy {
     List<Ouvrage> listeOuvrageNouveaute();
 
     @GetMapping(value = "/Top")
-    List<Ouvrage> listeOuvrageSelonNombreDEmprunt();
+    List<Livre> listeOuvrageSelonNombreDEmprunt();
 
     @GetMapping(value="/Recherche/{noPage}/{nbLivresParPage}/{recherche}")
     List<Livre> catalogueListeLivrePaginationRecherche(@PathVariable int noPage, @PathVariable int nbLivresParPage, @PathVariable String recherche);

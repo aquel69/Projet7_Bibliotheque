@@ -42,7 +42,7 @@ public class CatalogueController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String accueil(Model model){
         livres = new ArrayList<>();
-        Ouvrage ouvrage = n
+        Ouvrage ouvrage = new Ouvrage();
 
         //récupération du message
         String message = (String) model.getAttribute("message");
@@ -58,21 +58,22 @@ public class CatalogueController {
         }
 
         ouvrages = livresProxy.listeDesOuvrages();
+        /*Ouvrage ouvrageTop = new Ouvrage();
 
         for(int i = 0; i < ouvrages.size() / 3; i++){
             for(int j = 1; j < 4; j++){
-                ouvrages.get(i * j)
+                ouvrageTop = ouvrages.get(i * j);
             }
 
-        }
-
+        }*/
 
         //récupération du top 10
-        List<Ouvrage> ouvragesTop;
+        /*List<Ouvrage> ouvragesTop;
         ouvragesTop = livresProxy.listeOuvrageSelonNombreDEmprunt();
-        for(Ouvrage ouvrage : ouvragesTop){
-            livres.add(ouvrage.getLivre());
-        }
+        for(Ouvrage ouvrageBoucle : ouvragesTop){
+            livres.add(ouvrageBoucle.getLivre());
+        }*/
+        livres = livresProxy.listeOuvrageSelonNombreDEmprunt();
 
         /*livres = livresProxy.topLivre();*/
         livreTop = new ArrayList<>(livres.subList(0, 10));
@@ -81,11 +82,11 @@ public class CatalogueController {
         ouvragesNouveaute = livresProxy.listeOuvrageNouveaute();
 
         //séparation en deux listes pour l'affichage
-        for(Ouvrage ouvrage : ouvragesNouveaute){
+        for(Ouvrage separationOuvrage : ouvragesNouveaute){
             if(index < 3)
-                ouvragesPremierePartie.add(ouvrage);
+                ouvragesPremierePartie.add(separationOuvrage);
             else if(index < 6)
-                ouvragesSecondePartie.add(ouvrage);
+                ouvragesSecondePartie.add(separationOuvrage);
 
             index++;
         }

@@ -1,6 +1,7 @@
 package fr.lardon.bibliocataloguelivres.model;
 
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class Ouvrage {
     private int nombreExemplaires;
 
     /**
-     * nombre d'exemplaire de l'ouvrage
+     * siret de la bibliothèque
      */
     @NonNull
     @Column(name = "siret_bibliotheque")
