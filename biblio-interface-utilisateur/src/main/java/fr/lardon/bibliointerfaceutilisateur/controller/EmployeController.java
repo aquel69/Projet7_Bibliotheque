@@ -85,7 +85,7 @@ public class EmployeController {
         //récupération de l'abonné
         this.abonne = livresProxy.recupererAbonneSelonNumeroAbonne(abonne.getNumeroAbonne());
 
-        if(verificationDEmpruntIdentique(ouvrage)){
+        if(verificationDEmpruntIdentique(this.ouvrage)){
             //ajout erreur
             message = "L'ouvrage est déjà emprunté par cet abonné";
 
@@ -248,7 +248,7 @@ public class EmployeController {
         pretList = abonnePretOuvrage.getListePret();
 
         for(Pret pret : pretList){
-            if(pret.getOuvragePret().getCodeBibliotheque().equals(ouvrage.getCodeBibliotheque()) && pret.isRendu() == false){
+            if(pret.getOuvragePret().getLivre().getIdLivre() == ouvrage.getLivre().getIdLivre() && pret.isRendu() == false){
                 return true;
             }
         }

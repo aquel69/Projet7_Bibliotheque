@@ -15,5 +15,4 @@ public class BiblioBatchApplication {
 		SpringApplication.run(BiblioBatchApplication.class, args);
 	}
 
-
 }
