@@ -3,7 +3,154 @@ Développement d'un nouveau système d’information de la bibliothèque d’une
 
 ---
 
-## I - Installation et mise en place du Projet et de sa Base de données 
+---
+
+## I - Installation complete du projet
+
+---  
+
+### 1 - Récupération et installation du projet
+
+---  
+
+ - Tout d'abord, récupérez le repo dans cette page en copiant l'url comme indiqué en-dessous :  
+
+![photo 1 Récupération URL](documentation/screenshots/installation_projet_1.png "Récuération URL")  
+
+ - Ensuite, vous aurez besoin du logiciel GitBash que vous pouvez télécharger [ici](https://gitforwindows.org/), pour télécharger le clone du projet.
+
+ - Installez le logiciel et Faite un clic droit à l'endroit ou vous souhaitez mettre votre projet, puis sélectionner Git Bash Here :  
+
+![photo 2 Git Bash](documentation/screenshots/installation_projet_2.png "Git Bash")
+
+ - Le logiciel Git Bash s'ouvre automatiquement, et se place directement dans l'emplacement, où vous vous trouvez. 
+   Il ne vous reste plus qu'a saisir la ligne de commande suivante pour récupérer le projet dans votre système :  
+   git clone https<span>://</span>github.com/aquel69/Projet7_Bibliotheque.git  
+   
+ Vous devriez avoir maintenant tous les fichiers du projets dans votre dossier :
+
+![photo 3 dossier contenant projet](documentation/screenshots/installation_projet_3.png "dossier contenant projet")  
+
+### 2 - Ouverture du projet avec IntelliJ IDEA
+
+---  
+
+ - Maintenant que notre projet se trouve dans notre dossier, nous allons pouvoir le lancer dans un IDE comme Intellij IDEA, 
+   disponible à cette [adresse](https://www.jetbrains.com/fr-fr/idea/).
+   
+ - Une fois l'installation d'Intellij effectué, cliquez sur 'Open', sélectionnez le dossier du projet et cliquez sur 'ok'.  
+
+ - Vous devez vous retrouvez avec une arborescence du projet comme celle-ci :  
+
+![photo 4 arborescence projet](documentation/screenshots/installation_projet_4.png "arborescence projet")  
+
+### 3 - Configuration du projet avec IntelliJ IDEA
+
+---  
+
+ - Il faut maintenant configurer le projet, pour ceci allez dans File -> Project Structure et dans le premier onglet 'Project'  
+modifier le SDK comme indiquer sur le screen, avec la version 8 disponible [ici](https://www.oracle.com/fr/java/technologies/javase/javase-jdk8-downloads.html),
+   si vous ne l'avez par encore installé :
+
+![photo 5 modification sdk](documentation/screenshots/installation_projet_5.png "modification sdk")  
+
+ - Faire la même procédure pour l'onglet SDKs : 
+
+![photo 6 modification sdk](documentation/screenshots/installation_projet_6.png "modification sdk")
+
+### 3 - Installation de PgAdmin 4 et création de la base de données
+
+---  
+
+ - Tout d'abord, installons l'interface pgAdmin 4 que vous pouvez télécharger [ici](https://www.pgadmin.org/download/).  
+ - L'interface va nous permettre d'effectuer des requêtes postgresql, afin d'effectuer l'installation de notre base de données.  
+ - Rdv dans l'interface de pgAdmin et ajoutez une base de données :  
+   clic droit sur PostgreSQL 12 dans la colonne de gauche -> Create -> Database
+
+![photo 1 creation BDD](documentation/screenshots/creation_BDD_1.png "creation BDD")  
+
+ - Donnez-lui un nom puis valider.  
+
+### 4 - Mise en place de la structure et récupération des data de la base de données
+
+---  
+
+ - Récupérons nos requêtes pour créer notre structure dans le dossier de notre projet :  
+  database -> Backup -> backup_structure.sql
+ - Sélectionnez toutes les requêtes, puis copiez les.
+ - Dans l'interface PgAdmin 4 cliquez sur la base de données que vous venez de créer puis sur le bouton 'Query Tool' :  
+
+![photo 2 creation BDD](documentation/screenshots/creation_BDD_2.png "creation BDD")
+
+ - Il ne reste plus qu'à coller les requêtes, dans la fenêtre que vous venez d'ouvrir, sélectionnez toutes vos requêtes et
+   cliquer sur le bouton 'Execute' :
+
+![photo 3 creation BDD](documentation/screenshots/creation_BDD_3.png "creation BDD")
+
+ - Regarder dans votre arborescence, vous devriez vous retrouvez avec toutes les tables :  
+
+![photo 4 creation BDD](documentation/screenshots/creation_BDD_4.png "creation BDD")  
+
+ - Effectuons les mêmes opérations pour récupérer la data, à l'aide du fichier 'backup_structure.sql se trouvant 
+   également dans le dossier 'Backup' et votre base de données sera créée.
+
+
+### 5 - Modification des chemins dans les modules 
+
+---
+
+ - Modifier le chemin du certificat https dans le fichier 'application.properties' dans le module 'interface abonné' :
+
+![photo 1 modification chemin](documentation/screenshots/modification_des_chemins_1.png "modification chemin")
+
+ - Ensuite dans les modules 'catalogue', 'authentification' et 'gestion', modifiez le fichier 'application properties'.  
+   Remplacez les propriétés de connexion à la base de données :  
+
+![photo 2 modification chemin](documentation/screenshots/modification_des_chemins_2.png "modification chemin")  
+
+ - Dans le dernier module 'Batch', modifiez les propriétés de la base de données comme précédemment.  
+   Mais aussi les propriétés de configuration de votre mail, afin d'envoyer les emails aux abonnés.  
+
+![photo 3 modification chemin](documentation/screenshots/modification_des_chemins_3.png "modification chemin")
+
+
+### 6 - Démarrage des microservices et accès à l'application
+
+---
+
+ - Maintenant que tout est en place pour faire fonctionner le logiciel, il reste plus qu'à démarrer les différents microservices.
+ - Tout d'abord nous allons démarrer les microservices suivant :  
+        - authentification-utilisateur  
+        - gestion-utilisateur  
+        - catalogue-livres  
+   En se rendant dans les classes ...Application, et en cliuant sur la petite flèche verte 'Run':
+
+![photo 1 démarrage microservice](documentation/screenshots/démarrage_des_microservice_1.png "démarrage microservice")  
+
+ - Ensuite faites la même procedure pour le microservice 'interface-utilisateur'.
+ - Démarrez ensuite votre navigateur, puis entrez l'adresse suivante : https://localhost:8443/
+ - Si la page suivante s'affiche, c'est que le logiciel fonctionne :  
+
+![photo 2 démarrage microservice](documentation/screenshots/démarrage_des_microservice_2.png "démarrage microservice")  
+
+ - Pour la partie batch, l'envoi des emails se fera de la même façon, une fois la configuration du fichier properties,  
+   vous n'aurez qu'à exécuter la classe 'BiblioBatchApplication'.
+
+### 7 - Connexions aux différents utilisateurs
+
+---
+
+- Pour se connecter en tant qu'employé, il faut entrer l'adresse suivante : dupont.regis@yahoo.fr  
+  et le mot de passe : 123.
+
+- Sinon Pour se connecter en tant qu'abonné, il faut entrer les adresses se trouvant dans la table 'abonné' de la base de données. 
+  Ainsi que le mot de passe commun à toutes les adresses : 123456.
+  
+- Sinon créez vous-même votre abonné. Pour ceci, rendez-vous dans la page authentification et créez votre propre compte.
+
+
+
+## II - Procédure de la création du Projet et de sa Base de données 
 
 ---
 
@@ -23,52 +170,32 @@ Une fois générer, j'ai ajouté le dossier à mon projet puis mis le dossier en
 
 J'ai reproduit cette opération sur tous les microservices que je souhaitai créer :  
 
-![photo 4 initializer](documentation/screenshots/installation_du_projet_4.png "modules")
+![photo 4 modules](documentation/screenshots/installation_du_projet_4.png "modules")
 
 J'ai ajouté dans mes fichiers pom.xml, les dépendances dont j'avais l'utilité en fonction de mes besoins(screen du pom de mon module interface).  
 
-![photo 1 initializer](documentation/screenshots/installation_du_projet_5.png "Pom interface-utilisateur")
+![photo 1 pom](documentation/screenshots/installation_du_projet_5.png "Pom interface-utilisateur")
 
 ### 2 - Création de la base de données sous pgAdmin 4 - V4.19
 
 ---
 
-Tout d'abord nous allons créer sous pgAdmin 4 (version 4.19), la base de données :
+Tout d'abord j'ai créé sous pgAdmin 4 (version 4.19), la base de données :
 
 - Pour commencer, j'ai ajouté la dépendance de postgresql dans mes fichiers pom.xml utilisant la base de données.  
 
 
 - Puis j'ai récupéré à partir du logiciel power architect la requête de création de la structure de ma base de données, qu'ensuite j'ai pu créer grace à l'interface pgAdmin 4. 
 
-![photo 1 initializer](documentation/screenshots/installation_du_projet_6.png "création BDD sous pgAdmin4")
+![photo 1 pgAdmin](documentation/screenshots/installation_du_projet_6.png "création BDD sous pgAdmin4")
   
 - Je l'ai ensuite mis au propre grace au logiciel pgModeler.  
 
 ![photo 1 modèle physique de données](documentation/screenshots/installation_du_projet_3.png "modèle physique de données")
 
-
-### 3 - Modification des chemins
-
 ---
 
-- Modifier le chemin du certificat https dans le fichier 'application.properties' du module 'interface abonné' : 
-
-![photo 1 fichier properties abonné](documentation/screenshots/installation_du_projet_2.png "fichier properties abonné")
-
-
-### 4 - Connexions aux différents utilisateurs  
-
----
-
-- Pour se connecter en tant qu'employé, il faut entrer l'adresse suivante : dupont.regis@yahoo.fr  
-et le mot de passe : 123  
-
-- Pour se connecter en tant qu'abonné, il faut entrer l'adresse suivante : alexandre.lardon@yahoo.fr  
-  et le mot de passe : 123456  
-
----
-
-## II - Fonctionnement du projet
+## III - Fonctionnement du projet
 
 ---  
 
@@ -103,7 +230,7 @@ et le mot de passe : 123
       Le dernier module permet le traitement des batchs. Il permet de récupérer dans la base de données les informations nécessaires à l'envoi de mail aux abonnées en fonction de leurs emprunts et de la restitution de ceux-ci. Les mails sont envoyés à raison de une fois par jour à minuit.
     
 
-### 2 - Mise en place et fonctionnement de la communication entre les modules
+### 2 - Mise en place et fonctionnement de la communication entre les microservices
 
 ---  
 
@@ -118,5 +245,10 @@ et le mot de passe : 123
  - Il ne reste plus qu'à ajouter le client Feign dans les interfaces contenues dans le package proxies, pour cela nous ajoutons l'annotation suivante :  
 
 ![photo 3 proxies Authentification](documentation/screenshots/communication_entre_module_3.png "interface Authentification proxies")  
+
+
+### 2 - Mise en place et fonctionnement de la communication entre les microservices
+
+---  
 
 
