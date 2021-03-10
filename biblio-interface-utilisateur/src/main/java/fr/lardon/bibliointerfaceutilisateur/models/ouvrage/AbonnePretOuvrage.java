@@ -1,6 +1,5 @@
 package fr.lardon.bibliointerfaceutilisateur.models.ouvrage;
 
-
 import fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur.Abonne;
 import lombok.Data;
 import lombok.NoArgsConstructor;

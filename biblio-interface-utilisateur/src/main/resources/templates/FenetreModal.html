@@ -34,8 +34,6 @@
                 <!-- Modal body -->
                 <div class="modal-body pt-0">
                     <form th:action="@{/Prolongation}" th:object="${abonnePret}" method="post" class="form-inline justify-content-start">
-
-                            <!--<p th:text="${abonnePret.abonne.getNom()}"></p>-->
                                     <table  class="table table-hover table-responsive align-items-center border-bottom mb-0" th:each="abonnePret, inter : ${abonnePret}">
                                         <thead>
                                             <tr>

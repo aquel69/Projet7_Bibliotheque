@@ -1,6 +1,5 @@
 package fr.lardon.bibliobatch.model;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

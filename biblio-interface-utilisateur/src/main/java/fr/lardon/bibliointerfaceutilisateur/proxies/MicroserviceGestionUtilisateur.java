@@ -23,6 +23,7 @@ public interface MicroserviceGestionUtilisateur {
     @GetMapping(value = "/AbonnePret/{numeroAbonne}")
     Abonne recupererAbonneSelonNumeroAbonne(@PathVariable String numeroAbonne);
 
+    //modifier un abonné
     @PutMapping(value="/ModifierAbonne")
     void modifierAbonne(@RequestBody Abonne abonne);
 

@@ -53,7 +53,6 @@
                                     <span th:errors="*{prenom}"></span>
                                 </div>
                             </div>
-
                             <div class="form-group col-md-4">
                                 <label>Prénom</label>
                                 <input type="text" class="form-control"  th:field="*{pseudo}" />
@@ -65,7 +64,6 @@
                             </div>
                         </div>
                         <h3 class="text-center mb-2">Coordonnées</h3>
-                       <!-- <div th:object="${adresseBean}">-->
                             <div class="form-row " >
                                 <div class="form-group col-md-3 mb-0">
                                     <label for="numero">Numéro</label>
@@ -115,7 +113,6 @@
                                     </div>
                                 </div>
                             </div>
-                        <!--</div>-->
                         <h3 class="text-center mb-2">Identification</h3>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Email</label>
@@ -131,7 +128,6 @@
                                 <span th:text="${messageErreur}"></span>
                             </div>
                         </div>
-
                         <!-- Password input -->
                         <div class="form-outline">
                             <label class="form-label" for="old_password">Ancien mot de passe</label>

@@ -11,5 +11,6 @@ public interface DaoAdresse extends JpaRepository<Adresse, Integer> {
 
     @Query(value = "SELECT MAX(idAdresse) FROM Adresse")
     Integer recupererDernierAdresse();
+
 }
 

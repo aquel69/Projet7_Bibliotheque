@@ -21,5 +21,4 @@ public class FreemarkerConfig implements BeanPostProcessor {
 
         return bean;
     }
-
 }

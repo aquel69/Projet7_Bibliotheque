@@ -12,4 +12,5 @@ public interface DaoAbonne extends JpaRepository<Abonne, Integer> {
     Integer recupererDernierAbonne();
 
     Abonne findByNumeroAbonne(String numeroAbonne);
+
 }

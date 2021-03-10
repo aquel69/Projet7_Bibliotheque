@@ -30,7 +30,6 @@ public class EmployeController {
     private  String message = null;
     private  String messageRestitution = null;
 
-
     @Autowired
     private MicroserviceLivresProxy livresProxy;
 
@@ -221,6 +220,11 @@ public class EmployeController {
         this.abonne.setNumeroAbonne("");
     }
 
+    /**
+     * permet de vérifier si l'ouvrage est existant
+     * @param ouvrage
+     * @return
+     */
     public boolean verificationOuvrageExistant(Ouvrage ouvrage){
         //Récupération de la liste des ouvrages
         List<Ouvrage> ouvrageList;
@@ -301,7 +305,6 @@ public class EmployeController {
                 isRestitue = true;
             }
         }
-
     }
 
     /**

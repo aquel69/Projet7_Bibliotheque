@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 @Controller
 /**
  * classe regroupant les méthodes permettant de traiter, envoyer et récupérer les données avec les page html de la création et la modification des comptes d'un abonné
@@ -52,7 +51,6 @@ public class GestionUtilisateurController {
 
     @Autowired
     private MicroserviceLivresProxy livresProxy;
-
 
     /**
      * permet de renvoyer à la page inscription
