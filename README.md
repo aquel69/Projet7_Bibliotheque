@@ -193,6 +193,16 @@ Tout d'abord j'ai créé sous pgAdmin 4 (version 4.19), la base de données :
 
 ![photo 1 modèle physique de données](documentation/screenshots/installation_du_projet_3.png "modèle physique de données")
 
+### 3 - Utilisation de Maven
+
+---
+
+ - Chaque microservice possède indépendamment son propre fichier pom, lui permettant de gérer ses propres dépendances. Grace à spring boot
+ nous ajoutons la possibilité d'affiner la gestion des fonctionnalités à l'aide des starters.  
+ - J'ai pu également utilisé différente version des dépendances, afin de corriger des soucis de compatibilité de version entre,
+ spring boot et des librairies comme lombok.
+
+
 ---
 
 ## III - Fonctionnement du projet
@@ -203,7 +213,7 @@ Tout d'abord j'ai créé sous pgAdmin 4 (version 4.19), la base de données :
 
 ---  
 
- - Chaque microservices gèrent une partie de l'application. Sur mon projet, je les ai répartie en 5 modules :
+ - Chaque microservices gèrent une partie de l'application(n-tiers). Sur mon projet, je les ai répartie en 5 modules :
     * Module biblio-interface-utilisateur
     * Module biblio-gestion-utilisateur
     * Module biblio-authentification-utilisateur
@@ -247,8 +257,33 @@ Tout d'abord j'ai créé sous pgAdmin 4 (version 4.19), la base de données :
 ![photo 3 proxies Authentification](documentation/screenshots/communication_entre_module_3.png "interface Authentification proxies")  
 
 
-### 2 - Mise en place et fonctionnement de la communication entre les microservices
+### 3 - Fonctionnement des microservices
 
 ---  
 
+ - Chaque microservice gèrent différentes couches :  
+        - __Controller__ : contenant les différentes méthodes servant à récupérer des données. Et pour le microservice 'interface-utilisateur', 
+        la gestion des différentes pages du site et de son interaction.  
+        - __Dao__ : permettant d'interagir avec la base de données, l'utilisation de Spring Data JPA permettant de générer  
+        toutes sortes d'opérations vers la base de données.  
+        - __Model__ : Le model regroupe tous les beans, servant à manipuler les données. Les beans récupères les données via hibernate.
+        Cela rend plus facile l'accès aux données dans la base, couplé avec Spring Data JPA, nous pouvons facilement à partir
+        des annotations d'hibernate dans nos beans et une méthode de l'interface Spring Data avoir accès à la plupart des données dans nos objets.  
+        - __Service__ : Cette couche dont je me suis servie dans certain microservice, m'a permis d'exploiter et de traiter
+        différemment les données, afin que je puisse manipuler mes beans comme je le souhaitais.
 
+### 4 - Documentation
+
+---  
+
+ - J'ai inclus dans mon projet également un dossier sur sa documentation et ses ressources :  
+        - __Javadoc__ : permettant d'avoir des informations sur toutes les classes et méthodes.  
+        - __Certificats Https__ : permettant de sécuriser les données entre le serveur et le client.  
+        - __Backup__ : Les sauvegardes de ma base de données.  
+        - __Modèle Physique de Données__ : permettant sous power Architect de mettre en place la base de données et de
+        générer le code postgresql permettant de la créer.  
+        - __Spécifications Fonctionnelles__ : toute la documentation technique permettant la mise en place du projet
+        en amont, afin d'établir toutes les fonctions du site et de son interface, pour faciliter la mise en oeuvre de celui-ci. 
+   
+   
+          
