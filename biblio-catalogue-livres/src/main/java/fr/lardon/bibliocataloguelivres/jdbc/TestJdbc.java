@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * classe permettant de tester la connexion avec sa base de données en modifiant les paramètres correspondant à la votre
+ */
 public class TestJdbc {
     public static void main(String[] args) {
 

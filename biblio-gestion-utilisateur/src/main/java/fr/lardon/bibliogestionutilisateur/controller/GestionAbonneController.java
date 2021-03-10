@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+/**
+ * classe regroupant les méthodes permettant de retourner les objets en fonction des données souhaités pour la gestion des utilisateurs
+ */
 public class GestionAbonneController {
 
     @Autowired

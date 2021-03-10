@@ -14,6 +14,9 @@ import java.util.List;
 
 
 @RestController
+/**
+ * classe regroupant les méthodes permettant de retourner les objets en fonction des données souhaitées pour la gestion des authentifications
+ */
 public class AuthentificationController {
 
     @Autowired

@@ -12,6 +12,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name=("editeur"))
+/**
+ * classe représentant une maison d'édition
+ */
 public class Editeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

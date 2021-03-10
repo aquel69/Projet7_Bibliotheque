@@ -9,6 +9,9 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 @Table(name=("ouvrage"))
+/**
+ * classe représentant l'ouvrage et le nombre d'exemplaires disponible
+ */
 public class OuvrageAModifie {
 
     @Id

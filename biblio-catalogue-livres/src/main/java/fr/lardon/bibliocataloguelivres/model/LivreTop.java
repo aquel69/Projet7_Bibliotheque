@@ -13,6 +13,9 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 @Table(name=("livre"))
+/**
+ * classe ne permettant de récupérer juste l'id d'un livre pour la gestion des tops
+ */
 public class LivreTop {
 
     @Id

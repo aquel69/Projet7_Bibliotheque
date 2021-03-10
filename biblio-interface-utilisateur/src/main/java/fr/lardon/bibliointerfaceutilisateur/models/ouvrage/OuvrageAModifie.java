@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant l'ouvrage et le nombre d'exemplaires disponible
+ */
 public class OuvrageAModifie {
 
     private int idOuvrage;

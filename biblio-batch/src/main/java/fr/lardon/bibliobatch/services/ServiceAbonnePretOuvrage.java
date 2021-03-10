@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+/**
+ * classe regroupant les méthodes permettant de retourner les objets en fonction des données souhaitées pour la gestion des batchs
+ */
 public class ServiceAbonnePretOuvrage {
 
     @Autowired

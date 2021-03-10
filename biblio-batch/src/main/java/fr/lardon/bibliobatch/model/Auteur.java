@@ -13,6 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("auteur"))
+/**
+ * classe représentant un auteur
+ */
 public class Auteur {
 
     @Id

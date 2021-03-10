@@ -6,6 +6,9 @@ import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
+/**
+ * classe représentant un abonné
+ */
 public class Abonne {
 
    private int idAbonne;

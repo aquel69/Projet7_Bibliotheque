@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant un genre littéraire
+ */
 public class Genre {
 
     private int idGenre;

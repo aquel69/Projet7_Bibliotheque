@@ -17,6 +17,9 @@ import java.util.List;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idAbonne", scope = AbonnePret.class)
 @Table(name=("abonne"))
+/**
+ * classe représentant un abonné pour la gestion des prêts
+ */
 public class AbonnePret {
 
     @Id

@@ -11,6 +11,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("genre"))
+/**
+ * classe représentant un genre littéraire
+ */
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

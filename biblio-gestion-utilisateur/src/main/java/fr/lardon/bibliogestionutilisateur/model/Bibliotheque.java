@@ -12,6 +12,9 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("bibliotheque"))
+/**
+ * classe représentant une bibliothèque
+ */
 public class Bibliotheque {
 
     @Id

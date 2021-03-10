@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(exclude = {"abonnePret", "ouvragePret"})
 @Entity
 @Table(name=("pret"))
+/**
+ * classe représentant le prêt
+ */
 public class Pret {
 
     @Id

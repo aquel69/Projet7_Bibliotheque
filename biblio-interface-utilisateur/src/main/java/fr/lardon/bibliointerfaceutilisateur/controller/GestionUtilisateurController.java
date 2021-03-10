@@ -22,6 +22,9 @@ import java.util.List;
 
 
 @Controller
+/**
+ * classe regroupant les méthodes permettant de traiter, envoyer et récupérer les données avec les page html de la création et la modification des comptes d'un abonné
+ */
 public class GestionUtilisateurController {
 
     private static final int STRENGTH = 12;
@@ -303,15 +306,4 @@ public class GestionUtilisateurController {
         return "ModificationCompte";
     }
 
-    public  void verificationEmailDoublon(Abonne abonnePost) {
-        resultatEmailExistant = false;
-
-        abonnes = gestionUtilisateur.listeAbonnes();
-
-        for (Abonne abonne1 : abonnes) {
-            if (abonne1.getEmail().equals(abonnePost.getEmail())) {
-                resultatEmailExistant = true;
-            }
-        }
-    }
 }

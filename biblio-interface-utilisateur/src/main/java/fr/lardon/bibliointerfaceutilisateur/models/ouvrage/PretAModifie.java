@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant le prêt a modifié
+ */
 public class PretAModifie {
 
 

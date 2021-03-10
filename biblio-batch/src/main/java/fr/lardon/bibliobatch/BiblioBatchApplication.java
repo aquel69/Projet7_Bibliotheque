@@ -9,6 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableBatchProcessing
 @EnableScheduling
 @SpringBootApplication
+/**
+ * classe permettant le démarrage du microservice batch
+ */
 public class BiblioBatchApplication {
 
 	public static void main(String[] args) {

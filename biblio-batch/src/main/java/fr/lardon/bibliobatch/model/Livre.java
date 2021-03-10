@@ -11,6 +11,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("livre"))
+/**
+ * classe représentant un livre
+ */
 public class Livre {
 
     @Id

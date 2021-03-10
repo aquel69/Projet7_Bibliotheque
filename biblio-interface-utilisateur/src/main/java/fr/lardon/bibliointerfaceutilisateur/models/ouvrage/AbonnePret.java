@@ -7,6 +7,9 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant un abonné pour la gestion des prêts
+ */
 public class AbonnePret {
 
     private int idAbonne;

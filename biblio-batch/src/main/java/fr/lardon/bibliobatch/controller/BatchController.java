@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+/**
+ * classe regroupant les méthodes permettant de retourner les objets en fonction des données souhaités pour la gestion des batchs
+ */
 public class BatchController {
 
     @Autowired
@@ -25,6 +28,11 @@ public class BatchController {
     @Autowired
     private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
+    /**
+     * renvoi l'abonnéPret selon son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
         List<Pret> pretList;

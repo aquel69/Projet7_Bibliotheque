@@ -8,6 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
+/**
+ * classe représentant un abonné à modifié
+ */
 public class AbonneModifie {
 
    private int idAbonne;

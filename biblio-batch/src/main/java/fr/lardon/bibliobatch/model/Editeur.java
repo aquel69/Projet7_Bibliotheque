@@ -9,6 +9,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name=("editeur"))
+/**
+ * classe représentant une maison d'édition
+ */
 public class Editeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

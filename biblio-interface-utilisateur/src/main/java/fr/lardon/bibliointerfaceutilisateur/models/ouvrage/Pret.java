@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant un prêt
+ */
 public class Pret {
 
     private int idPret;

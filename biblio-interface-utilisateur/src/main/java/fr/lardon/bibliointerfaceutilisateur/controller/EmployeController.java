@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
+/**
+ * classe regroupant les méthodes permettant de traiter, envoyer et récupérer les données avec les page html de l'employé
+ */
 public class EmployeController {
 
     private Abonne utilisateurAuthentifie;
@@ -138,7 +141,13 @@ public class EmployeController {
         return "Employe";
     }
 
-
+    /**
+     * permet la restitution du livre et d'affiché la page employé
+     * @param model
+     * @param ouvrage
+     * @param abonne
+     * @return
+     */
     @RequestMapping(value = "/Restitution", method = RequestMethod.POST)
     public String restitution(Model model, @ModelAttribute("ouvrage") Ouvrage ouvrage, @ModelAttribute("abonne") Abonne abonne){
         AbonnePretOuvrage abonnePretOuvrage;
@@ -225,6 +234,11 @@ public class EmployeController {
         return false;
     }
 
+    /**
+     * permet de vérifier si l'abonné est existant
+     * @param abonne
+     * @return
+     */
     public boolean verificationAbonneExistant(Abonne abonne){
         //Récupération de la liste des abonnés
         List<Abonne> abonneList;
@@ -238,9 +252,13 @@ public class EmployeController {
         return false;
     }
 
+    /**
+     * permet de vérifier que l'abonné n'emprunte pas feux fois le même livre
+     * @param ouvrage
+     * @return
+     */
     public boolean verificationDEmpruntIdentique(Ouvrage ouvrage) {
         AbonnePretOuvrage abonnePretOuvrage;
-        List<Ouvrage> ouvrageList;
         List<Pret> pretList;
 
         //récupération de la liste des prêt
@@ -255,6 +273,11 @@ public class EmployeController {
         return false;
     }
 
+    /**
+     * permet la restitution de l'ouvrage
+     * @param pretList
+     * @param ouvrage
+     */
     public void restitutionDeLOuvrage(List<Pret> pretList, Ouvrage ouvrage){
         //attibution de la date de restitution
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -281,6 +304,10 @@ public class EmployeController {
 
     }
 
+    /**
+     * permet d'ajouter les different models envoyés à la page html
+     * @param model
+     */
     public void ajoutDansLeModel(Model model){
 
         model.addAttribute("ouvrage", this.ouvrage);

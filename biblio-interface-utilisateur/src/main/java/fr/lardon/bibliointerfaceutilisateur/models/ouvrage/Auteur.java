@@ -7,6 +7,9 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant un auteur
+ */
 public class Auteur {
 
     private int idAuteur;

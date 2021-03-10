@@ -5,6 +5,9 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
+/**
+ * classe représentant un employé
+ */
 public class Employe {
 
     private int idEmploye;

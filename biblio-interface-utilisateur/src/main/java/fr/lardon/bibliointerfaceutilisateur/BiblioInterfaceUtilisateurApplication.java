@@ -6,6 +6,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients("fr.lardon.bibliointerfaceutilisateur")
+/**
+ * classe permettant le démarrage du microservice gestion interface utilisateur
+ */
 public class
 BiblioInterfaceUtilisateurApplication {
 

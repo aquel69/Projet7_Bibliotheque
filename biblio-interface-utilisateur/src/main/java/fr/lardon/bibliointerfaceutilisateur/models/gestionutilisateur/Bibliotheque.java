@@ -3,6 +3,9 @@ package fr.lardon.bibliointerfaceutilisateur.models.gestionutilisateur;
 import lombok.Data;
 
 @Data
+/**
+ * classe représentant une bibliothèque
+ */
 public class Bibliotheque {
 
     private String numeroSiret;

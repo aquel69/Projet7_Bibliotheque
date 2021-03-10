@@ -13,6 +13,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Entity
 @Table(name=("abonne"))
+/**
+ * classe représentant un abonné
+ */
 public class Abonne {
 
     @Id

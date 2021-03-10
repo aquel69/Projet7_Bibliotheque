@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Entity
 @Table(name=("pret"))
+/**
+ * classe représentant le prêt a modifié
+ */
 public class PretAModifie {
 
     @Id

@@ -9,6 +9,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name="adresse", schema = "public")
+/**
+ * classe représentant une adresse
+ */
 public class Adresse {
 
     @Id

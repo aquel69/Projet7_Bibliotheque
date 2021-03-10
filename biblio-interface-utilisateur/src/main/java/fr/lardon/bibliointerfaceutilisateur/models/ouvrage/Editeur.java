@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant une maison d'édition
+ */
 public class Editeur {
 
     private int idEditeur;

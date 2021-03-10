@@ -12,6 +12,9 @@ import java.util.Date;
 @EqualsAndHashCode(exclude = {"livre", "listePretAbonnes"})
 @Entity
 @Table(name=("ouvrage"))
+/**
+ * classe représentant l'ouvrage
+ */
 public class Ouvrage {
 
     @Id

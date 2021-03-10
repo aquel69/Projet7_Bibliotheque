@@ -12,6 +12,9 @@ import java.util.List;
 @EqualsAndHashCode(exclude = {"auteurs", "genres", "editeur"})
 @Entity
 @Table(name=("livre"))
+/**
+ * classe représentant un livre
+ */
 public class Livre {
 
     @Id

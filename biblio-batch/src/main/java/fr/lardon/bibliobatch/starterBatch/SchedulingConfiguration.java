@@ -23,6 +23,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
+/**
+ * classe permettant l'envoi des mails et permettant de fixer un horaire d'envoi
+ */
 public class SchedulingConfiguration {
 
     private AbonnePretOuvrage abonnePretOuvrage;
@@ -82,7 +85,6 @@ public class SchedulingConfiguration {
                     //récupération de l'ouvrage
                     ouvrage = daoOuvrage.findByCodeBibliotheque(pretAEnvoyer.getOuvragePret().getCodeBibliotheque());
 
-                    /*mail.setFrom("no-reply@memorynotfound.com");*/
                     mail.setTo(abonnePretOuvrage.getAbonne().getEmail());
                     mail.setSubject("Rappel de restitution du livre '" + ouvrage.getLivre().getTitre() + "'");
                     mail.setOuvrage(ouvrage);

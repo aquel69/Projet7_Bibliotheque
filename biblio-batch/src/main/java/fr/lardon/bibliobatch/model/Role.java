@@ -12,6 +12,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name=("enumrole"))
+/**
+ * classe représentant le role
+ */
 public class Role {
 
     @Id

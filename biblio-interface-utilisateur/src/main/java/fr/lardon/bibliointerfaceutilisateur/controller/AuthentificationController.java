@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+/**
+ * classe regroupant les méthodes permettant de traiter, envoyer et récupérer les données avec les page html de l'authentification
+ */
 public class AuthentificationController {
 
     @Autowired

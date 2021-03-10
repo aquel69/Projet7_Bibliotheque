@@ -6,6 +6,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
+/**
+ * classe représentant une adresse
+ */
 public class Adresse {
 
     private int idAdresse;

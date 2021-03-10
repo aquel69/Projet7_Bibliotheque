@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * classe regroupant les méthodes permettant de retourner les objets en fonction des données souhaités pour la gestion des livres, ouvrages et prêts
+ */
 @RestController
 public class LivreController {
 
@@ -45,45 +48,14 @@ public class LivreController {
     private ServiceAbonnePretOuvrage serviceAbonnePretOuvrage;
 
     /**
-     * renvoi la liste des ouvrages en fonction de leurs nombre de fois qu'ils ont été empruntés
+     * retourne la liste des ouvrages en fonction de leurs nombre de fois qu'ils ont été empruntés
      * @return
      */
-    /*@GetMapping(value = "/Top")
-    public MapDesLivresEmpruntes listeOuvrageSelonNombreDEmprunt(){
-        MapDesLivresEmpruntes mapDesLivresEmpruntes = new MapDesLivresEmpruntes();
-        Map<Livre, Integer> mapDesLivres = new HashMap<>();
-
-
-        List<Livre> livres = daoLivre.listeNombreDePretParLivre();
-
-        for(Livre livre : livres){
-            *//*if(mapDesLivres.isEmpty()){
-                mapDesLivres.put(livre, 1);
-            }else{*//*
-                *//*mapDesLivres.*//*
-                //1 - vérifier si la clé existe dans la map, si elle existe alors tu récupères la valeur et tu l'ajoute +1 mapDesLivres.put(livre, value)
-                //maintenant si elle n'existe pas alors mapDesLivres.put(livre, 1)
-            if()
-
-        }
-
-        mapDesLivresEmpruntes.setMapLivre(mapDesLivres);
-        return mapDesLivresEmpruntes;
-    }*/
-
-    /*@GetMapping(value = "/NombreDePret")
-    public List<Pret> listeDuNombreDePretParLivre(){
-        List<Pret> pretTops;
-
-        pretTops = daoPret.listeNombreDePretParLivre();
-
-        return pretTops;
-    }*/
     @GetMapping(value = "/Top")
     public List<Livre> listeOuvrageSelonNombreDEmprunt(){
         List<LivreTop> livresTop = daoLivreTop.listeNombreDePretParLivre();
         List<Livre> livres = new ArrayList<>();
-        Livre livre = new Livre();
+        Livre livre;
 
         for(LivreTop livreTop : livresTop){
             livre = recupererUnLivre(livreTop.getIdLivre());
@@ -93,6 +65,10 @@ public class LivreController {
         return livres;
     }
 
+    /**
+     * retourne la liste de tous les ouvrages
+     * @return
+     */
     @GetMapping(value = "/ListeOuvrage")
     public List<Ouvrage> listeDesOuvrages(){
         List<Ouvrage> listeOuvrage = daoOuvrage.recupererTousLesOuvrages();
@@ -101,7 +77,7 @@ public class LivreController {
     }
 
     /**
-     * renvoi la liste de tous les livres
+     * retourne la liste de tous les livres
      * @return
      */
     @GetMapping(value = "/Livres")
@@ -112,7 +88,7 @@ public class LivreController {
     }
 
     /**
-     * renvoi la liste des livres sous forme de pagination
+     * retourne la liste des livres sous forme de pagination
      * @param noPage
      * @param nbLivresParPage
      * @return
@@ -126,7 +102,7 @@ public class LivreController {
     }
 
     /**
-     * renvoi la liste des livres sous forme de pagination en fonction de la recherche
+     * retourne la liste des livres sous forme de pagination en fonction de la recherche
      * @param noPage
      * @param nbLivresParPage
      * @param recherche
@@ -141,7 +117,7 @@ public class LivreController {
     }
 
     /**
-     * renvoi la liste des livres en fonction de la recherche
+     * retourne la liste des livres en fonction de la recherche
      * @param recherche
      * @return
      */
@@ -177,7 +153,7 @@ public class LivreController {
     }
 
     /**
-     * renvoi la liste des livres en fonction de leurs anciennetés
+     * retourne la liste des livres en fonction de leurs anciennetés
      * @return
      */
     @GetMapping(value = "/Livres/Nouveau")
@@ -247,6 +223,11 @@ public class LivreController {
         return abonne;
     }
 
+    /**
+     * retourne une liste de prêts en fonction de l'id de l'abonné
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/PretsSelonAbonne/{id}")
     public List<Pret> listeDesPretsSelonAbonne(@PathVariable int id){
         List<Pret> prets = daoPret.listePretSelonAbonne(id);
@@ -254,6 +235,11 @@ public class LivreController {
         return prets;
     }
 
+    /**
+     * retourne un prêt selon son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/PretSelonSonId/{id}")
     public Pret pretSelonSonId(@PathVariable int id){
         Pret pret = daoPret.findById(id).get();
@@ -261,6 +247,11 @@ public class LivreController {
         return pret;
     }
 
+    /**
+     * retourne et sauvegarde une liste de prêts d'un abonné selon son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/AbonnePretSelonId/{id}")
     public AbonnePretOuvrage abonnePretSelonSonId(@PathVariable int id){
         List<Pret> pretList;
@@ -280,6 +271,11 @@ public class LivreController {
         return abonnePret;
     }
 
+    /**
+     * retourne un abonné selon son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/AbonneSelonSonId/{id}")
     public Abonne abonneSelonSonId(@PathVariable int id){
         Abonne abonne = daoAbonne.findById(id).get();
@@ -287,11 +283,20 @@ public class LivreController {
         return abonne;
     }
 
+    /**
+     * sauvegarde un prêt que l'on a modifié
+     * @param pretAModifie
+     */
     @PostMapping(value = "/SauvegarderPretAModifie")
     public void sauvegardePretAModifie(@RequestBody PretAModifie pretAModifie){
         daoPretAModifie.save(pretAModifie);
     }
 
+    /**
+     * retourne un prêt modifié selon son id
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/PretAModifieSelonSonId/{id}")
     public PretAModifie pretAModifieSelonSonId(@PathVariable int id){
         PretAModifie pretAModifie = daoPretAModifie.findById(id).get();
@@ -299,6 +304,11 @@ public class LivreController {
         return pretAModifie;
     }
 
+    /**
+     * retourne la liste des ouvrages selon l'id du livre
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/OuvragesSelonIdLivre/{id}")
     public List<Ouvrage> listeDesOuvragesSelonIdLivre(@PathVariable int id){
         List<Ouvrage> ouvrages;

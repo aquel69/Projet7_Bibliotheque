@@ -12,6 +12,9 @@ import java.util.List;
 @EqualsAndHashCode(exclude = "livres")
 @Entity
 @Table(name=("genre"))
+/**
+ * classe représentant un genre littéraire
+ */
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

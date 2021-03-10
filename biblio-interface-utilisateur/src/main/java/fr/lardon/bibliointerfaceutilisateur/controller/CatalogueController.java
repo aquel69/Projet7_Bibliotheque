@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+/**
+ * classe regroupant les méthodes permettant de traiter, envoyer et récupérer les données avec les page html de l'accueil et du catalogue
+ */
 public class CatalogueController {
     private List<Ouvrage> ouvragesNouveaute;
     private ArrayList<Livre> livreTop;
@@ -58,21 +61,7 @@ public class CatalogueController {
         }
 
         ouvrages = livresProxy.listeDesOuvrages();
-        /*Ouvrage ouvrageTop = new Ouvrage();
 
-        for(int i = 0; i < ouvrages.size() / 3; i++){
-            for(int j = 1; j < 4; j++){
-                ouvrageTop = ouvrages.get(i * j);
-            }
-
-        }*/
-
-        //récupération du top 10
-        /*List<Ouvrage> ouvragesTop;
-        ouvragesTop = livresProxy.listeOuvrageSelonNombreDEmprunt();
-        for(Ouvrage ouvrageBoucle : ouvragesTop){
-            livres.add(ouvrageBoucle.getLivre());
-        }*/
         livres = livresProxy.listeOuvrageSelonNombreDEmprunt();
 
         /*livres = livresProxy.topLivre();*/
@@ -103,6 +92,12 @@ public class CatalogueController {
         return "Accueil";
     }
 
+    /**
+     * permet de récupérer les données pour la prolongation d'un ouvrage et renvoie à l'accueil avec un message
+     * @param model
+     * @param pretProlongation
+     * @return
+     */
     @RequestMapping(value = "/Prolongation", method = RequestMethod.POST)
     public String accueilPost(Model model,@RequestParam int pretProlongation){
         String message;
@@ -144,7 +139,7 @@ public class CatalogueController {
     }
 
     /**
-     * permet de renvoyer sur la page détail livre et de récupérer l'id correspondant au livre
+     * permet de renvoyer sur la page détail du livre et de récupérer l'id correspondant au livre
      * @param id
      * @param model
      * @return
@@ -246,7 +241,11 @@ public class CatalogueController {
     }
 
 
-
+    /**
+     * récupérer les livres recherchés et calcul le nombre de pages pour la pagination
+     * @param noPage
+     * @param nbLivresParPage
+     */
     public void recuperationDesLivresRecherche(int noPage, int nbLivresParPage){
         //récuperation des livres en fonction du numéro de la page
         listeLivresPagination = livresProxy.catalogueListeLivrePaginationRecherche(noPage, nbLivresParPage,recherche);

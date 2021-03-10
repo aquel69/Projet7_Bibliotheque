@@ -7,6 +7,9 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+/**
+ * classe représentant un ouvrage
+ */
 public class Ouvrage {
 
     private int idOuvrage;
