@@ -67,7 +67,7 @@ modifier le SDK comme indiquer sur le screen, avec la version 8 disponible [ici]
  - Rdv dans l'interface de pgAdmin et ajoutez une base de données :  
    clic droit sur PostgreSQL 12 dans la colonne de gauche -> Create -> Database
 
-![photo 1 creation BDD](documentation/screenshots/creation_BDD_1.png "creation BDD")  
+![photo 1 creation bdd](documentation/screenshots/creation_bdd_1.png "creation BDD")  
 
  - Donnez-lui un nom puis valider.  
 
@@ -80,16 +80,16 @@ modifier le SDK comme indiquer sur le screen, avec la version 8 disponible [ici]
  - Sélectionnez toutes les requêtes, puis copiez les.
  - Dans l'interface PgAdmin 4 cliquez sur la base de données que vous venez de créer puis sur le bouton 'Query Tool' :  
 
-![photo 2 creation BDD](documentation/screenshots/creation_BDD_2.png "creation BDD")
+![photo 2 creation bdd](documentation/screenshots/creation_bdd_2.png "creation BDD")  
 
  - Il ne reste plus qu'à coller les requêtes, dans la fenêtre que vous venez d'ouvrir, sélectionnez toutes vos requêtes et
    cliquer sur le bouton 'Execute' :
 
-![photo 3 creation BDD](documentation/screenshots/creation_BDD_3.png "creation BDD")
+![photo 3 creation bdd](documentation/screenshots/creation_bdd_3.png "creation BDD")  
 
  - Regarder dans votre arborescence, vous devriez vous retrouvez avec toutes les tables :  
 
-![photo 4 creation BDD](documentation/screenshots/creation_BDD_4.png "creation BDD")  
+![photo 4 creation bdd](documentation/screenshots/creation_bdd_4.png "creation BDD")  
 
  - Effectuons les mêmes opérations pour récupérer la data, à l'aide du fichier 'backup_structure.sql se trouvant 
    également dans le dossier 'Backup' et votre base de données sera créée.
