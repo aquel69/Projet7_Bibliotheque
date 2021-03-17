@@ -154,10 +154,6 @@ public class CatalogueController {
 
         ouvrages = livresProxy.listeDesOuvragesSelonIdLivre(id);
 
-        for(Ouvrage ouvrage : ouvrages) {
-            System.out.println(ouvrage);
-        }
-
         //ajout dans le model
         model.addAttribute("ouvrages", ouvrages);
         model.addAttribute("abonnePret", abonnePret);

@@ -197,13 +197,12 @@ public class GestionUtilisateurController {
 
         //récupération du code role
         if (model.getAttribute("codeRole") != null) codeRole = (int) model.getAttribute("codeRole");
-        //récupération du code role
+
         //récupération des prêt de l'abonné pour la gestion de ses emprunts
-        if (model.getAttribute("utilisateurAuthentifie") != null)
+        if (model.getAttribute("utilisateurAuthentifie") != null) {
             utilisateurAuthentifie = (Abonne) model.getAttribute("utilisateurAuthentifie");
             abonnePret = livresProxy.abonnePretSelonSonId(utilisateurAuthentifie.getIdAbonne());
-
-        System.out.println(abonnePret);
+        }
 
         abonneAModifier = gestionUtilisateur.recupererAbonne(utilisateurAuthentifie.getIdAbonne());
 
@@ -228,6 +227,7 @@ public class GestionUtilisateurController {
     public String validationModificationCompte(Model model, @RequestParam("ancienMotDePasse") String ancienMotDePasse, @ModelAttribute("abonneAModifier") @Valid AbonneModifie abonneBeanModifier, BindingResult bindingResult) {
         String messageErreur;
         String messageErreurMotDePasse = null;
+        String messageErreurNouveauMotDePasse = null;
         resultatEmailExistant = false;
         bCryptPasswordMatche = new BCryptPasswordEncoder();
         bCryptPasswordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
@@ -266,11 +266,12 @@ public class GestionUtilisateurController {
                 if(!bCryptPasswordMatche.matches(ancienMotDePasse, abonneAModifier.getMotDePasse())){
                     messageErreurMotDePasse = "Le mot de passe ne correspond pas avec le mot de passe de votre compte";
                 }else{
-                    messageErreurMotDePasse = "Le mot de passe doit être composé de 6 caractères minimum";
+                    messageErreurNouveauMotDePasse = "Le nouveau mot de passe doit être composé de 6 caractères minimum";
                 }
 
                 model.addAttribute("abonnePret", abonnePret);
                 model.addAttribute("messageErreurMotDePasse", messageErreurMotDePasse);
+                model.addAttribute("messageErreurNouveauMotDePasse", messageErreurNouveauMotDePasse);
                 model.addAttribute("abonneAModifier", abonneBeanModifier);
                 model.addAttribute("utilisateurAuthentifie", utilisateurAuthentifie);
                 model.addAttribute("codeRole", codeRole);

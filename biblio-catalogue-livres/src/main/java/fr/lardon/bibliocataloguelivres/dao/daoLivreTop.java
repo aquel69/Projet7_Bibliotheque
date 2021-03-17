@@ -10,10 +10,10 @@ import java.util.List;
 @Repository
 public interface daoLivreTop extends JpaRepository<LivreTop, Integer> {
 
-    @Query(value = "SELECT  l.id_livre FROM pret as pre\n" +
-            "INNER JOIN ouvrage o on pre.id_ouvrage = o.id_ouvrage\n" +
-            "INNER JOIN livre l on l.id_livre = o.id_livre\n" +
-            "GROUP BY l.id_livre, o.nombre_exemplaires ORDER BY COUNT(l.id_livre) DESC", nativeQuery = true)
+    @Query(value = "SELECT liv.id_livre FROM pret as pre\n" +
+            "INNER JOIN ouvrage as ouv on pre.id_ouvrage = ouv.id_ouvrage\n" +
+            "INNER JOIN livre as liv on liv.id_livre = ouv.id_livre\n" +
+            "GROUP BY liv.id_livre ORDER BY COUNT(liv.id_livre) DESC", nativeQuery = true)
     List<LivreTop> listeNombreDePretParLivre();
 
 }

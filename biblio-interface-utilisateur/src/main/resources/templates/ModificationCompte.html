@@ -141,10 +141,10 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="password">Nouveau mot de passe</label>
                             <input id="password" type="password" th:field="*{motDePasse}" class="form-control" />
-                            <div th:if="${#fields.hasErrors('motDePasse')}" class="alert alert-warning alert-dismissible" role="alert">
+                            <div th:if="${messageErreurNouveauMotDePasse != null}" class="alert alert-warning alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span></button>
-                                <span th:errors="*{motDePasse}"></span>
+                                <span th:text="${messageErreurNouveauMotDePasse}"></span>
                             </div>
                         </div>
                         <!-- Submit button -->
