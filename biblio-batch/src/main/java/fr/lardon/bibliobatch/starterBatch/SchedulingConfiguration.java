@@ -51,8 +51,8 @@ public class SchedulingConfiguration {
     @Autowired
     private Configuration freemarkerConfig;
 
-    @Scheduled(cron = "0 0 0 * * *")
-   /*@Scheduled(fixedRate = 20000L)*/
+    /*@Scheduled(cron = "0 0 0 * * *")*/
+    @Scheduled(fixedRate = 20000L)
     public void startBatch() throws MessagingException, IOException, TemplateException {
         FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
         bean.setTemplateLoaderPath("/templates/");
