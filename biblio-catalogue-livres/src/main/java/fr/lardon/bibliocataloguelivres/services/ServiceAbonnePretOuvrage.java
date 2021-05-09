@@ -23,10 +23,7 @@ public class ServiceAbonnePretOuvrage {
 
     public AbonnePretOuvrage getAbonnePretOuvrage(int id){
         AbonnePretOuvrage abonnePretOuvrage = new AbonnePretOuvrage();
-        /*List<Pret> listeTrie = new ArrayList<>();
-        int index1 = 0;
-        int index2 = 0;
-*/
+
         LocalDateTime localDateTime = LocalDateTime.now();
 
         Abonne abonne = daoAbonne.findById(id).get();
@@ -67,12 +64,5 @@ public class ServiceAbonnePretOuvrage {
 
         return abonnePretOuvrage;
     }
-
-    /*public List<Livre> getLivreOuvrageBibliotheque(int id){
-
-
-        return null;
-
-    }*/
 
 }
